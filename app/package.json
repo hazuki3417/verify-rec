@@ -7,21 +7,21 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "biome format --write ."
   },
   "dependencies": {
-    "dxf-parser": "^1.1.2",
-    "fabric": "^6.7.0",
-    "konva": "^9.3.20",
+    "biome": "^0.3.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-konva": "^19.0.7",
-    "three": "^0.178.0"
+    "three": "^0.178.0",
+    "three-dxf-viewer": "^1.0.36"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+    "@types/three": "^0.178.0",
     "@vitejs/plugin-react": "^4.5.2",
     "eslint": "^9.29.0",
     "eslint-plugin-react-hooks": "^5.2.0",
