@@ -1,0 +1,20 @@
+:root {
+	--color-primary: #1a73e8;
+	--color-secondary: #e8f0fe;
+	--color-text: #202124;
+	--color-background: #ffffff;
+
+	--font-base: "Segoe UI", sans-serif;
+	--font-size: 14px;
+
+	--spacing-sm: 8px;
+	--spacing-md: 16px;
+	--spacing-lg: 24px;
+
+	--radius-sm: 4px;
+	--radius-md: 8px;
+}
+
+* {
+	font-family: "Noto Sans JP", sans-serif;
+}
