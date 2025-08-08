@@ -7,17 +7,19 @@
     "removeComments": false,
 
     // ---- 出力形式（読みやすい ESM / React JSX）----
-    "target": "ES2022",
+    "erasableSyntaxOnly": false,
     "module": "ESNext",
-    "jsx": "react-jsx",
+    "moduleResolution": "Bundler",
+    "listEmittedFiles": true,
+    "target": "ES2022",
+    "jsx": "react",
 
     // ---- そのままにして問題ない（バンドラ前提でもOK）----
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
 
-    // ※ outDir を指定しない → 元ファイルと同じ場所に .js を吐く
-    // "outDir": undefined
+    "outDir": "dist"
   },
   "include": ["src"]
 }

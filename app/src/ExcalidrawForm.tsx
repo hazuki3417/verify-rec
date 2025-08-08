@@ -1,3 +1,4 @@
+import React from "react";
 import { Excalidraw, MainMenu } from "@excalidraw/excalidraw";
 import {
 	forwardRef,
