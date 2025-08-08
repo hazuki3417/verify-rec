@@ -2,24 +2,34 @@ import "styled-components";
 
 declare module "styled-components" {
 	export interface DefaultTheme {
-		colors: {
-			primary: string;
-			secondary: string;
-			text: string;
-			background: string;
-		};
-		spacing: {
-			sm: string;
-			md: string;
-			lg: string;
+		color: {
+			mainEmerald: string;
+
+			basePealGray: string;
+			baseRiverBlue: string;
+			baseVeryPealGray: string;
+			baseWhite: string;
 		};
 		font: {
-			base: string;
-			size: string;
-		};
-		radius: {
-			sm: string;
-			md: string;
+			size: {
+				"10": string;
+				"11": string;
+				"12": string;
+				"14": string;
+				"16": string;
+				"18": string;
+				"20": string;
+				"24": string;
+			};
+			lineHight: {
+				"160": string;
+			};
+			weight: {
+				regular: string;
+				medium: string;
+				semiBold: string;
+				bold: string;
+			};
 		};
 	}
 }

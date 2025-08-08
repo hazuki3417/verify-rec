@@ -1,24 +1,32 @@
 // src/theme.ts
-import { type DefaultTheme } from "styled-components";
+export const theme = {
+	color: {
+		mainEmerald: "var(--color-main-emerald)",
 
-export const theme: DefaultTheme = {
-	colors: {
-		primary: "var(--color-primary)",
-		secondary: "var(--color-secondary)",
-		text: "var(--color-text)",
-		background: "var(--color-background)",
-	},
-	spacing: {
-		sm: "var(--spacing-sm)",
-		md: "var(--spacing-md)",
-		lg: "var(--spacing-lg)",
+		basePealGray: "var(--color-base-peal-gray)",
+		baseRiverBlue: "var(--color-base-river-blue)",
+		baseVeryPealGray: "var(--color-base-very-peal-gray)",
+		baseWhite: "var(--color-base-white)",
 	},
 	font: {
-		base: "var(--font-base)",
-		size: "var(--font-size)",
-	},
-	radius: {
-		sm: "var(--radius-sm)",
-		md: "var(--radius-md)",
+		size: {
+			"10": "var(--font-size-10)",
+			"11": "var(--font-size-11)",
+			"12": "var(--font-size-12)",
+			"14": "var(--font-size-14)",
+			"16": "var(--font-size-16)",
+			"18": "var(--font-size-18)",
+			"20": "var(--font-size-20)",
+			"24": "var(--font-size-24)",
+		},
+		lineHight: {
+			"160": "var(--font-line-height-160)",
+		},
+		weight: {
+			regular: "var(--font-weight-regular)",
+			medium: "var(--font-weight-medium)",
+			semiBold: "var(--font-weight-semi-bold)",
+			bold: "var(--font-weight-bold)",
+		},
 	},
 };

@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // ---- emit を有効化（同階層に .js を出力）----
+    "noEmit": false,
+    "declaration": false,
+    "sourceMap": true,
+    "removeComments": false,
+
+    // ---- 出力形式（読みやすい ESM / React JSX）----
+    "target": "ES2022",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+
+    // ---- そのままにして問題ない（バンドラ前提でもOK）----
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true
+
+    // ※ outDir を指定しない → 元ファイルと同じ場所に .js を吐く
+    // "outDir": undefined
+  },
+  "include": ["src/**/*.{ts,tsx}"]
+}
