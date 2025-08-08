@@ -1,17 +1,22 @@
 import React, { forwardRef } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import {
 	resolveStyle,
-	resolveVariant,
-	resolveSize,
 	type SizeProp,
 	type StylableProp,
 	type VariantProp,
 	type VariantToken,
 	type SizeToken,
+	cssVariant,
+	cssSize,
+	cssFontColor,
+	cssFontSize,
+	cssFontLineHeight,
+	cssFontWeight,
+	type FontProps,
 } from "../props";
 
-type BaseProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
 const variantToken: VariantToken = {
 	primary: {
@@ -60,22 +65,20 @@ const sizeToken: SizeToken = {
 	},
 };
 
-interface StyleProps extends StylableProp, VariantProp, SizeProp {}
+interface StyleProps extends StylableProp, VariantProp, SizeProp, FontProps {}
 
 const Base = styled.button<StyleProps>`
 	border-radius: 8px;
 	cursor: pointer;
-	font-weight: 700;
-	line-height: 160%;
 	padding: 0px 8px;
 	text-align: center;
 	box-shadow: #263a4033 0px 2px 4px 0px;
-	${({ variant }) => {
-		return css(resolveVariant(variant, variantToken));
-	}}
-	${({ size }) => {
-		return css(resolveSize(size, sizeToken));
-	}}
+	${cssVariant({ token: variantToken })}
+	${cssSize({ token: sizeToken })}
+	${cssFontColor()}
+	${cssFontSize()}
+	${cssFontLineHeight()}
+	${cssFontWeight({ defaultValue: "bold" })}
 `;
 
 export interface ButtonProps extends StyleProps, Omit<BaseProps, "style"> {}
