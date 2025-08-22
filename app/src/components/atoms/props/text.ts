@@ -4,23 +4,23 @@ import { valueResolver, type ResolverArg, type Token } from "./resolver";
 export type LineMode = "single" | "multi";
 export type OverflowMode = "normal" | "ellipsis" | "scrollX" | "clip";
 
-export type LineModeProp = { $lineMode?: LineMode}
-export type OverflowModeProp = { $overflowMode?: OverflowMode}
+export type LineModeProp = { $lineMode?: LineMode };
+export type OverflowModeProp = { $overflowMode?: OverflowMode };
 
-export type LineModeToken = Token<LineMode>
-export type OverflowModeToken = Token<OverflowMode>
+export type LineModeToken = Token<LineMode>;
+export type OverflowModeToken = Token<OverflowMode>;
 
 export const lineModeToken: LineModeToken = {
-  multi: {},
-  single: {},
-}
+	multi: {},
+	single: {},
+};
 
 export const overflowModeToken: OverflowModeToken = {
-  normal: {},
-  ellipsis: {},
-  scrollX: {},
-  clip: {},
-}
+	normal: {},
+	ellipsis: {},
+	scrollX: {},
+	clip: {},
+};
 
 /**
  * propsの値に対応するcss propertiesを返す関数群
@@ -28,15 +28,14 @@ export const overflowModeToken: OverflowModeToken = {
  */
 
 export const resolveLineMode = (arg: ResolverArg<LineMode>) => {
-  const { value, token } = arg;
-  return valueResolver(value, token, "multi");
+	const { value, token } = arg;
+	return valueResolver(value, token, "multi");
 };
 
 export const resolveOverflowMode = (arg: ResolverArg<OverflowMode>) => {
-  const { value, token } = arg;
-  return valueResolver(value, token, "normal");
+	const { value, token } = arg;
+	return valueResolver(value, token, "normal");
 };
-
 
 /**
  * NOTE: text関連のpropsはあらゆるコンポーネントで提供したい可能性があるため下記の処理を提供する部品を実装
