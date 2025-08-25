@@ -1,17 +1,21 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { resolveStyle, type StylableProp } from "../props";
 import {
-	type FontProps,
+	resolveStyle,
+	type StylableProp,
+	type FontStyleProps,
+	type TextStyleProps,
 	cssFontColor,
 	cssFontSize,
 	cssFontLineHeight,
 	cssFontWeight,
+	cssTextLineMode,
+	cssTextOverflowMode,
 } from "../props";
 
 type BaseProps = React.ComponentPropsWithoutRef<"p">;
 
-interface StyleProps extends StylableProp, FontProps {}
+interface StyleProps extends StylableProp, FontStyleProps, TextStyleProps {}
 
 const Base = styled.p<StyleProps>`
 	padding: 0px;
@@ -20,6 +24,8 @@ const Base = styled.p<StyleProps>`
 	${cssFontSize()}
 	${cssFontLineHeight()}
 	${cssFontWeight()}
+	${cssTextLineMode()}
+	${cssTextOverflowMode()}
 `;
 
 export interface TextProps extends StyleProps, Omit<BaseProps, "style"> {}
