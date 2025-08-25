@@ -49,8 +49,8 @@ export const ListMenu = forwardRef<HTMLUListElement, ListMenuProps>(
 		const menu = useMemo(() => {
 			return items
 				.filter((item) => item.show)
-				.map(({show, ...rest}, index) => <Li key={index} {...rest} />);
-        // NOTE: liのpropsのみを抽出するため、showを記述しrestに含まれないようにする
+				.map(({ show, ...rest }, index) => <Li key={index} {...rest} />);
+			// NOTE: liのpropsのみを抽出するため、showを記述しrestに含まれないようにする
 		}, [items]);
 
 		return (
