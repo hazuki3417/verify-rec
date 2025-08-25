@@ -1,25 +1,26 @@
 {
-	"compilerOptions": {
-		// ---- emit を有効化（同階層に .js を出力）----
-		"noEmit": false,
-		"declaration": false,
-		"sourceMap": false,
-		"removeComments": false,
+  "compilerOptions": {
+    // ---- emit を有効化（同階層に .js を出力）----
+    "noEmit": false,
+    "declaration": false,
+    "sourceMap": false,
+    "removeComments": false,
 
-		// ---- 出力形式（読みやすい ESM / React JSX）----
-		"erasableSyntaxOnly": false,
-		"module": "ESNext",
-		"moduleResolution": "Bundler",
-		"listEmittedFiles": true,
-		"target": "ES2022",
-		"jsx": "preserve",
+    // ---- 出力形式（読みやすい ESM / React JSX）----
+    "erasableSyntaxOnly": false,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "listEmittedFiles": true,
+    "target": "ES2022",
+    "jsx": "preserve",
 
-		// ---- そのままにして問題ない（バンドラ前提でもOK）----
-		"useDefineForClassFields": true,
-		"lib": ["ES2022", "DOM", "DOM.Iterable"],
-		"skipLibCheck": true,
+    // ---- そのままにして問題ない（バンドラ前提でもOK）----
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
 
-		"outDir": "dist"
-	},
-	"include": ["src"]
+    "outDir": "dist"
+  },
+  "exclude": ["src/exclude/*"],
+  "include": ["src"]
 }

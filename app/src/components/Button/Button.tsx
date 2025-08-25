@@ -13,8 +13,8 @@ import {
 	cssFontSize,
 	cssFontLineHeight,
 	cssFontWeight,
-	type FontProps,
-} from "../atoms/props";
+	type FontStyleProps,
+} from "../props";
 
 type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
@@ -65,7 +65,7 @@ const sizeToken: SizeToken = {
 	},
 };
 
-interface StyleProps extends StylableProp, VariantProp, SizeProp, FontProps {}
+interface StyleProps extends StylableProp, VariantProp, SizeProp, FontStyleProps {}
 
 const Base = styled.button<StyleProps>`
 	border-radius: 8px;

@@ -1,9 +1,9 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { resolveStyle, type StylableProp } from "../atoms/props";
-import { FormLabel } from "../atoms/FormLabel";
-import { FormDescription } from "../atoms/FormDescription";
-import { FormFieldMessage } from "../atoms/FormFieldMessage";
+import { resolveStyle, type StylableProp } from "../props";
+import { FormLabel } from "../FormLabel";
+import { FormDescription } from "../FormDescription";
+import { FormFieldMessage } from "../FormFieldMessage";
 
 type BaseProps = React.HTMLAttributes<HTMLDivElement>;
 

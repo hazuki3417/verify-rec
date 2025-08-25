@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { FormFieldContainer } from "./FormFieldContainer";
-import { FormTextInput } from "../atoms/FormTextInput";
+import { FormTextInput } from "../FormTextInput";
 
 const meta = {
 	title: "Form/FormFieldContainer",

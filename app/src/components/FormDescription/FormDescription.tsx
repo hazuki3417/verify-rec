@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { resolveStyle, type StylableProp } from "../atoms/props";
+import { resolveStyle, type StylableProp } from "../props";
 
 type BaseProps = React.HTMLAttributes<HTMLParagraphElement>;
 
