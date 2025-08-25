@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { theme } from "./theme";
 
 const meta = {
-	title: "Theme",
+	title: "Theme/Color",
 } satisfies Meta<typeof Text>;
 
 export default meta;
@@ -29,7 +29,7 @@ const Item = ({ name, value }: { name: string; value: string }) => (
 	</div>
 );
 
-export const ColorCatalog: Story = {
+export const Catalog: Story = {
 	render: (args) => {
 		return (
 			<div

@@ -18,7 +18,7 @@ import {
 } from "../props";
 
 const meta = {
-	title: "Text",
+	title: "Components/Text",
 	component: Text,
 	argTypes: {
 		$fontColor: {
