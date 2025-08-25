@@ -1,25 +1,40 @@
 import { css } from "styled-components";
 import { valueResolver, type ResolverArg, type Token } from "./resolver";
 
-export type LineMode = "single" | "multi";
-export type OverflowMode = "normal" | "ellipsis" | "scrollX" | "clip";
+export type TextLineMode = "single" | "multi";
+export type TextOverflowMode = "normal" | "ellipsis" | "scrollX";
 
-export type LineModeProp = { $lineMode?: LineMode };
-export type OverflowModeProp = { $overflowMode?: OverflowMode };
+export type TextLineModeProp = { $lineMode?: TextLineMode };
+export type TextOverflowModeProp = { $overflowMode?: TextOverflowMode };
 
-export type LineModeToken = Token<LineMode>;
-export type OverflowModeToken = Token<OverflowMode>;
+export interface TextStyleProps
+	extends TextLineModeProp,
+		TextOverflowModeProp {}
 
-export const lineModeToken: LineModeToken = {
-	multi: {},
-	single: {},
+export type TextLineModeToken = Token<TextLineMode>;
+export type TextOverflowModeToken = Token<TextOverflowMode>;
+
+export const textLineModeToken: TextLineModeToken = {
+	multi: {
+		overflowWrap: "break-word",
+		wordBreak: "break-word",
+	},
+	single: {
+		overflow: "hidden",
+		whiteSpace: "nowrap",
+	},
 };
 
-export const overflowModeToken: OverflowModeToken = {
-	normal: {},
-	ellipsis: {},
-	scrollX: {},
-	clip: {},
+export const textOverflowModeToken: TextOverflowModeToken = {
+	normal: {
+		// NOTE: 要素側のデフォルトスタイルを利用するためcssの指定なし
+	},
+	ellipsis: {
+		textOverflow: "ellipsis",
+	},
+	scrollX: {
+		overflowX: "scroll",
+	},
 };
 
 /**
@@ -27,12 +42,12 @@ export const overflowModeToken: OverflowModeToken = {
  * NOTE: ここで指定している初期値はprop基準の初期値
  */
 
-export const resolveLineMode = (arg: ResolverArg<LineMode>) => {
+export const resolveTextLineMode = (arg: ResolverArg<TextLineMode>) => {
 	const { value, token } = arg;
 	return valueResolver(value, token, "multi");
 };
 
-export const resolveOverflowMode = (arg: ResolverArg<OverflowMode>) => {
+export const resolveTextOverflowMode = (arg: ResolverArg<TextOverflowMode>) => {
 	const { value, token } = arg;
 	return valueResolver(value, token, "normal");
 };
@@ -46,26 +61,26 @@ export const resolveOverflowMode = (arg: ResolverArg<OverflowMode>) => {
  * NOTE: i/fの形式を統一するために引数はオブジェクト型にしています。
  */
 
-export const cssLineMode = (args?: {
-	defaultValue?: LineMode;
-}) => css<LineModeProp>`
+export const cssTextLineMode = (args?: {
+	defaultValue?: TextLineMode;
+}) => css<TextLineModeProp>`
   ${({ $lineMode }) =>
 		css(
-			resolveLineMode({
+			resolveTextLineMode({
 				value: $lineMode ?? args?.defaultValue,
-				token: lineModeToken,
+				token: textLineModeToken,
 			}),
 		)}
 `;
 
-export const cssOverflowMode = (args?: {
-	defaultValue?: OverflowMode;
-}) => css<OverflowModeProp>`
+export const cssTextOverflowMode = (args?: {
+	defaultValue?: TextOverflowMode;
+}) => css<TextOverflowModeProp>`
   ${({ $overflowMode }) =>
 		css(
-			resolveOverflowMode({
+			resolveTextOverflowMode({
 				value: $overflowMode ?? args?.defaultValue,
-				token: overflowModeToken,
+				token: textOverflowModeToken,
 			}),
 		)}
 `;

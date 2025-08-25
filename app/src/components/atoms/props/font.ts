@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 import { theme } from "../../../theme";
-import type { Color } from "./color";
+import { color, type Color } from "./color";
 import { valueResolver, type ResolverArg, type Token } from "./resolver";
 
 export type FontColor = Color;
@@ -13,7 +13,7 @@ export type FontSizeProp = { $fontSize?: FontSize };
 export type FontLineHeightProp = { $fontLineHeight?: FontLineHeight };
 export type FontWeightProp = { $fontWeight?: FontWeight };
 
-export interface FontProps
+export interface FontStyleProps
 	extends FontColorProp,
 		FontSizeProp,
 		FontLineHeightProp,
@@ -29,7 +29,7 @@ export type FontWeightToken = Token<FontWeight>;
  */
 
 export const fontColorToken = Object.fromEntries(
-	Object.entries(theme.color).map(([key, value]) => [key, { color: value }]),
+	Object.entries(color).map(([key, value]) => [key, { color: value }]),
 ) as FontColorToken;
 
 export const fontSizeToken = Object.fromEntries(
@@ -60,7 +60,7 @@ export const fontWeightToken = Object.fromEntries(
 
 export const resolveFontColor = (arg: ResolverArg<FontColor>) => {
 	const { value, token } = arg;
-	return valueResolver(value, token, "baseRiverBlue");
+	return valueResolver(value, token, "riverBlue");
 };
 
 export const resolveFontSize = (arg: ResolverArg<FontSize>) => {

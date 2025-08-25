@@ -1,12 +1,45 @@
 // src/theme.ts
 export const theme = {
 	color: {
-		mainEmerald: "var(--color-main-emerald)",
-
-		basePealGray: "var(--color-base-peal-gray)",
-		baseRiverBlue: "var(--color-base-river-blue)",
-		baseVeryPealGray: "var(--color-base-very-peal-gray)",
-		baseWhite: "var(--color-base-white)",
+		main: {
+			emerald: "var(--color-main-emerald)",
+		},
+		base: {
+			pealGray: "var(--color-base-peal-gray)",
+			riverBlue: "var(--color-base-river-blue)",
+			veryPealGray: "var(--color-base-very-peal-gray)",
+			white: "var(--color-base-white)",
+		},
+		sub: {
+			black: "var(--color-sub-black)",
+			coral: "var(--color-sub-coral)",
+			darkEmerald: "var(--color-sub-dark-emerald)",
+			darkGray: "var(--color-sub-dark-gray)",
+			gray: "var(--color-sub-gray)",
+			green: "var(--color-sub-green)",
+			lightGray: "var(--color-sub-light-gray)",
+			lightPink: "var(--color-sub-light-pink)",
+			lightYellow: "var(--color-sub-light-yellow)",
+			ocher: "var(--color-sub-ocher)",
+			pealEmerald: "var(--color-sub-peal-emerald)",
+			skyBlue: "var(--color-sub-sky-blue)",
+			slightlyEmerald: "var(--color-sub-slightly-emerald)",
+			slightlyLightGray: "var(--color-sub-slightly-light-gray)",
+			slightlyLightPink: "var(--color-sub-slightly-light-pink)",
+		},
+		status: {
+			lightBeige: "var(--color-status-light-beige)",
+			lightBlue: "var(--color-status-light-blue)",
+			lightGreen: "var(--color-status-light-green)",
+			lightYellow: "var(--color-status-light-yellow)",
+			peacockGreen: "var(--color-status-peacock-green)",
+			pink: "var(--color-status-pink)",
+			purple: "var(--color-status-purple)",
+			slightlyLightBlue: "var(--color-status-slightly-light-blue)",
+			slightlyLightOrange: "var(--color-status-slightly-light-orange)",
+			slightlyLightRed: "var(--color-status-slightly-light-red)",
+			yellowGreen: "var(--color-status-yellow-green)",
+		},
 	},
 	font: {
 		size: {
