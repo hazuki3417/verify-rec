@@ -65,7 +65,11 @@ const sizeToken: SizeToken = {
 	},
 };
 
-interface StyleProps extends StylableProp, VariantProp, SizeProp, FontStyleProps {}
+interface StyleProps
+	extends StylableProp,
+		VariantProp,
+		SizeProp,
+		FontStyleProps {}
 
 const Base = styled.button<StyleProps>`
 	border-radius: 8px;
