@@ -14,7 +14,7 @@ import {
 	cssFontLineHeight,
 	cssFontWeight,
 	type FontProps,
-} from "../props";
+} from "../atoms/props";
 
 type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
