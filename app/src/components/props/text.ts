@@ -1,5 +1,9 @@
 import { css } from "styled-components";
-import { valueResolver, type ResolverArg, type Token } from "./resolver";
+import {
+	styleResolver,
+	type ResolverStyleMapArg,
+	type StyleMap,
+} from "./resolver";
 
 export type TextLineMode = "single" | "multi";
 export type TextOverflowMode = "normal" | "ellipsis" | "scrollX";
@@ -11,10 +15,10 @@ export interface TextStyleProps
 	extends TextLineModeProp,
 		TextOverflowModeProp {}
 
-export type TextLineModeToken = Token<TextLineMode>;
-export type TextOverflowModeToken = Token<TextOverflowMode>;
+export type TextLineModeStyleMap = StyleMap<TextLineMode>;
+export type TextOverflowModeStyleMap = StyleMap<TextOverflowMode>;
 
-export const textLineModeToken: TextLineModeToken = {
+export const textLineModeStyleMap: TextLineModeStyleMap = {
 	multi: {
 		overflowWrap: "break-word",
 		wordBreak: "break-word",
@@ -25,7 +29,7 @@ export const textLineModeToken: TextLineModeToken = {
 	},
 };
 
-export const textOverflowModeToken: TextOverflowModeToken = {
+export const textOverflowModeStyleMap: TextOverflowModeStyleMap = {
 	normal: {
 		// NOTE: 要素側のデフォルトスタイルを利用するためcssの指定なし
 	},
@@ -42,14 +46,16 @@ export const textOverflowModeToken: TextOverflowModeToken = {
  * NOTE: ここで指定している初期値はprop基準の初期値
  */
 
-export const resolveTextLineMode = (arg: ResolverArg<TextLineMode>) => {
-	const { value, token } = arg;
-	return valueResolver(value, token, "multi");
+export const resolveTextLineMode = (arg: ResolverStyleMapArg<TextLineMode>) => {
+	const { prop, style } = arg;
+	return styleResolver(prop, style, "multi");
 };
 
-export const resolveTextOverflowMode = (arg: ResolverArg<TextOverflowMode>) => {
-	const { value, token } = arg;
-	return valueResolver(value, token, "normal");
+export const resolveTextOverflowMode = (
+	arg: ResolverStyleMapArg<TextOverflowMode>,
+) => {
+	const { prop, style } = arg;
+	return styleResolver(prop, style, "normal");
 };
 
 /**
@@ -67,8 +73,8 @@ export const cssTextLineMode = (args?: {
   ${({ $lineMode }) =>
 		css(
 			resolveTextLineMode({
-				value: $lineMode ?? args?.defaultValue,
-				token: textLineModeToken,
+				prop: $lineMode ?? args?.defaultValue,
+				style: textLineModeStyleMap,
 			}),
 		)}
 `;
@@ -79,8 +85,8 @@ export const cssTextOverflowMode = (args?: {
   ${({ $overflowMode }) =>
 		css(
 			resolveTextOverflowMode({
-				value: $overflowMode ?? args?.defaultValue,
-				token: textOverflowModeToken,
+				prop: $overflowMode ?? args?.defaultValue,
+				style: textOverflowModeStyleMap,
 			}),
 		)}
 `;

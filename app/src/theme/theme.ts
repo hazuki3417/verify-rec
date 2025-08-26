@@ -61,4 +61,16 @@ export const theme = {
 			bold: "var(--font-weight-bold)",
 		},
 	},
+	icon: {
+		size: {
+			"12": "var(--icon-size-12)",
+			"14": "var(--icon-size-14)",
+			"16": "var(--icon-size-16)",
+			"18": "var(--icon-size-18)",
+			"20": "var(--icon-size-20)",
+			"24": "var(--icon-size-24)",
+			"36": "var(--icon-size-36)",
+			"72": "var(--icon-size-72)",
+		},
+	},
 };

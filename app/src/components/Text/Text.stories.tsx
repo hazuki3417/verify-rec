@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Text } from "./Text";
 import {
-	fontColorToken,
-	fontLineHeightToken,
-	fontSizeToken,
-	fontWeightToken,
+	fontColorStyleMap,
+	fontLineHeightStyleMap,
+	fontSizeStyleMap,
+	fontWeightStyleMap,
 	type FontColor,
 	type FontLineHeight,
 	type FontSize,
 	type FontWeight,
 } from "../props/font";
 import {
-	textLineModeToken,
-	textOverflowModeToken,
+	textLineModeStyleMap,
+	textOverflowModeStyleMap,
 	type TextLineMode,
 	type TextOverflowMode,
 } from "../props";
@@ -22,16 +22,16 @@ const meta = {
 	component: Text,
 	argTypes: {
 		$fontColor: {
-			options: Object.keys(fontColorToken),
+			options: Object.keys(fontColorStyleMap),
 		},
 		$fontLineHeight: {
-			options: Object.keys(fontLineHeightToken),
+			options: Object.keys(fontLineHeightStyleMap),
 		},
 		$fontWeight: {
-			options: Object.keys(fontWeightToken),
+			options: Object.keys(fontWeightStyleMap),
 		},
 		$fontSize: {
-			options: Object.keys(fontSizeToken),
+			options: Object.keys(fontSizeStyleMap),
 		},
 	},
 } satisfies Meta<typeof Text>;
@@ -53,7 +53,7 @@ export const ColorProp: Story = {
 	render: (args) => {
 		return (
 			<div>
-				{Object.entries(fontColorToken).map(([prop]) => {
+				{Object.entries(fontColorStyleMap).map(([prop]) => {
 					const value = prop as FontColor;
 					return (
 						<div
@@ -83,7 +83,7 @@ export const SizeProp: Story = {
 	render: (args) => {
 		return (
 			<div>
-				{Object.entries(fontSizeToken).map(([prop]) => {
+				{Object.entries(fontSizeStyleMap).map(([prop]) => {
 					const value = prop as FontSize;
 					return (
 						<div
@@ -113,7 +113,7 @@ export const LineHeightProp: Story = {
 	render: (args) => {
 		return (
 			<div>
-				{Object.entries(fontLineHeightToken).map(([prop]) => {
+				{Object.entries(fontLineHeightStyleMap).map(([prop]) => {
 					const value = prop as FontLineHeight;
 					return (
 						<div
@@ -143,7 +143,7 @@ export const WeightProp: Story = {
 	render: (args) => {
 		return (
 			<div>
-				{Object.entries(fontWeightToken).map(([prop]) => {
+				{Object.entries(fontWeightStyleMap).map(([prop]) => {
 					const value = prop as FontWeight;
 					return (
 						<div
@@ -173,7 +173,7 @@ export const LineModeProp: Story = {
 	render: (args) => {
 		return (
 			<div>
-				{Object.entries(textLineModeToken).map(([prop]) => {
+				{Object.entries(textLineModeStyleMap).map(([prop]) => {
 					const value = prop as TextLineMode;
 					return (
 						<div
@@ -206,7 +206,7 @@ export const OverflowProp: Story = {
 	render: (args) => {
 		return (
 			<div>
-				{Object.entries(textOverflowModeToken).map(([prop]) => {
+				{Object.entries(textOverflowModeStyleMap).map(([prop]) => {
 					const value = prop as TextOverflowMode;
 					return (
 						<div

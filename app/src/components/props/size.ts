@@ -1,9 +1,9 @@
 import { css } from "styled-components";
 import {
-	valueResolver,
+	styleResolver,
 	type CSSResolverArg,
-	type ResolverArg,
-	type Token,
+	type ResolverStyleMapArg,
+	type StyleMap,
 } from "./resolver";
 
 export type Size = "xs" | "sm" | "md" | "lg";
@@ -12,22 +12,24 @@ export type SizeProp = {
 	$size?: Size;
 };
 
-export type SizeToken = Token<Size>;
+export type SizeStyleMap = StyleMap<Size>;
 
-export const resolveSize = (arg: ResolverArg<Size>) => {
-	const { value, token } = arg;
-	return valueResolver(value, token, "md");
+export const resolveSize = (arg: ResolverStyleMapArg<Size>) => {
+	const { prop, style } = arg;
+	return styleResolver(prop, style, "md");
 };
 
 /*
  * NOTE: コンポーネントによってtokenのパターンが変わる可能性があるため外部注入できるように実装
  */
-export const cssSize = (args: CSSResolverArg<SizeToken, Size>) => css<SizeProp>`
+export const cssSize = (
+	args: CSSResolverArg<SizeStyleMap, Size>,
+) => css<SizeProp>`
   ${({ $size }) =>
 		css(
 			resolveSize({
-				value: $size ?? args.defaultValue,
-				token: args.token,
+				prop: $size ?? args.defaultValue,
+				style: args.style,
 			}),
 		)}
 `;
