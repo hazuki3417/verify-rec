@@ -1,0 +1,147 @@
+### Component 実装方針
+
+TODO: 情報を随時肉付けする
+
+e.g.)
+
+```jsx
+import React, { forwardRef } from "react";
+import styled from "styled-components";
+import {
+  cssFontColor,
+  cssFontSize,
+  cssFontLineHeight,
+  cssFontWeight,
+  cssTextLineMode,
+  cssTextOverflowMode,
+} from "../props";
+const Base = styled.p`
+  padding: 0px;
+  margin: 0px;
+  ${cssFontColor()}
+  ${cssFontSize()}
+  ${cssFontLineHeight()}
+  ${cssFontWeight()}
+  ${cssTextLineMode()}
+  ${cssTextOverflowMode()}
+`;
+export const Text = forwardRef((props, ref) => {
+  const { style, ...rest } = props;
+  return <Base ref={ref} style={resolveStyle(style)} {...rest} />;
+});
+```
+
+#### 方針
+
+**forwardRef を実装すること**
+
+```jsx
+forwardRef((props, ref) => {});
+```
+
+コンポーネント呼び出し側で ref を利用したいケースがあるため、対応できるように実装する。
+
+**名前付きエクスポートを利用すること**
+
+```jsx
+export const Text = forwardRef((props, ref) => {});
+```
+
+名前付きエクスポートを利用することで類似するコンポーネントをブロックとして import することができます。
+
+e.g.)
+
+```jsx
+import { ComponentA, ComponentB, ComponentC } from "./path";
+```
+
+default export と比較してコードがブロックとしてまとまり、可読性が良いとおもいます。
+
+##### スタイル
+
+スタイル定義は 対象コンポーネント自身に閉じることを原則とし、親子関係や兄弟関係といった DOM ツリー構造に依存した指定は行わない。これにより、将来的なマークアップ変更によるデザイン崩れを防ぎ、スタイルの再利用性・保守性を高める。
+
+**結合子セレクタは基本的に避ける**
+
+- `>`: 子結合子
+- ` `: 子孫結合子（スペース）
+- `+`: 隣接兄弟結合子
+- `~`: 一般兄弟結合子
+
+e.g.)
+
+```
+div > span { ... }
+.wrapper .child { ... }
+button + button { ... }
+```
+
+**1 つのタグにスタイルを閉じ込める**
+
+各コンポーネントは styled を使い、自分のルート要素のみにスタイルを適用する。子要素の装飾が必要な場合は 専用のサブコンポーネントを作成する。
+
+e.g.)
+
+```tsx
+const Card = styled.div`
+  border: 1px solid #ddd;
+`;
+
+const CardTitle = styled.h2`
+  font-size: 1.2rem;
+`;
+```
+
+**状態によるスタイル分岐は props で行う**
+
+DOM 位置に依存するのではなく、props や variant を利用する。
+
+e.g.)
+
+```tsx
+const Button = styled.button<{ variant: "primary" | "secondary" }>`
+  background: ${({ variant }) => (variant === "primary" ? "blue" : "gray")};
+`;
+```
+
+**静的なスタイルは styled の上部に記述する**
+
+```tsx
+const Base = styled.p`
+  padding: 0px;
+  margin: 0px;
+
+  ...（略）
+`;
+```
+
+**動的なスタイルは styled の下部に記述する**
+
+```jsx
+const Base = styled.p`
+
+  ...（略）
+  ${cssFontColor()}
+  ${cssFontSize()}
+  ${cssFontLineHeight()}
+  ${cssFontWeight()}
+  ${cssTextLineMode()}
+  ${cssTextOverflowMode()}
+`;
+```
+
+**複数コンポーネントで利用するスタイル prop は部品化して外だしする**
+
+下記の関数は複数コンポーネントで利用される可能性があるため部品化しています。
+
+- cssFontColor
+- cssFontSize
+- cssFontLineHeight
+- cssFontWeight
+- ...etc,
+
+部品化したスタイル prop は `components/props/~` に配置する。
+
+**単一コンポーネントのみで利用するスタイル prop は部品化せずコンポーネントファイル内に収める**
+
+部品化する必要がない スタイル prop は外出しする必要がないため、styled 内に直接記述する。コードが複雑な場合は変数・関数化したコードをコンポーネントファイル内に収めるよう記述する。

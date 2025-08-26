@@ -1,5 +1,5 @@
 import React from "react";
-import { Providers } from "./Providers";
+import { Providers } from "@/components/Providers";
 
 export default function App() {
 	return (
