@@ -1,1 +1,1 @@
-export * from "./useDrawRotate"
+export * from "./useDrawRotate";

@@ -1,9 +1,6 @@
 import { theme } from "@/theme";
 import { color, type Color } from "./color";
-import {
-	valueResolver,
-	type ResolverValueMapArg,
-} from "./resolver";
+import { valueResolver, type ResolverValueMapArg } from "./resolver";
 
 export type IconColor = Color;
 export type IconSize = keyof typeof theme.icon.size;

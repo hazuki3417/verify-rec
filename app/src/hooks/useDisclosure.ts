@@ -1,21 +1,21 @@
 import { useBoolean } from "./useBoolean";
 
 export type UseDisclosureState = {
-  opend: boolean;
+	opend: boolean;
 };
 
 export type UseDisclosureOption = UseDisclosureState;
 
 export interface UseDisclosureHandler {
-  open: () => void;
-  close: () => void;
-  toggle: () => void;
-  reset: () => void;
+	open: () => void;
+	close: () => void;
+	toggle: () => void;
+	reset: () => void;
 }
 
 export interface UseDisclosure {
-  state: UseDisclosureState;
-  handler: UseDisclosureHandler;
+	state: UseDisclosureState;
+	handler: UseDisclosureHandler;
 }
 
 /**
@@ -24,15 +24,15 @@ export interface UseDisclosure {
  * @returns
  */
 export const useDisclosure = (option: UseDisclosureOption): UseDisclosure => {
-  const { state, handler } = useBoolean(option.opend);
+	const { state, handler } = useBoolean(option.opend);
 
-  return {
-    state: { opend: state },
-    handler: {
-      open: handler.setTrue,
-      close: handler.setFalse,
-      toggle: handler.toggle,
-      reset: handler.reset,
-    },
-  };
+	return {
+		state: { opend: state },
+		handler: {
+			open: handler.setTrue,
+			close: handler.setFalse,
+			toggle: handler.toggle,
+			reset: handler.reset,
+		},
+	};
 };

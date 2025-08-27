@@ -3,10 +3,10 @@
 	"compilerOptions": {
 		// ---- emit を有効化（同階層に .js を出力）----
 		"noEmit": false,
-		"declaration": true,
-		"declarationMap": true,
+		// "declaration": true,
+		// "declarationMap": true,
 		"emitDeclarationOnly": false,
-		"sourceMap": true,
+		// "sourceMap": true,
 		"removeComments": false,
 
 		// ---- 出力形式（読みやすい ESM / React JSX）----

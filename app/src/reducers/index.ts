@@ -1,2 +1,2 @@
-export * from "./drawRotateReducer"
-export * from "./booleanReducer"
+export * from "./drawRotateReducer";
+export * from "./booleanReducer";
