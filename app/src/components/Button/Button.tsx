@@ -5,8 +5,8 @@ import {
 	type SizeProp,
 	type StylableProp,
 	type VariantProp,
-	type VariantToken,
-	type SizeToken,
+	type VariantStyleMap,
+	type SizeStyleMap,
 	cssVariant,
 	cssSize,
 	cssFontColor,
@@ -18,7 +18,7 @@ import {
 
 type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
-const variantToken: VariantToken = {
+const variantStyleMap: VariantStyleMap = {
 	primary: {
 		backgroundColor: "#23b18f",
 		border: "1px solid transparent",
@@ -46,7 +46,7 @@ const variantToken: VariantToken = {
 	},
 };
 
-const sizeToken: SizeToken = {
+const sizeStyleMap: SizeStyleMap = {
 	xs: {
 		height: "19px",
 		fontSize: "12px",
@@ -77,8 +77,8 @@ const Base = styled.button<StyleProps>`
 	padding: 0px 8px;
 	text-align: center;
 	box-shadow: #263a4033 0px 2px 4px 0px;
-	${cssVariant({ token: variantToken })}
-	${cssSize({ token: sizeToken })}
+	${cssVariant({ style: variantStyleMap })}
+	${cssSize({ style: sizeStyleMap })}
 	${cssFontColor()}
 	${cssFontSize()}
 	${cssFontLineHeight()}
