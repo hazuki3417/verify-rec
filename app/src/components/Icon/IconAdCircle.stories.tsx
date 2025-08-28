@@ -3,21 +3,21 @@ import { IconAdCircle } from "./IconAdCircle";
 import { iconColorValueMap, iconSizeValueMap } from "../props/icon";
 
 const meta = {
-	title: "IconAdCircle",
-	component: IconAdCircle,
-	argTypes: {
-		size: {
-			options: Object.keys(iconSizeValueMap),
-		},
-		color: {
-			options: Object.keys(iconColorValueMap),
-		},
-	},
+  title: "IconAdCircle",
+  component: IconAdCircle,
+  argTypes: {
+    size: {
+      options: Object.keys(iconSizeValueMap),
+    },
+    color: {
+      options: Object.keys(iconColorValueMap),
+    },
+  },
 } satisfies Meta<typeof IconAdCircle>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-	args: {},
+  args: {},
 };

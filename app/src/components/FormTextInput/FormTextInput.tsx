@@ -19,12 +19,12 @@ const Base = styled.input`
 interface StyleProps extends StylableProp {}
 
 export interface FormTextInputProps
-	extends StyleProps,
-		Omit<BaseProps, "style" | "type"> {}
+  extends StyleProps,
+    Omit<BaseProps, "style" | "type"> {}
 
 export const FormTextInput = forwardRef<HTMLInputElement, FormTextInputProps>(
-	(props, ref) => {
-		const { style, ...rest } = props;
-		return <Base ref={ref} style={resolveStyle(style)} type="text" {...rest} />;
-	},
+  (props, ref) => {
+    const { style, ...rest } = props;
+    return <Base ref={ref} style={resolveStyle(style)} type="text" {...rest} />;
+  },
 );

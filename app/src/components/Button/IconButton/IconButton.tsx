@@ -1,20 +1,20 @@
 import React, { forwardRef } from "react";
 import styled, { css } from "styled-components";
 import {
-	resolveStyle,
-	type StylableProp,
-	type Size,
-	type StyleMap,
-	type ResolverStyleMapArg,
-	styleResolver,
-	type StyledProps,
-	transform,
+  resolveStyle,
+  type StylableProp,
+  type Size,
+  type StyleMap,
+  type ResolverStyleMapArg,
+  styleResolver,
+  type StyledProps,
+  transform,
 } from "../../props";
 import { theme } from "@/theme";
 import {
-	cssActive,
-	type ActiveProp,
-	type ActiveStyleMap,
+  cssActive,
+  type ActiveProp,
+  type ActiveStyleMap,
 } from "../../props/active";
 import { cssDisabled, type DisabledProp } from "../../props/disabled";
 
@@ -32,48 +32,48 @@ export interface IconButtonStyleProps extends IconButtonSizeProp {}
 export type IconButtonSizeStyleMap = StyleMap<IconButtonSize>;
 
 export const iconButtonSizeStyleMap: IconButtonSizeStyleMap = {
-	sm: {
-		padding: "4px",
-	},
-	md: {
-		padding: "8px",
-	},
+  sm: {
+    padding: "4px",
+  },
+  md: {
+    padding: "8px",
+  },
 };
 
 export const resolveIconButtonSize = (
-	arg: ResolverStyleMapArg<IconButtonSize>,
+  arg: ResolverStyleMapArg<IconButtonSize>,
 ) => {
-	const { prop, style } = arg;
-	return styleResolver(prop, style, "md");
+  const { prop, style } = arg;
+  return styleResolver(prop, style, "md");
 };
 
 export const iconButtonActiveStyleMap: ActiveStyleMap = {
-	true: {
-		border: `1px solid ${theme.color.base.riverBlue}`,
-	},
-	false: {
-		// とくに変化しないので指定なし
-	},
+  true: {
+    border: `1px solid ${theme.color.base.riverBlue}`,
+  },
+  false: {
+    // とくに変化しないので指定なし
+  },
 };
 
 export const iconButtonDisabledStyleMap: ActiveStyleMap = {
-	true: {
-		backgroundColor: theme.color.base.pealGray,
-		border: "1px solid transparent",
-		cursor: "not-allowed",
-	},
-	false: {
-		// とくに変化しないので指定なし
-	},
+  true: {
+    backgroundColor: theme.color.base.pealGray,
+    border: "1px solid transparent",
+    cursor: "not-allowed",
+  },
+  false: {
+    // とくに変化しないので指定なし
+  },
 };
 
 export type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
 export interface StyleProps
-	extends StylableProp,
-		IconButtonStyleProps,
-		ActiveProp,
-		DisabledProp {}
+  extends StylableProp,
+    IconButtonStyleProps,
+    ActiveProp,
+    DisabledProp {}
 
 const Base = styled.button<StyledProps<StyleProps>>`
 	background-color: ${theme.color.base.white};
@@ -89,12 +89,12 @@ const Base = styled.button<StyledProps<StyleProps>>`
   display: inline-flex;
   justify-content: center;
 	${({ $size }) =>
-		css(
-			resolveIconButtonSize({
-				prop: $size,
-				style: iconButtonSizeStyleMap,
-			}),
-		)}
+    css(
+      resolveIconButtonSize({
+        prop: $size,
+        style: iconButtonSizeStyleMap,
+      }),
+    )}
 	${cssActive({ style: iconButtonActiveStyleMap })}
 	${cssDisabled({ style: iconButtonDisabledStyleMap })}
 `;
@@ -102,15 +102,23 @@ const Base = styled.button<StyledProps<StyleProps>>`
 export interface IconButton extends StyleProps, Omit<BaseProps, "style"> {}
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
-	(props, ref) => {
-		const { style, size, active, disabled, ...rest } = props;
+  (props, ref) => {
+    const { style, size, active, disabled, ...rest } = props;
 
-		const styled = transform.props.toStyled({
-			size,
-			active,
-			disabled
-		})
+    const styled = transform.props.toStyled({
+      size,
+      active,
+      disabled,
+    });
 
-		return <Base ref={ref} style={resolveStyle(style)} {...styled} disabled={disabled} {...rest} />;
-	},
+    return (
+      <Base
+        ref={ref}
+        style={resolveStyle(style)}
+        {...styled}
+        disabled={disabled}
+        {...rest}
+      />
+    );
+  },
 );

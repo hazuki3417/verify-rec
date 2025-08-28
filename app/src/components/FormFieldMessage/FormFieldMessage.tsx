@@ -15,21 +15,21 @@ const Base = styled.p`
 `;
 
 interface StyleProps extends StylableProp {
-	// TODO: error, warningのvariantを実装
+  // TODO: error, warningのvariantを実装
 }
 
 export interface FormFieldMessageProps
-	extends StyleProps,
-		Omit<BaseProps, "style"> {
-	// TODO: 改行有無を選択可能に
-	// TODO: オーバーフロー時のscroll有無を選択可能に（hidden or scroll x or scroll y
-	// TODO: オーバーフロー時の文字省略有無を選択可能に
+  extends StyleProps,
+    Omit<BaseProps, "style"> {
+  // TODO: 改行有無を選択可能に
+  // TODO: オーバーフロー時のscroll有無を選択可能に（hidden or scroll x or scroll y
+  // TODO: オーバーフロー時の文字省略有無を選択可能に
 }
 
 export const FormFieldMessage = forwardRef<
-	HTMLParagraphElement,
-	FormFieldMessageProps
+  HTMLParagraphElement,
+  FormFieldMessageProps
 >((props, ref) => {
-	const { style, ...rest } = props;
-	return <Base ref={ref} style={resolveStyle(style)} {...rest} />;
+  const { style, ...rest } = props;
+  return <Base ref={ref} style={resolveStyle(style)} {...rest} />;
 });

@@ -15,18 +15,18 @@ const Base = styled.div`
 `;
 
 interface StyleProps extends StylableProp {
-	// TODO: 改行有無を選択可能に
-	// TODO: オーバーフロー時のscroll有無を選択可能に（hidden or scroll x or scroll y
-	// TODO: オーバーフロー時の文字省略有無を選択可能に
+  // TODO: 改行有無を選択可能に
+  // TODO: オーバーフロー時のscroll有無を選択可能に（hidden or scroll x or scroll y
+  // TODO: オーバーフロー時の文字省略有無を選択可能に
 }
 
 export interface FormTextValueProps
-	extends StyleProps,
-		Omit<BaseProps, "style"> {}
+  extends StyleProps,
+    Omit<BaseProps, "style"> {}
 
 export const FormTextValue = forwardRef<HTMLDivElement, FormTextValueProps>(
-	(props, ref) => {
-		const { style, ...rest } = props;
-		return <Base ref={ref} style={resolveStyle(style)} {...rest} />;
-	},
+  (props, ref) => {
+    const { style, ...rest } = props;
+    return <Base ref={ref} style={resolveStyle(style)} {...rest} />;
+  },
 );

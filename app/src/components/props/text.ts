@@ -1,9 +1,9 @@
 import { css } from "styled-components";
 import {
-	styleResolver,
-	type ResolverStyleMapArg,
-	type StyledProps,
-	type StyleMap,
+  styleResolver,
+  type ResolverStyleMapArg,
+  type StyledProps,
+  type StyleMap,
 } from "./resolver";
 
 export type TextLineMode = "single" | "multi";
@@ -13,33 +13,33 @@ export type TextLineModeProp = { lineMode?: TextLineMode };
 export type TextOverflowModeProp = { overflowMode?: TextOverflowMode };
 
 export interface TextStyleProps
-	extends TextLineModeProp,
-		TextOverflowModeProp {}
+  extends TextLineModeProp,
+    TextOverflowModeProp {}
 
 export type TextLineModeStyleMap = StyleMap<TextLineMode>;
 export type TextOverflowModeStyleMap = StyleMap<TextOverflowMode>;
 
 export const textLineModeStyleMap: TextLineModeStyleMap = {
-	multi: {
-		overflowWrap: "break-word",
-		wordBreak: "break-word",
-	},
-	single: {
-		overflow: "hidden",
-		whiteSpace: "nowrap",
-	},
+  multi: {
+    overflowWrap: "break-word",
+    wordBreak: "break-word",
+  },
+  single: {
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+  },
 };
 
 export const textOverflowModeStyleMap: TextOverflowModeStyleMap = {
-	normal: {
-		// NOTE: 要素側のデフォルトスタイルを利用するためcssの指定なし
-	},
-	ellipsis: {
-		textOverflow: "ellipsis",
-	},
-	scrollX: {
-		overflowX: "scroll",
-	},
+  normal: {
+    // NOTE: 要素側のデフォルトスタイルを利用するためcssの指定なし
+  },
+  ellipsis: {
+    textOverflow: "ellipsis",
+  },
+  scrollX: {
+    overflowX: "scroll",
+  },
 };
 
 /**
@@ -48,15 +48,15 @@ export const textOverflowModeStyleMap: TextOverflowModeStyleMap = {
  */
 
 export const resolveTextLineMode = (arg: ResolverStyleMapArg<TextLineMode>) => {
-	const { prop, style } = arg;
-	return styleResolver(prop, style, "multi");
+  const { prop, style } = arg;
+  return styleResolver(prop, style, "multi");
 };
 
 export const resolveTextOverflowMode = (
-	arg: ResolverStyleMapArg<TextOverflowMode>,
+  arg: ResolverStyleMapArg<TextOverflowMode>,
 ) => {
-	const { prop, style } = arg;
-	return styleResolver(prop, style, "normal");
+  const { prop, style } = arg;
+  return styleResolver(prop, style, "normal");
 };
 
 /**
@@ -69,25 +69,25 @@ export const resolveTextOverflowMode = (
  */
 
 export const cssTextLineMode = (args?: { defaultValue?: TextLineMode }) => css<
-	StyledProps<TextLineModeProp>
+  StyledProps<TextLineModeProp>
 >`
   ${({ $lineMode }) =>
-		css(
-			resolveTextLineMode({
-				prop: $lineMode ?? args?.defaultValue,
-				style: textLineModeStyleMap,
-			}),
-		)}
+    css(
+      resolveTextLineMode({
+        prop: $lineMode ?? args?.defaultValue,
+        style: textLineModeStyleMap,
+      }),
+    )}
 `;
 
 export const cssTextOverflowMode = (args?: {
-	defaultValue?: TextOverflowMode;
+  defaultValue?: TextOverflowMode;
 }) => css<StyledProps<TextOverflowModeProp>>`
   ${({ $overflowMode }) =>
-		css(
-			resolveTextOverflowMode({
-				prop: $overflowMode ?? args?.defaultValue,
-				style: textOverflowModeStyleMap,
-			}),
-		)}
+    css(
+      resolveTextOverflowMode({
+        prop: $overflowMode ?? args?.defaultValue,
+        style: textOverflowModeStyleMap,
+      }),
+    )}
 `;

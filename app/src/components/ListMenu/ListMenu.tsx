@@ -1,7 +1,7 @@
 import React, {
-	forwardRef,
-	useMemo,
-	type ComponentPropsWithoutRef,
+  forwardRef,
+  useMemo,
+  type ComponentPropsWithoutRef,
 } from "react";
 import styled from "styled-components";
 import { resolveStyle, type StylableProp } from "../props";
@@ -31,32 +31,32 @@ const Li = styled.li`
 `;
 
 type ItemProp = ComponentPropsWithoutRef<"li"> & {
-	show: boolean;
+  show: boolean;
 };
 
 interface StyleProps extends StylableProp {}
 
 export interface ListMenuProps
-	extends StyleProps,
-		Omit<BaseProps, "style" | "children"> {
-	items: ItemProp[];
+  extends StyleProps,
+    Omit<BaseProps, "style" | "children"> {
+  items: ItemProp[];
 }
 
 export const ListMenu = forwardRef<HTMLUListElement, ListMenuProps>(
-	(props, ref) => {
-		const { style, items, ...rest } = props;
+  (props, ref) => {
+    const { style, items, ...rest } = props;
 
-		const menu = useMemo(() => {
-			return items
-				.filter((item) => item.show)
-				.map(({ show, ...rest }, index) => <Li key={index} {...rest} />);
-			// NOTE: liのpropsのみを抽出するため、showを記述しrestに含まれないようにする
-		}, [items]);
+    const menu = useMemo(() => {
+      return items
+        .filter((item) => item.show)
+        .map(({ show, ...rest }, index) => <Li key={index} {...rest} />);
+      // NOTE: liのpropsのみを抽出するため、showを記述しrestに含まれないようにする
+    }, [items]);
 
-		return (
-			<Ul ref={ref} style={resolveStyle(style)} {...rest}>
-				{menu}
-			</Ul>
-		);
-	},
+    return (
+      <Ul ref={ref} style={resolveStyle(style)} {...rest}>
+        {menu}
+      </Ul>
+    );
+  },
 );

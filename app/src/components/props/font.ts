@@ -2,10 +2,10 @@ import { css } from "styled-components";
 import { theme } from "@/theme";
 import { color, type Color } from "./color";
 import {
-	styleResolver,
-	type ResolverStyleMapArg,
-	type StyledProps,
-	type StyleMap,
+  styleResolver,
+  type ResolverStyleMapArg,
+  type StyledProps,
+  type StyleMap,
 } from "./resolver";
 
 export type FontColor = Color;
@@ -19,10 +19,10 @@ export type FontLineHeightProp = { fontLineHeight?: FontLineHeight };
 export type FontWeightProp = { fontWeight?: FontWeight };
 
 export interface FontStyleProps
-	extends FontColorProp,
-		FontSizeProp,
-		FontLineHeightProp,
-		FontWeightProp {}
+  extends FontColorProp,
+    FontSizeProp,
+    FontLineHeightProp,
+    FontWeightProp {}
 
 export type FontColorStyleMap = StyleMap<FontColor>;
 export type FontSizeStyleMap = StyleMap<FontSize>;
@@ -34,28 +34,28 @@ export type FontWeightStyleMap = StyleMap<FontWeight>;
  */
 
 export const fontColorStyleMap = Object.fromEntries(
-	Object.entries(color).map(([key, value]) => [key, { color: value }]),
+  Object.entries(color).map(([key, value]) => [key, { color: value }]),
 ) as FontColorStyleMap;
 
 export const fontSizeStyleMap = Object.fromEntries(
-	Object.entries(theme.font.size).map(([key, value]) => [
-		key,
-		{ fontSize: value },
-	]),
+  Object.entries(theme.font.size).map(([key, value]) => [
+    key,
+    { fontSize: value },
+  ]),
 ) as FontSizeStyleMap;
 
 export const fontLineHeightStyleMap = Object.fromEntries(
-	Object.entries(theme.font.lineHight).map(([key, value]) => [
-		key,
-		{ lineHeight: value },
-	]),
+  Object.entries(theme.font.lineHight).map(([key, value]) => [
+    key,
+    { lineHeight: value },
+  ]),
 ) as FontLineHeightStyleMap;
 
 export const fontWeightStyleMap = Object.fromEntries(
-	Object.entries(theme.font.weight).map(([key, value]) => [
-		key,
-		{ fontWeight: value },
-	]),
+  Object.entries(theme.font.weight).map(([key, value]) => [
+    key,
+    { fontWeight: value },
+  ]),
 ) as FontWeightStyleMap;
 
 /**
@@ -64,25 +64,25 @@ export const fontWeightStyleMap = Object.fromEntries(
  */
 
 export const resolveFontColor = (arg: ResolverStyleMapArg<FontColor>) => {
-	const { prop, style } = arg;
-	return styleResolver(prop, style, "riverBlue");
+  const { prop, style } = arg;
+  return styleResolver(prop, style, "riverBlue");
 };
 
 export const resolveFontSize = (arg: ResolverStyleMapArg<FontSize>) => {
-	const { prop, style } = arg;
-	return styleResolver(prop, style, "14");
+  const { prop, style } = arg;
+  return styleResolver(prop, style, "14");
 };
 
 export const resolveFontLineHeight = (
-	arg: ResolverStyleMapArg<FontLineHeight>,
+  arg: ResolverStyleMapArg<FontLineHeight>,
 ) => {
-	const { prop, style } = arg;
-	return styleResolver(prop, style, "160");
+  const { prop, style } = arg;
+  return styleResolver(prop, style, "160");
 };
 
 export const resolveFontWeight = (arg: ResolverStyleMapArg<FontWeight>) => {
-	const { prop, style } = arg;
-	return styleResolver(prop, style, "regular");
+  const { prop, style } = arg;
+  return styleResolver(prop, style, "regular");
 };
 
 /**
@@ -95,49 +95,49 @@ export const resolveFontWeight = (arg: ResolverStyleMapArg<FontWeight>) => {
  */
 
 export const cssFontColor = (args?: { defaultValue?: FontColor }) => css<
-	StyledProps<FontColorProp>
+  StyledProps<FontColorProp>
 >`
   ${({ $fontColor }) =>
-		css(
-			resolveFontColor({
-				prop: $fontColor ?? args?.defaultValue,
-				style: fontColorStyleMap,
-			}),
-		)}
+    css(
+      resolveFontColor({
+        prop: $fontColor ?? args?.defaultValue,
+        style: fontColorStyleMap,
+      }),
+    )}
 `;
 
 export const cssFontSize = (args?: { defaultValue?: FontSize }) => css<
-	StyledProps<FontSizeProp>
+  StyledProps<FontSizeProp>
 >`
   ${({ $fontSize }) =>
-		css(
-			resolveFontSize({
-				prop: $fontSize ?? args?.defaultValue,
-				style: fontSizeStyleMap,
-			}),
-		)}
+    css(
+      resolveFontSize({
+        prop: $fontSize ?? args?.defaultValue,
+        style: fontSizeStyleMap,
+      }),
+    )}
 `;
 
 export const cssFontLineHeight = (args?: {
-	defaultValue?: FontLineHeight;
+  defaultValue?: FontLineHeight;
 }) => css<StyledProps<FontLineHeightProp>>`
   ${({ $fontLineHeight }) =>
-		css(
-			resolveFontLineHeight({
-				prop: $fontLineHeight ?? args?.defaultValue,
-				style: fontLineHeightStyleMap,
-			}),
-		)}
+    css(
+      resolveFontLineHeight({
+        prop: $fontLineHeight ?? args?.defaultValue,
+        style: fontLineHeightStyleMap,
+      }),
+    )}
 `;
 
 export const cssFontWeight = (args?: { defaultValue?: FontWeight }) => css<
-	StyledProps<FontWeightProp>
+  StyledProps<FontWeightProp>
 >`
   ${({ $fontWeight }) =>
-		css(
-			resolveFontWeight({
-				prop: $fontWeight ?? args?.defaultValue,
-				style: fontWeightStyleMap,
-			}),
-		)}
+    css(
+      resolveFontWeight({
+        prop: $fontWeight ?? args?.defaultValue,
+        style: fontWeightStyleMap,
+      }),
+    )}
 `;

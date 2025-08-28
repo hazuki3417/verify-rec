@@ -18,11 +18,11 @@ export type IconSizeValueMap = Record<IconSize, string>;
  */
 
 export const iconColorValueMap = Object.fromEntries(
-	Object.entries(color).map(([key, value]) => [key, value]),
+  Object.entries(color).map(([key, value]) => [key, value]),
 ) as IconColorValueMap;
 
 export const iconSizeValueMap = Object.fromEntries(
-	Object.entries(theme.icon.size).map(([key, value]) => [key, value]),
+  Object.entries(theme.icon.size).map(([key, value]) => [key, value]),
 ) as IconSizeValueMap;
 
 /**
@@ -31,11 +31,11 @@ export const iconSizeValueMap = Object.fromEntries(
  */
 
 export const resolveIconColor = (arg: ResolverValueMapArg<IconColor>) => {
-	const { prop, value } = arg;
-	return valueResolver(prop, value, "riverBlue");
+  const { prop, value } = arg;
+  return valueResolver(prop, value, "riverBlue");
 };
 
 export const resolveIconSize = (arg: ResolverValueMapArg<IconSize>) => {
-	const { prop, value } = arg;
-	return valueResolver(prop, value, "24");
+  const { prop, value } = arg;
+  return valueResolver(prop, value, "24");
 };

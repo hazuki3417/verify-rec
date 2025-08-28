@@ -6,8 +6,8 @@ export type SubColor = keyof typeof theme.color.sub;
 export type StatusColor = keyof typeof theme.color.status;
 export type Color = MainColor | BaseColor | SubColor | StatusColor;
 export const color: Record<Color, string> = {
-	...theme.color.main,
-	...theme.color.base,
-	...theme.color.sub,
-	...theme.color.status,
+  ...theme.color.main,
+  ...theme.color.base,
+  ...theme.color.sub,
+  ...theme.color.status,
 };

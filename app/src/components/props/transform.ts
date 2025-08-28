@@ -1,5 +1,5 @@
 type StyledProps<T> = {
-	[K in keyof T as K extends string | number ? `$${K}` : never]: T[K];
+  [K in keyof T as K extends string | number ? `$${K}` : never]: T[K];
 };
 
 /**
@@ -7,23 +7,23 @@ type StyledProps<T> = {
  * NOTE: 値が undefined のキーは出力しません。
  */
 const txStyledProps = <T extends Record<string, unknown>>(
-	props: T,
+  props: T,
 ): StyledProps<T> => {
-	const styledProps: Record<string, unknown> = {};
-	for (const k in props) {
-		const value = props[k];
-		if (value !== undefined) styledProps[`$${k}`] = value;
-	}
-	return styledProps as StyledProps<T>;
+  const styledProps: Record<string, unknown> = {};
+  for (const k in props) {
+    const value = props[k];
+    if (value !== undefined) styledProps[`$${k}`] = value;
+  }
+  return styledProps as StyledProps<T>;
 };
 
 export const transform = {
-	bool: {
-		toString: (value: boolean): "true" | "false" => {
-			return value ? "true" : "false";
-		},
-	},
-	props: {
-		toStyled: txStyledProps,
-	},
+  bool: {
+    toString: (value: boolean): "true" | "false" => {
+      return value ? "true" : "false";
+    },
+  },
+  props: {
+    toStyled: txStyledProps,
+  },
 };
