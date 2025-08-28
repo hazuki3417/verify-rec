@@ -3,7 +3,6 @@ import React, {
 	useRef,
 	useState,
 	type ComponentPropsWithoutRef,
-	type HTMLAttributes,
 } from "react";
 import {
 	Box3,
