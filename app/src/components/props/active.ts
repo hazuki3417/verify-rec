@@ -4,8 +4,10 @@ import {
 	type BooleanMap,
 	type CSSResolverArg,
 	type ResolverStyleMapArg,
+	type StyledProps,
 	type StyleMap,
 } from "./resolver";
+import { transform } from "./transform";
 
 /**
  * 選択状態・アクティブ状態などを表現するprop
@@ -13,7 +15,7 @@ import {
 
 export type Active = boolean;
 
-export type ActiveProp = { $active?: Active };
+export type ActiveProp = { active?: Active };
 
 export type ActiveStyleMap = StyleMap<BooleanMap<Active>>;
 
@@ -23,9 +25,9 @@ export const resolveActive = (arg: ResolverStyleMapArg<BooleanMap<Active>>) => {
 	return styleResolver(prop, style, "false");
 };
 
-export const cssActive = (
-	args: CSSResolverArg<ActiveStyleMap, Active>,
-) => css<ActiveProp>`
+export const cssActive = (args: CSSResolverArg<ActiveStyleMap, Active>) => css<
+	StyledProps<ActiveProp>
+>`
   ${({ $active }) => {
 		// active prop 指定なしの場合は引数側の初期値を使用する
 		// （引数側の初期値 = コンポーネント固有の初期値）
@@ -33,13 +35,10 @@ export const cssActive = (
 
 		return css(
 			resolveActive({
-				prop: typeof prop === "boolean" ? boolToString(prop) : undefined,
+				prop:
+					typeof prop === "boolean" ? transform.bool.toString(prop) : undefined,
 				style: args.style,
 			}),
 		);
 	}}
 `;
-
-const boolToString = (value: boolean): "true" | "false" => {
-	return value ? "true" : "false";
-};

@@ -3,6 +3,7 @@ import {
 	styleResolver,
 	type CSSResolverArg,
 	type ResolverStyleMapArg,
+	type StyledProps,
 	type StyleMap,
 } from "./resolver";
 
@@ -14,7 +15,7 @@ export type Variant =
 	| "quinary";
 
 export type VariantProp = {
-	$variant?: Variant;
+	variant?: Variant;
 };
 
 export type VariantStyleMap = StyleMap<Variant>;
@@ -29,7 +30,7 @@ export const resolveVariant = (args: ResolverStyleMapArg<Variant>) => {
  */
 export const cssVariant = (
 	args: CSSResolverArg<VariantStyleMap, Variant>,
-) => css<VariantProp>`
+) => css<StyledProps<VariantProp>>`
   ${({ $variant }) =>
 		css(
 			resolveVariant({

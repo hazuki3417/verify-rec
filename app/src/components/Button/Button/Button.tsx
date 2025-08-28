@@ -14,7 +14,8 @@ import {
 	cssFontLineHeight,
 	cssFontWeight,
 	type FontStyleProps,
-} from "../props";
+	type StyledProps,
+} from "../../props";
 
 type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
@@ -71,7 +72,7 @@ interface StyleProps
 		SizeProp,
 		FontStyleProps {}
 
-const Base = styled.button<StyleProps>`
+const Base = styled.button<StyledProps<StyleProps>>`
 	border-radius: 8px;
 	cursor: pointer;
 	padding: 0px 8px;

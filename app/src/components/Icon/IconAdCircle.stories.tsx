@@ -6,10 +6,10 @@ const meta = {
 	title: "IconAdCircle",
 	component: IconAdCircle,
 	argTypes: {
-		iconSize: {
+		size: {
 			options: Object.keys(iconSizeValueMap),
 		},
-		iconColor: {
+		color: {
 			options: Object.keys(iconColorValueMap),
 		},
 	},

@@ -21,16 +21,16 @@ const meta = {
 	title: "Components/Text",
 	component: Text,
 	argTypes: {
-		$fontColor: {
+		fontColor: {
 			options: Object.keys(fontColorStyleMap),
 		},
-		$fontLineHeight: {
+		fontLineHeight: {
 			options: Object.keys(fontLineHeightStyleMap),
 		},
-		$fontWeight: {
+		fontWeight: {
 			options: Object.keys(fontWeightStyleMap),
 		},
-		$fontSize: {
+		fontSize: {
 			options: Object.keys(fontSizeStyleMap),
 		},
 	},
@@ -67,7 +67,7 @@ export const ColorProp: Story = {
 						>
 							<div>{prop}</div>
 							<div>
-								<Text {...args} $fontColor={value}>
+								<Text {...args} fontColor={value}>
 									Text Component
 								</Text>
 							</div>
@@ -97,7 +97,7 @@ export const SizeProp: Story = {
 						>
 							<div>{prop}</div>
 							<div>
-								<Text {...args} $fontSize={value}>
+								<Text {...args} fontSize={value}>
 									Text Component
 								</Text>
 							</div>
@@ -127,7 +127,7 @@ export const LineHeightProp: Story = {
 						>
 							<div>{prop}</div>
 							<div>
-								<Text {...args} $fontLineHeight={value}>
+								<Text {...args} fontLineHeight={value}>
 									Text Component
 								</Text>
 							</div>
@@ -157,7 +157,7 @@ export const WeightProp: Story = {
 						>
 							<div>{prop}</div>
 							<div>
-								<Text {...args} $fontWeight={value}>
+								<Text {...args} fontWeight={value}>
 									Text Component
 								</Text>
 							</div>
@@ -187,7 +187,7 @@ export const LineModeProp: Story = {
 						>
 							<div>{prop}</div>
 							<div>
-								<Text {...args} $lineMode={value}>
+								<Text {...args} lineMode={value}>
 									ながいテキストながいテキストながいテキストながいテキストながいテキストながいテキストながいテキストながいテキストながいテキストながいテキストながいテキストながいテキスト
 									{
 										"ながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\n"
@@ -220,7 +220,7 @@ export const OverflowProp: Story = {
 						>
 							<div>{prop}</div>
 							<div>
-								<Text {...args} $lineMode="single" $overflowMode={value}>
+								<Text {...args} lineMode="single" overflowMode={value}>
 									ながいテキストながいテキストながいテキストながいテキストながいテキストながいテキストながいテキストながいテキストながいテキストながいテキストながいテキストながいテキスト
 									{
 										"ながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\nながいテキスト\n"

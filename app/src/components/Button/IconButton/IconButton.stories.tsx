@@ -1,22 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
 	IconButton,
-	iconButtonActiveStyleMap,
 	iconButtonSizeStyleMap,
 	type IconButtonSize,
 } from "./IconButton";
-import { IconAdCircle } from "./../Icon";
-import type { Active } from "../props/active";
+import { IconAdCircle } from "../../Icon";
 import { action } from "@storybook/addon-actions";
 
 const meta = {
-	title: "IconButton",
+	title: "Button/IconButton",
 	component: IconButton,
 	args: {
-		onClick: action("onClick")
+		onClick: action("onClick"),
 	},
 	argTypes: {
-		$size: {
+		size: {
 			options: Object.keys(iconButtonSizeStyleMap),
 			control: "select",
 		},
@@ -32,7 +30,7 @@ export const Default: Story = {
 
 export const SetIcon: Story = {
 	args: {
-		children: <IconAdCircle iconSize="36" />,
+		children: <IconAdCircle size="36" />,
 	},
 };
 
@@ -54,8 +52,8 @@ export const SizeProp: Story = {
 						>
 							<div>{prop}</div>
 							<div>
-								<IconButton {...args} $size={value}>
-									<IconAdCircle iconSize="36" />
+								<IconButton {...args} size={value}>
+									<IconAdCircle size="36" />
 								</IconButton>
 							</div>
 						</div>
@@ -80,8 +78,8 @@ export const ActiveProp: Story = {
 				>
 					<div>true</div>
 					<div>
-						<IconButton {...args} $active={true}>
-							<IconAdCircle iconSize="36" />
+						<IconButton {...args} active={true}>
+							<IconAdCircle size="36" />
 						</IconButton>
 					</div>
 				</div>
@@ -95,8 +93,8 @@ export const ActiveProp: Story = {
 				>
 					<div>false</div>
 					<div>
-						<IconButton {...args} $active={false}>
-							<IconAdCircle iconSize="36" />
+						<IconButton {...args} active={false}>
+							<IconAdCircle size="36" />
 						</IconButton>
 					</div>
 				</div>
@@ -104,7 +102,6 @@ export const ActiveProp: Story = {
 		);
 	},
 };
-
 
 export const DisabledProp: Story = {
 	render: (args) => {
@@ -120,8 +117,8 @@ export const DisabledProp: Story = {
 				>
 					<div>true</div>
 					<div>
-						<IconButton {...args} $disabled={true}>
-							<IconAdCircle iconSize="36" />
+						<IconButton {...args} disabled={true}>
+							<IconAdCircle size="36" />
 						</IconButton>
 					</div>
 				</div>
@@ -135,8 +132,8 @@ export const DisabledProp: Story = {
 				>
 					<div>false</div>
 					<div>
-						<IconButton {...args} $disabled={false} disabled>
-							<IconAdCircle iconSize="36" />
+						<IconButton {...args} disabled={false}>
+							<IconAdCircle size="36" />
 						</IconButton>
 					</div>
 				</div>

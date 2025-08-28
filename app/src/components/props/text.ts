@@ -2,14 +2,15 @@ import { css } from "styled-components";
 import {
 	styleResolver,
 	type ResolverStyleMapArg,
+	type StyledProps,
 	type StyleMap,
 } from "./resolver";
 
 export type TextLineMode = "single" | "multi";
 export type TextOverflowMode = "normal" | "ellipsis" | "scrollX";
 
-export type TextLineModeProp = { $lineMode?: TextLineMode };
-export type TextOverflowModeProp = { $overflowMode?: TextOverflowMode };
+export type TextLineModeProp = { lineMode?: TextLineMode };
+export type TextOverflowModeProp = { overflowMode?: TextOverflowMode };
 
 export interface TextStyleProps
 	extends TextLineModeProp,
@@ -67,9 +68,9 @@ export const resolveTextOverflowMode = (
  * NOTE: i/fの形式を統一するために引数はオブジェクト型にしています。
  */
 
-export const cssTextLineMode = (args?: {
-	defaultValue?: TextLineMode;
-}) => css<TextLineModeProp>`
+export const cssTextLineMode = (args?: { defaultValue?: TextLineMode }) => css<
+	StyledProps<TextLineModeProp>
+>`
   ${({ $lineMode }) =>
 		css(
 			resolveTextLineMode({
@@ -81,7 +82,7 @@ export const cssTextLineMode = (args?: {
 
 export const cssTextOverflowMode = (args?: {
 	defaultValue?: TextOverflowMode;
-}) => css<TextOverflowModeProp>`
+}) => css<StyledProps<TextOverflowModeProp>>`
   ${({ $overflowMode }) =>
 		css(
 			resolveTextOverflowMode({

@@ -4,6 +4,7 @@ import { color, type Color } from "./color";
 import {
 	styleResolver,
 	type ResolverStyleMapArg,
+	type StyledProps,
 	type StyleMap,
 } from "./resolver";
 
@@ -12,10 +13,10 @@ export type FontSize = keyof typeof theme.font.size;
 export type FontLineHeight = keyof typeof theme.font.lineHight;
 export type FontWeight = keyof typeof theme.font.weight;
 
-export type FontColorProp = { $fontColor?: FontColor };
-export type FontSizeProp = { $fontSize?: FontSize };
-export type FontLineHeightProp = { $fontLineHeight?: FontLineHeight };
-export type FontWeightProp = { $fontWeight?: FontWeight };
+export type FontColorProp = { fontColor?: FontColor };
+export type FontSizeProp = { fontSize?: FontSize };
+export type FontLineHeightProp = { fontLineHeight?: FontLineHeight };
+export type FontWeightProp = { fontWeight?: FontWeight };
 
 export interface FontStyleProps
 	extends FontColorProp,
@@ -93,9 +94,9 @@ export const resolveFontWeight = (arg: ResolverStyleMapArg<FontWeight>) => {
  * NOTE: i/fの形式を統一するために引数はオブジェクト型にしています。
  */
 
-export const cssFontColor = (args?: {
-	defaultValue?: FontColor;
-}) => css<FontColorProp>`
+export const cssFontColor = (args?: { defaultValue?: FontColor }) => css<
+	StyledProps<FontColorProp>
+>`
   ${({ $fontColor }) =>
 		css(
 			resolveFontColor({
@@ -105,9 +106,9 @@ export const cssFontColor = (args?: {
 		)}
 `;
 
-export const cssFontSize = (args?: {
-	defaultValue?: FontSize;
-}) => css<FontSizeProp>`
+export const cssFontSize = (args?: { defaultValue?: FontSize }) => css<
+	StyledProps<FontSizeProp>
+>`
   ${({ $fontSize }) =>
 		css(
 			resolveFontSize({
@@ -119,7 +120,7 @@ export const cssFontSize = (args?: {
 
 export const cssFontLineHeight = (args?: {
 	defaultValue?: FontLineHeight;
-}) => css<FontLineHeightProp>`
+}) => css<StyledProps<FontLineHeightProp>>`
   ${({ $fontLineHeight }) =>
 		css(
 			resolveFontLineHeight({
@@ -129,9 +130,9 @@ export const cssFontLineHeight = (args?: {
 		)}
 `;
 
-export const cssFontWeight = (args?: {
-	defaultValue?: FontWeight;
-}) => css<FontWeightProp>`
+export const cssFontWeight = (args?: { defaultValue?: FontWeight }) => css<
+	StyledProps<FontWeightProp>
+>`
   ${({ $fontWeight }) =>
 		css(
 			resolveFontWeight({

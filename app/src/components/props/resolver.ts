@@ -1,5 +1,13 @@
 import type { Styles } from "styled-components/dist/types";
 
+type PrefixKeys<T, P extends string> = {
+	[K in keyof T as `${P}${Extract<K, string | number>}`]: T[K];
+};
+/**
+ * NOTE: styled component用のutil
+ *       prop名に$を付与する
+ */
+export type StyledProps<T> = PrefixKeys<T, "$">;
 export interface CSSResolverArg<T, U> {
 	style: T;
 	defaultValue?: U;

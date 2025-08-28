@@ -5,8 +5,8 @@ import { valueResolver, type ResolverValueMapArg } from "./resolver";
 export type IconColor = Color;
 export type IconSize = keyof typeof theme.icon.size;
 
-export type IconColorProp = { iconColor?: IconColor };
-export type IconSizeProp = { iconSize?: IconSize };
+export type IconColorProp = { color?: IconColor };
+export type IconSizeProp = { size?: IconSize };
 
 export interface IconStyleProps extends IconColorProp, IconSizeProp {}
 
