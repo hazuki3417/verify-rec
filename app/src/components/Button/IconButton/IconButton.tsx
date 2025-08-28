@@ -76,27 +76,27 @@ export interface StyleProps
     DisabledProp {}
 
 const Base = styled.button<StyledProps<StyleProps>>`
-	background-color: ${theme.color.base.white};
-	border: 1px solid ${theme.color.sub.lightGray};
-	min-width: ${theme.icon.size[12]}px;
-	min-height: ${theme.icon.size[12]}px;
-	border-radius: 8px;
-	box-shadow: #263a4033 0px 2px 4px 0px;
-	cursor: pointer;
-	margin: 0px;
-	padding: 8px;
+  background-color: ${theme.color.base.white};
+  border: 1px solid ${theme.color.sub.lightGray};
+  min-width: ${theme.icon.size[12]}px;
+  min-height: ${theme.icon.size[12]}px;
+  border-radius: 8px;
+  box-shadow: #263a4033 0px 2px 4px 0px;
+  cursor: pointer;
+  margin: 0px;
+  padding: 8px;
   align-items: center;
   display: inline-flex;
   justify-content: center;
-	${({ $size }) =>
+  ${({ $size }) =>
     css(
       resolveIconButtonSize({
         prop: $size,
         style: iconButtonSizeStyleMap,
       }),
     )}
-	${cssActive({ style: iconButtonActiveStyleMap })}
-	${cssDisabled({ style: iconButtonDisabledStyleMap })}
+  ${cssActive({ style: iconButtonActiveStyleMap })}
+  ${cssDisabled({ style: iconButtonDisabledStyleMap })}
 `;
 
 export interface IconButton extends StyleProps, Omit<BaseProps, "style"> {}

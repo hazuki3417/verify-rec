@@ -20,14 +20,14 @@ type BaseProps = React.ComponentPropsWithoutRef<"p">;
 interface StyleProps extends StylableProp, FontStyleProps, TextStyleProps {}
 
 const Base = styled.p<StyledProps<StyleProps>>`
-	padding: 0px;
-	margin: 0px;
-	${cssFontColor()}
-	${cssFontSize()}
-	${cssFontLineHeight()}
-	${cssFontWeight()}
-	${cssTextLineMode()}
-	${cssTextOverflowMode()}
+  padding: 0px;
+  margin: 0px;
+  ${cssFontColor()}
+  ${cssFontSize()}
+  ${cssFontLineHeight()}
+  ${cssFontWeight()}
+  ${cssTextLineMode()}
+  ${cssTextOverflowMode()}
 `;
 
 export interface TextProps extends StyleProps, Omit<BaseProps, "style"> {}

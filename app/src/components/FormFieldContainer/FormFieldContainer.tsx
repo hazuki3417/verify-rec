@@ -8,13 +8,13 @@ import { FormFieldMessage } from "../FormFieldMessage";
 type BaseProps = React.HTMLAttributes<HTMLDivElement>;
 
 const Base = styled.div`
-	display: flex;
-	flex-direction: column;
-	background-color: #d4f1ea;
-	border-radius: 8px;
-	margin: 0px;
-	padding: 8px;
-	gap: 4px
+  display: flex;
+  flex-direction: column;
+  background-color: #d4f1ea;
+  border-radius: 8px;
+  margin: 0px;
+  padding: 8px;
+  gap: 4px
 `;
 
 interface StyleProps extends StylableProp {}

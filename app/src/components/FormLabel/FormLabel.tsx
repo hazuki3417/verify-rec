@@ -5,13 +5,13 @@ import { resolveStyle, type StylableProp } from "../props";
 type BaseProps = React.HTMLAttributes<HTMLLabelElement>;
 
 const Base = styled.label`
-	color: #50737e;
-	font-size: 16px;
-	font-weight: 700;
-	line-height: 160%;
-	margin: 0px;
-	padding: 0px;
-	word-brak: break-all;
+  color: #50737e;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 160%;
+  margin: 0px;
+  padding: 0px;
+  word-brak: break-all;
 `;
 
 interface StyleProps extends StylableProp {}

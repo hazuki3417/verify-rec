@@ -5,13 +5,13 @@ import { resolveStyle, type StylableProp } from "../props";
 type BaseProps = React.HTMLAttributes<HTMLParagraphElement>;
 
 const Base = styled.p`
-	color: #ff5252;
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 160%;
-	margin: 0px;
-	padding: 0px;
-	word-brak: break-all;
+  color: #ff5252;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 160%;
+  margin: 0px;
+  padding: 0px;
+  word-brak: break-all;
 `;
 
 interface StyleProps extends StylableProp {

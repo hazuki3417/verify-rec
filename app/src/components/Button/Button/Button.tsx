@@ -73,17 +73,17 @@ interface StyleProps
     FontStyleProps {}
 
 const Base = styled.button<StyledProps<StyleProps>>`
-	border-radius: 8px;
-	cursor: pointer;
-	padding: 0px 8px;
-	text-align: center;
-	box-shadow: #263a4033 0px 2px 4px 0px;
-	${cssVariant({ style: variantStyleMap })}
-	${cssSize({ style: sizeStyleMap })}
-	${cssFontColor()}
-	${cssFontSize()}
-	${cssFontLineHeight()}
-	${cssFontWeight({ defaultValue: "bold" })}
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0px 8px;
+  text-align: center;
+  box-shadow: #263a4033 0px 2px 4px 0px;
+  ${cssVariant({ style: variantStyleMap })}
+  ${cssSize({ style: sizeStyleMap })}
+  ${cssFontColor()}
+  ${cssFontSize()}
+  ${cssFontLineHeight()}
+  ${cssFontWeight({ defaultValue: "bold" })}
 `;
 
 export interface ButtonProps extends StyleProps, Omit<BaseProps, "style"> {}
