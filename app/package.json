@@ -19,6 +19,7 @@
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
 		"react-hook-form": "^7.62.0",
+		"react-zoom-pan-pinch": "^3.7.0",
 		"styled-components": "^6.1.19",
 		"three": "^0.178.0",
 		"three-dxf-viewer": "^1.0.36",

@@ -5,17 +5,19 @@ export interface CSSResolverArg<T, U> {
 	defaultValue?: U;
 }
 
-export type StyleMap<K extends string> = Record<K, Styles<object>>;
-export type ValueMap<K extends string> = Record<K, string>;
+export type BooleanMap<T> = T extends boolean ? "true" | "false" : T;
 
-export interface ResolverStyleMapArg<U extends string> {
-	prop: U | undefined;
-	style: StyleMap<U>;
-}
+export type ValueMap<K extends string> = Record<K, string>;
+export type StyleMap<K extends string> = Record<K, Styles<object>>;
 
 export interface ResolverValueMapArg<U extends string> {
 	prop: U | undefined;
 	value: ValueMap<U>;
+}
+
+export interface ResolverStyleMapArg<U extends string> {
+	prop: U | undefined;
+	style: StyleMap<U>;
 }
 
 /*

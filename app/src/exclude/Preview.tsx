@@ -1,28 +1,46 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+	useEffect,
+	useRef,
+	useState,
+	type ComponentPropsWithoutRef,
+	type HTMLAttributes,
+} from "react";
 import {
-	Scene,
-	WebGLRenderer,
-	OrthographicCamera,
 	Box3,
-	MOUSE,
-	LinearToneMapping,
-	SRGBColorSpace,
 	Color,
+	LinearToneMapping,
+	OrthographicCamera,
+	Scene,
+	SRGBColorSpace,
+	Vector3,
+	WebGLRenderer,
 } from "three";
-import { OrbitControls } from "three/examples/jsm/Addons.js";
 // @ts-ignore
 import { DXFViewer } from "three-dxf-viewer";
 
-export type PreviewProps = {
-	src: string | File;
+export type PreviewProps = ComponentPropsWithoutRef<"canvas"> & {
+	src: any;
 };
 
+/**
+ * DXFファイルを描画するコンポーネント
+ * @param {Object} props コンポーネントproperties
+ * @param {string|File} props.src
+ * @param {import("react").HTMLAttributes<HTMLCanvasElement>} [props.rest]
+ * @returns
+ */
 export const Preview = (props: PreviewProps) => {
-	const { src } = props;
+	const { src, ...rest } = props;
+
+	const srcTypeChecks = [typeof src === "string", src instanceof File];
+
+	if (!srcTypeChecks.some(Boolean)) {
+		throw new Error("src must be a string or File");
+	}
 
 	const drawCanvasRef = useRef<HTMLCanvasElement | null>(null);
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
-	const [dxfData, setDxfData] = useState(null);
+	const [dxfData, setDxfData] = useState<any | null>(null);
 	const [scene] = useState(new Scene());
 
 	// Load DXF when src changes
@@ -66,11 +84,12 @@ export const Preview = (props: PreviewProps) => {
 		renderer.toneMappingExposure = 3;
 
 		// scene
-		scene.background = new Color(0x212830);
+		scene.background = new Color(0xffffff);
 
 		// camera
 		const size = 10000;
-		let aspect = canvasRef.current.offsetWidth / canvasRef.current.offsetHeight;
+		const aspect =
+			canvasRef.current.offsetWidth / canvasRef.current.offsetHeight || 1;
 		const camera = new OrthographicCamera(
 			-size * aspect,
 			size * aspect,
@@ -80,47 +99,45 @@ export const Preview = (props: PreviewProps) => {
 			size,
 		);
 
-		//controls
-		const controls = new OrbitControls(camera, renderer.domElement);
-		controls.zoomSpeed = 2;
-		controls.enableRotate = false;
-		controls.mouseButtons = {
-			LEFT: MOUSE.PAN,
-			MIDDLE: MOUSE.DOLLY,
-			RIGHT: MOUSE.PAN,
-		};
-
 		// Animation loop
 		const animate = () => {
 			requestAnimationFrame(animate);
-			controls.update();
 			renderer.render(scene, camera);
 		};
 
 		const centerCamera = () => {
-			let box = new Box3().setFromObject(scene);
+			const box = new Box3().setFromObject(scene);
 
-			let bigAxis = box.max.x - box.min.x > box.max.y - box.min.y ? "x" : "y";
-			let size =
+			// handle empty box case (e.g., failed load)
+			if (!isFinite(box.min.x) || !isFinite(box.max.x)) {
+				camera.position.set(0, 0, 100);
+				camera.lookAt(new Vector3(0, 0, 0));
+				camera.updateProjectionMatrix();
+				return;
+			}
+
+			const bigAxis = box.max.x - box.min.x > box.max.y - box.min.y ? "x" : "y";
+			const contentSize =
 				bigAxis === "x" ? box.max.x - box.min.x : box.max.y - box.min.y;
-			let sizeFrustum =
+			const frustumSize =
 				bigAxis === "x"
 					? camera.right - camera.left
 					: camera.top - camera.bottom;
 
-			let lateralMargin = 0.9; //percentage of screento leave on the sides. 1 means no margin
-			if (size < sizeFrustum) {
-				camera.zoom = lateralMargin * (sizeFrustum / size);
-				camera.updateProjectionMatrix();
+			const lateralMargin = 0.9; // 1 = no margin
+			if (contentSize < frustumSize) {
+				camera.zoom = lateralMargin * (frustumSize / contentSize);
 			} else {
 				camera.zoom = 1;
 			}
 
-			let center = box.min.add(box.max.sub(box.min).divideScalar(2));
+			const center = box.min
+				.clone()
+				.add(box.max.clone().sub(box.min).multiplyScalar(0.5));
 
+			// 固定の視点：Z+ 方向から真下を見る（回転・パンなし）
 			camera.position.set(center.x, center.y, center.z + 100);
-			controls.target.set(camera.position.x, camera.position.y, center.z);
-
+			camera.lookAt(center);
 			camera.updateProjectionMatrix();
 		};
 
@@ -130,58 +147,9 @@ export const Preview = (props: PreviewProps) => {
 		drawCanvasRef.current = renderer.domElement;
 
 		return () => {
-			// Cleanup on unmount
 			renderer.dispose();
 		};
-	}, [dxfData]);
+	}, [dxfData, scene]);
 
-	const handleDownload = async () => {
-		const canvas = drawCanvasRef.current;
-		if (!canvas) return;
-
-		try {
-			const file = await canvasToFile(canvas, "drawing.png");
-			const url = URL.createObjectURL(file);
-
-			const link = document.createElement("a");
-			link.href = url;
-			link.download = file.name;
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
-
-			URL.revokeObjectURL(url);
-		} catch (error) {
-			console.error("Failed to export canvas:", error);
-		}
-	};
-
-	return (
-		<>
-			<button type="button" onClick={handleDownload}>
-				download
-			</button>
-			<canvas
-				id="2d"
-				ref={canvasRef}
-				style={{ width: "100%", height: "100%", visibility: "hidden" }}
-			/>
-		</>
-	);
-};
-
-export const canvasToFile = (
-	canvas: HTMLCanvasElement,
-	filename = "canvas.png",
-): Promise<File> => {
-	return new Promise((resolve, reject) => {
-		canvas.toBlob((blob) => {
-			if (!blob) {
-				reject(new Error("Canvas toBlob failed"));
-				return;
-			}
-			const file = new File([blob], filename, { type: "image/png" });
-			resolve(file);
-		}, "image/png");
-	});
+	return <canvas ref={canvasRef} {...rest} />;
 };
