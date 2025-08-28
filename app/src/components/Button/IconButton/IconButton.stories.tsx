@@ -18,6 +18,12 @@ const meta = {
 			options: Object.keys(iconButtonSizeStyleMap),
 			control: "select",
 		},
+		active: {
+			control: "boolean",
+		},
+		disabled: {
+			control: "boolean",
+		}
 	},
 } satisfies Meta<typeof IconButton>;
 

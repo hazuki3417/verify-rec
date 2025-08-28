@@ -8,6 +8,7 @@ import {
 	type ResolverStyleMapArg,
 	styleResolver,
 	type StyledProps,
+	transform,
 } from "../../props";
 import { theme } from "@/theme";
 import {
@@ -102,7 +103,14 @@ export interface IconButton extends StyleProps, Omit<BaseProps, "style"> {}
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
 	(props, ref) => {
-		const { style, ...rest } = props;
-		return <Base ref={ref} style={resolveStyle(style)} {...rest} />;
+		const { style, size, active, disabled, ...rest } = props;
+
+		const styled = transform.props.toStyled({
+			size,
+			active,
+			disabled
+		})
+
+		return <Base ref={ref} style={resolveStyle(style)} {...styled} disabled={disabled} {...rest} />;
 	},
 );
