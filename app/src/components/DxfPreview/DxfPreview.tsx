@@ -22,11 +22,9 @@ export type DxfPreviewProps = Omit<
   "width" | "height"
 > & {
   src: string | File;
-  rotate: number;
-  width: number;
-  height: number;
-  entityLimit?: number; // エンティティ数の閾値（デフォルト 20000）
-  timeoutMs?: number; // 描画処理のタイムアウト（ms, デフォルト 3000）
+  rotate: number; // 回転角度（deg）
+  width: number; // 描画領域の幅（px）
+  height: number; // 描画領域の高さ（px）
 };
 
 export const DxfPreview = (props: DxfPreviewProps) => {
@@ -51,7 +49,7 @@ export const DxfPreview = (props: DxfPreviewProps) => {
   );
   const [isTooLarge, setIsTooLarge] = useState(false);
 
-  // DXF 読み込み
+  // ========== DXF 読み込み ==========
   useEffect(() => {
     const loadDXF = async () => {
       if (!src) return;
@@ -60,7 +58,7 @@ export const DxfPreview = (props: DxfPreviewProps) => {
       try {
         const viewer = new DXFViewer();
 
-        // タイムアウト制御
+        // タイムアウト付きで読み込み
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
@@ -71,7 +69,7 @@ export const DxfPreview = (props: DxfPreviewProps) => {
 
         clearTimeout(timeout);
 
-        // 閾値チェック（Object3D の子供数ベース）
+        // エンティティ数チェック
         const entityCount = dxf.children?.length ?? 0;
         if (entityCount > entityLimit) {
           console.warn(
@@ -85,7 +83,15 @@ export const DxfPreview = (props: DxfPreviewProps) => {
         scene.add(dxf);
         setDxfData(dxf);
 
+        // 基準サイズの計算（Box3は小さな図面でのみ実行）
+        const start = performance.now();
         const box = new Box3().setFromObject(scene);
+        if (performance.now() - start > timeoutMs) {
+          console.warn("Box3 calculation aborted due to timeout");
+          setIsTooLarge(true);
+          return;
+        }
+
         if (!box.isEmpty()) {
           const size = new Vector3();
           box.getSize(size);
@@ -100,7 +106,7 @@ export const DxfPreview = (props: DxfPreviewProps) => {
     loadDXF();
   }, [src, scene, entityLimit, timeoutMs]);
 
-  // 初期化
+  // ========== 初期化 ==========
   useEffect(() => {
     if (!canvasRef.current || isTooLarge) return;
 
@@ -121,18 +127,30 @@ export const DxfPreview = (props: DxfPreviewProps) => {
     rendererRef.current = renderer;
     cameraRef.current = camera;
 
+    let stop = false;
+
     const animate = () => {
+      if (stop) return;
       requestAnimationFrame(animate);
+
+      // レンダリング時間が長くなりすぎた場合は停止
+      const start = performance.now();
       renderer.render(scene, camera);
+      if (performance.now() - start > timeoutMs) {
+        console.warn("Rendering aborted due to timeout");
+        setIsTooLarge(true);
+        stop = true;
+      }
     };
     animate();
 
     return () => {
+      stop = true;
       renderer.dispose();
     };
-  }, [scene, isTooLarge]);
+  }, [scene, isTooLarge, timeoutMs]);
 
-  // fit & 回転処理
+  // ========== fit & 回転処理 ==========
   useEffect(() => {
     if (
       !dxfData ||
@@ -166,14 +184,32 @@ export const DxfPreview = (props: DxfPreviewProps) => {
     camera.top = height / 2 / scale;
     camera.bottom = -height / 2 / scale;
 
+    // Box3計算も重いのでタイムアウトつきで実行
+    const start = performance.now();
     const box = new Box3().setFromObject(scene);
+    if (performance.now() - start > timeoutMs) {
+      console.warn("Box3 calculation aborted due to timeout");
+      setIsTooLarge(true);
+      return;
+    }
+
     const center = box.getCenter(new Vector3());
     camera.position.set(center.x, center.y, center.z + 100);
     camera.lookAt(center);
     camera.updateProjectionMatrix();
 
     scene.rotation.set(0, 0, rad);
-  }, [dxfData, rotate, scene, baseSize, width, height, padding, isTooLarge]);
+  }, [
+    dxfData,
+    rotate,
+    scene,
+    baseSize,
+    width,
+    height,
+    padding,
+    isTooLarge,
+    timeoutMs,
+  ]);
 
   if (isTooLarge) {
     return (
@@ -189,7 +225,7 @@ export const DxfPreview = (props: DxfPreviewProps) => {
           fontSize: 14,
         }}
       >
-        DXF ファイルが大きすぎるため描画できません
+        DXF ファイルが大きすぎるか、処理がタイムアウトしたため描画できません
       </div>
     );
   }
