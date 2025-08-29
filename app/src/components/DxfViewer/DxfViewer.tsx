@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from "react";
+// DxfViewer.tsx
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { DxfPreview } from "../DxfPreview";
 import styled from "styled-components";
@@ -24,8 +25,6 @@ const ZoomInIconButton = styled(IconButton)`
 `;
 const ZoomOutIconButton = styled(IconButton)`
   bottom: calc(54px + 4px + 16px);
-  // 54px: icon size
-  // 4px : icon space
   position: absolute;
   right: 16px;
 }
@@ -41,60 +40,77 @@ export interface DxfViewerProps {
   src: string | File;
 }
 
-/**
- * DXFファイルを描画するコンポーネント
- * @param {Object} props コンポーネントproperties
- * @param {string|File} props.src
- * @returns
- */
 export const DxfViewer = (props: DxfViewerProps) => {
   const { src } = props;
 
   const [angle, setAngle] = useState(0);
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const rotateLeft = useCallback(() => {
-    setAngle((prev) => (prev - 90) % 360);
+    setAngle((prev) => (prev - 90 + 360) % 360);
+  }, []);
+
+  /**
+   * NOTE: ResizeObserverで親サイズを監視
+   *       heightは固定だがwidthはwindow sizeの変更に応じて伸縮する
+   *       そのためContainerコンポーネントのサイズ変更を検知してPreview側も伸縮するように実装
+   *       cssは要素の伸縮のみ提供し、描画した図の伸縮はできない。
+   *       描画している図の伸縮をするにはcanvasのwidth, heightを変更する必要がある。
+   */
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const ro = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect;
+        setSize({ width, height });
+      }
+    });
+    ro.observe(containerRef.current);
+    return () => ro.disconnect();
   }, []);
 
   return (
-    <Container style={{
-      height: "500px",
-      minWidth: "100px",
-      maxWidth: "670px"
-      }}>
-      <TransformWrapper
-        initialScale={1}
-        centerOnInit
-        wheel={{wheelDisabled: true}}
-      >
-        {({ zoomIn, zoomOut }) => (
-          <>
-            <TransformComponent
-              wrapperStyle={{
-                cursor: "move",
-                height: "100%",
-                width: "100%",
-              }}
-            >
-              <DxfPreview src={src} rotate={angle}  />
-            </TransformComponent>
-            {/**
-             * NOTE: ボタン要素の記述位置に注意
-             *       Previewより前に配置: ボタンがPreviewの下に配置される -> z-indexの指定が必要
-             *       Previewより後に配置: ボタンがPreviewの上に配置される -> z-indexの指定が不要
-             */}
-            <ZoomInIconButton onClick={() => zoomIn()} aria-label="zoom-in">
-              <IconAdCircle size="36" />
-            </ZoomInIconButton>
-            <ZoomOutIconButton onClick={() => zoomOut()} aria-label="zoom-out">
-              <IconAdCircle size="36" />
-            </ZoomOutIconButton>
-            <RotateIconButton onClick={rotateLeft} aria-label="rotate">
-              <IconAdCircle size="36" />
-            </RotateIconButton>
-          </>
-        )}
-      </TransformWrapper>
+    <Container
+      ref={containerRef}
+      style={{
+        height: "500px",
+        minWidth: "100px",
+        maxWidth: "670px",
+      }}
+    >
+      {size.width > 0 && size.height > 0 && (
+        <TransformWrapper initialScale={1} centerOnInit wheel={{ wheelDisabled: true }}>
+          {({ zoomIn, zoomOut }) => (
+            <>
+              <TransformComponent
+                wrapperStyle={{
+                  cursor: "move",
+                  height: "100%",
+                  width: "100%",
+                }}
+              >
+                <DxfPreview
+                  src={src}
+                  rotate={angle}
+                  width={size.width}
+                  height={size.height}
+                  style={{ display: "block" }}
+                />
+              </TransformComponent>
+              <ZoomInIconButton onClick={() => zoomIn()} aria-label="zoom-in">
+                <IconAdCircle size="36" />
+              </ZoomInIconButton>
+              <ZoomOutIconButton onClick={() => zoomOut()} aria-label="zoom-out">
+                <IconAdCircle size="36" />
+              </ZoomOutIconButton>
+              <RotateIconButton onClick={rotateLeft} aria-label="rotate">
+                <IconAdCircle size="36" />
+              </RotateIconButton>
+            </>
+          )}
+        </TransformWrapper>
+      )}
     </Container>
   );
 };
