@@ -17,6 +17,21 @@ const Container = styled.div`
   minWidth: 100px;
   overflow: hidden;
   position: relative;
+
+  // NOTE: hover時のボタン表示・非表示切り替え
+  [aria-label="zoom-in"],
+  [aria-label="zoom-out"],
+  [aria-label="rotate"] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  &:hover [aria-label="zoom-in"],
+  &:hover [aria-label="zoom-out"],
+  &:hover [aria-label="rotate"] {
+    opacity: 1;
+    pointer-events: auto;
+  }
 `;
 
 const ZoomInIconButton = styled(IconButton)`
@@ -43,7 +58,7 @@ export interface DxfViewerProps {
 }
 
 export const DxfViewer = (props: DxfViewerProps) => {
-  const { src } = props;
+  const { src, ...rest } = props;
 
   const [angle, setAngle] = useState(0);
   const [size, setSize] = useState({ width: 0, height: 0 });
@@ -73,7 +88,7 @@ export const DxfViewer = (props: DxfViewerProps) => {
   }, []);
 
   return (
-    <Container ref={containerRef}>
+    <Container ref={containerRef} {...rest}>
       {size.width > 0 && size.height > 0 && (
         <TransformWrapper
           initialScale={1}
