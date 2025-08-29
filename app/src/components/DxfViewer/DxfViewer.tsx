@@ -1,4 +1,3 @@
-// DxfViewer.tsx
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { DxfPreview } from "../DxfPreview";
@@ -8,13 +7,16 @@ import { IconAdCircle } from "../Icon";
 import { theme } from "@/theme";
 
 const Container = styled.div`
+  align-items: center;
   border-radius: 8px;
   border: 1px solid ${theme.color.sub.darkGray};
+  display: flex;
+  height: 500px;
+  justify-content: center;
+  maxWidth: 670px;
+  minWidth: 100px;
   overflow: hidden;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const ZoomInIconButton = styled(IconButton)`
@@ -71,16 +73,13 @@ export const DxfViewer = (props: DxfViewerProps) => {
   }, []);
 
   return (
-    <Container
-      ref={containerRef}
-      style={{
-        height: "500px",
-        minWidth: "100px",
-        maxWidth: "670px",
-      }}
-    >
+    <Container ref={containerRef}>
       {size.width > 0 && size.height > 0 && (
-        <TransformWrapper initialScale={1} centerOnInit wheel={{ wheelDisabled: true }}>
+        <TransformWrapper
+          initialScale={1}
+          centerOnInit
+          wheel={{ wheelDisabled: true }}
+        >
           {({ zoomIn, zoomOut }) => (
             <>
               <TransformComponent
@@ -95,13 +94,15 @@ export const DxfViewer = (props: DxfViewerProps) => {
                   rotate={angle}
                   width={size.width}
                   height={size.height}
-                  style={{ display: "block" }}
                 />
               </TransformComponent>
               <ZoomInIconButton onClick={() => zoomIn()} aria-label="zoom-in">
                 <IconAdCircle size="36" />
               </ZoomInIconButton>
-              <ZoomOutIconButton onClick={() => zoomOut()} aria-label="zoom-out">
+              <ZoomOutIconButton
+                onClick={() => zoomOut()}
+                aria-label="zoom-out"
+              >
                 <IconAdCircle size="36" />
               </ZoomOutIconButton>
               <RotateIconButton onClick={rotateLeft} aria-label="rotate">

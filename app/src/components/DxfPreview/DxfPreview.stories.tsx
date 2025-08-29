@@ -7,11 +7,11 @@ const meta = {
   argTypes: {
     rotate: {
       control: "select",
-      options: [0, 90, 180, 270, 360]
+      options: [0, 90, 180, 270, 360],
     },
-        height: {
+    height: {
       control: "select",
-      options: [500]
+      options: [500],
     },
     width: {
       control: {
@@ -19,8 +19,8 @@ const meta = {
         min: 100,
         max: 670,
       },
-    }
-  }
+    },
+  },
 } satisfies Meta<typeof DxfPreview>;
 
 export default meta;

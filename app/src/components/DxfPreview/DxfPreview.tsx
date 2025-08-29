@@ -1,4 +1,3 @@
-// DxfPreview.tsx
 import React, {
   useEffect,
   useRef,
@@ -18,10 +17,13 @@ import {
 // @ts-ignore
 import { DXFViewer } from "three-dxf-viewer";
 
-export type DxfPreviewProps = Omit<ComponentPropsWithoutRef<"canvas">, "width" | "height"> & {
+export type DxfPreviewProps = Omit<
+  ComponentPropsWithoutRef<"canvas">,
+  "width" | "height"
+> & {
   src: string | File;
   rotate: number; // 回転角度（deg）
-  width: number;  // 描画領域の幅（px）
+  width: number; // 描画領域の幅（px）
   height: number; // 描画領域の高さ（px）
 };
 
@@ -36,7 +38,9 @@ export const DxfPreview = (props: DxfPreviewProps) => {
   const cameraRef = useRef<OrthographicCamera | null>(null);
 
   // 基準のバウンディングサイズを保持
-  const [baseSize, setBaseSize] = useState<{ w: number; h: number } | null>(null);
+  const [baseSize, setBaseSize] = useState<{ w: number; h: number } | null>(
+    null,
+  );
 
   // DXF 読み込み
   useEffect(() => {
@@ -101,7 +105,8 @@ export const DxfPreview = (props: DxfPreviewProps) => {
 
   // fit & 回転処理
   useEffect(() => {
-    if (!dxfData || !rendererRef.current || !cameraRef.current || !baseSize) return;
+    if (!dxfData || !rendererRef.current || !cameraRef.current || !baseSize)
+      return;
 
     const renderer = rendererRef.current;
     const camera = cameraRef.current;
@@ -110,8 +115,12 @@ export const DxfPreview = (props: DxfPreviewProps) => {
 
     // 基準サイズを回転させたときの幅・高さを計算
     const rad = (rotate * Math.PI) / 180;
-    const rotatedW = Math.abs(baseSize.w * Math.cos(rad)) + Math.abs(baseSize.h * Math.sin(rad));
-    const rotatedH = Math.abs(baseSize.w * Math.sin(rad)) + Math.abs(baseSize.h * Math.cos(rad));
+    const rotatedW =
+      Math.abs(baseSize.w * Math.cos(rad)) +
+      Math.abs(baseSize.h * Math.sin(rad));
+    const rotatedH =
+      Math.abs(baseSize.w * Math.sin(rad)) +
+      Math.abs(baseSize.h * Math.cos(rad));
 
     // 有効描画領域（padding を除いた部分）
     const innerW = width - padding * 2;
@@ -119,10 +128,10 @@ export const DxfPreview = (props: DxfPreviewProps) => {
 
     const scale = Math.min(innerW / rotatedW, innerH / rotatedH);
 
-    camera.left = (-width / 2) / scale;
-    camera.right = (width / 2) / scale;
-    camera.top = (height / 2) / scale;
-    camera.bottom = (-height / 2) / scale;
+    camera.left = -width / 2 / scale;
+    camera.right = width / 2 / scale;
+    camera.top = height / 2 / scale;
+    camera.bottom = -height / 2 / scale;
 
     // DXF の中心を計算（基準 box の center を使用）
     const box = new Box3().setFromObject(scene);
