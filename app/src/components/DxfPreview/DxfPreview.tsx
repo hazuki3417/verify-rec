@@ -22,43 +22,69 @@ export type DxfPreviewProps = Omit<
   "width" | "height"
 > & {
   src: string | File;
-  rotate: number; // 回転角度（deg）
-  width: number; // 描画領域の幅（px）
-  height: number; // 描画領域の高さ（px）
+  rotate: number;
+  width: number;
+  height: number;
+  entityLimit?: number; // エンティティ数の閾値（デフォルト 20000）
+  timeoutMs?: number; // 描画処理のタイムアウト（ms, デフォルト 3000）
 };
 
 export const DxfPreview = (props: DxfPreviewProps) => {
   const { src, rotate, width, height, ...rest } = props;
 
-  const padding = 12; //
+  /**
+   * NOTE: エンティティの数がおおいと負荷が大きくなりブラウザが止まる
+   *       そのためentity limitやtimeoutを設けています
+   */
+  const entityLimit = 20000;
+  const timeoutMs = 3000;
+
+  const padding = 12;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [dxfData, setDxfData] = useState<any | null>(null);
   const [scene] = useState(new Scene());
   const rendererRef = useRef<WebGLRenderer | null>(null);
   const cameraRef = useRef<OrthographicCamera | null>(null);
 
-  // 基準のバウンディングサイズを保持
   const [baseSize, setBaseSize] = useState<{ w: number; h: number } | null>(
     null,
   );
+  const [isTooLarge, setIsTooLarge] = useState(false);
 
   // DXF 読み込み
   useEffect(() => {
     const loadDXF = async () => {
       if (!src) return;
       const font = "/fonts/helvetiker_regular.typeface.json";
+
       try {
         const viewer = new DXFViewer();
+
+        // タイムアウト制御
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
         const dxf =
           typeof src === "string"
             ? await viewer.getFromPath(src, font)
             : await viewer.getFromFile(src, font);
 
+        clearTimeout(timeout);
+
+        // 閾値チェック（Object3D の子供数ベース）
+        const entityCount = dxf.children?.length ?? 0;
+        if (entityCount > entityLimit) {
+          console.warn(
+            `DXF entity count (${entityCount}) exceeds limit (${entityLimit})`,
+          );
+          setIsTooLarge(true);
+          return;
+        }
+
         scene.clear();
         scene.add(dxf);
         setDxfData(dxf);
 
-        // 読み込み直後に基準サイズを保存
         const box = new Box3().setFromObject(scene);
         if (!box.isEmpty()) {
           const size = new Vector3();
@@ -67,14 +93,17 @@ export const DxfPreview = (props: DxfPreviewProps) => {
         }
       } catch (error) {
         console.error("Error loading DXF file:", error);
+        setIsTooLarge(true);
       }
     };
+
     loadDXF();
-  }, [src, scene]);
+  }, [src, scene, entityLimit, timeoutMs]);
 
   // 初期化
   useEffect(() => {
-    if (!canvasRef.current) return;
+    if (!canvasRef.current || isTooLarge) return;
+
     const renderer = new WebGLRenderer({
       canvas: canvasRef.current,
       preserveDrawingBuffer: true,
@@ -101,11 +130,17 @@ export const DxfPreview = (props: DxfPreviewProps) => {
     return () => {
       renderer.dispose();
     };
-  }, [scene]);
+  }, [scene, isTooLarge]);
 
   // fit & 回転処理
   useEffect(() => {
-    if (!dxfData || !rendererRef.current || !cameraRef.current || !baseSize)
+    if (
+      !dxfData ||
+      !rendererRef.current ||
+      !cameraRef.current ||
+      !baseSize ||
+      isTooLarge
+    )
       return;
 
     const renderer = rendererRef.current;
@@ -113,7 +148,6 @@ export const DxfPreview = (props: DxfPreviewProps) => {
 
     renderer.setSize(width, height, false);
 
-    // 基準サイズを回転させたときの幅・高さを計算
     const rad = (rotate * Math.PI) / 180;
     const rotatedW =
       Math.abs(baseSize.w * Math.cos(rad)) +
@@ -122,7 +156,6 @@ export const DxfPreview = (props: DxfPreviewProps) => {
       Math.abs(baseSize.w * Math.sin(rad)) +
       Math.abs(baseSize.h * Math.cos(rad));
 
-    // 有効描画領域（padding を除いた部分）
     const innerW = width - padding * 2;
     const innerH = height - padding * 2;
 
@@ -133,16 +166,33 @@ export const DxfPreview = (props: DxfPreviewProps) => {
     camera.top = height / 2 / scale;
     camera.bottom = -height / 2 / scale;
 
-    // DXF の中心を計算（基準 box の center を使用）
     const box = new Box3().setFromObject(scene);
     const center = box.getCenter(new Vector3());
     camera.position.set(center.x, center.y, center.z + 100);
     camera.lookAt(center);
     camera.updateProjectionMatrix();
 
-    // シーンを回転
     scene.rotation.set(0, 0, rad);
-  }, [dxfData, rotate, scene, baseSize, width, height, padding]);
+  }, [dxfData, rotate, scene, baseSize, width, height, padding, isTooLarge]);
+
+  if (isTooLarge) {
+    return (
+      <div
+        style={{
+          width,
+          height,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#f8f8f8",
+          color: "#444",
+          fontSize: 14,
+        }}
+      >
+        DXF ファイルが大きすぎるため描画できません
+      </div>
+    );
+  }
 
   return <canvas ref={canvasRef} width={width} height={height} {...rest} />;
 };
