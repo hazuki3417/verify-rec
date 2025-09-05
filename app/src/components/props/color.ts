@@ -1,4 +1,4 @@
-import { theme } from "@/theme";
+import { theme } from "../../theme";
 
 export type MainColor = keyof typeof theme.color.main;
 export type BaseColor = keyof typeof theme.color.base;

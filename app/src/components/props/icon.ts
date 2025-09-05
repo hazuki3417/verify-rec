@@ -1,4 +1,4 @@
-import { theme } from "@/theme";
+import { theme } from "../../theme";
 import { color, type Color } from "./color";
 import { valueResolver, type ResolverValueMapArg } from "./resolver";
 
