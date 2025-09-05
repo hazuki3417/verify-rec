@@ -5,17 +5,15 @@ import {
   fontLineHeightStyleMap,
   fontSizeStyleMap,
   fontWeightStyleMap,
+  textLineModeStyleMap,
+  textOverflowModeStyleMap,
   type FontColor,
   type FontLineHeight,
   type FontSize,
   type FontWeight,
-} from "../props/font";
-import {
-  textLineModeStyleMap,
-  textOverflowModeStyleMap,
   type TextLineMode,
   type TextOverflowMode,
-} from "../props";
+} from "../../props";
 
 const meta = {
   title: "Components/Text",

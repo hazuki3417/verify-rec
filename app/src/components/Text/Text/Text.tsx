@@ -13,7 +13,7 @@ import {
   cssTextOverflowMode,
   type StyledProps,
   transform,
-} from "../props";
+} from "../../props";
 
 type BaseProps = React.ComponentPropsWithoutRef<"p">;
 
