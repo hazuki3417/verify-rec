@@ -36,16 +36,26 @@ export const styleResolver = <K extends string, T extends StyleMap<K>>(
   map: T,
   defaultValue: K,
 ): Styles<object> => {
-  return map[value ?? defaultValue];
+  const prop = value ?? defaultValue;
+  const style = map[prop];
+  if (style === undefined) {
+    throw new Error(`Unexpected prop value "${String(prop)}"`);
+  }
+  return style;
 };
 
 /*
- * propの値に対応するcss styleを返す関数
+ * propの値に対応するcss propertyの値を返す関数
  */
 export const valueResolver = <K extends string, T extends ValueMap<K>>(
   value: K | undefined,
   map: T,
   defaultValue: K,
 ): string => {
-  return map[value ?? defaultValue];
+  const prop = value ?? defaultValue;
+  const style = map[prop];
+  if (style === undefined) {
+    throw new Error(`Unexpected prop value "${String(prop)}"`);
+  }
+  return style;
 };
