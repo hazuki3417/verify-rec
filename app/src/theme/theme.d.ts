@@ -54,7 +54,7 @@ declare module "styled-components" {
         "20": string;
         "24": string;
       };
-      lineHight: {
+      lineHeight: {
         "160": string;
       };
       weight: {

@@ -51,7 +51,7 @@ export const theme = {
       "20": "var(--font-size-20)",
       "24": "var(--font-size-24)",
     },
-    lineHight: {
+    lineHeight: {
       "160": "var(--font-line-height-160)",
     },
     weight: {

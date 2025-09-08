@@ -10,7 +10,7 @@ import {
 
 export type FontColor = Color;
 export type FontSize = keyof typeof theme.font.size;
-export type FontLineHeight = keyof typeof theme.font.lineHight;
+export type FontLineHeight = keyof typeof theme.font.lineHeight;
 export type FontWeight = keyof typeof theme.font.weight;
 
 export type FontColorProp = { fontColor?: FontColor };
@@ -45,7 +45,7 @@ export const fontSizeStyleMap = Object.fromEntries(
 ) as FontSizeStyleMap;
 
 export const fontLineHeightStyleMap = Object.fromEntries(
-  Object.entries(theme.font.lineHight).map(([key, value]) => [
+  Object.entries(theme.font.lineHeight).map(([key, value]) => [
     key,
     { lineHeight: value },
   ]),
