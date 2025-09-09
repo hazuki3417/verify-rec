@@ -3,6 +3,7 @@ export * from "./color";
 export * from "./disabled";
 export * from "./font";
 export * from "./icon";
+export * from "./input";
 export * from "./resolver";
 export * from "./size";
 export * from "./style";

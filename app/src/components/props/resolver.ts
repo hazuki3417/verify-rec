@@ -1,4 +1,4 @@
-import type { Styles } from "styled-components/dist/types";
+import type { CSSObject } from "styled-components";
 
 type PrefixKeys<T, P extends string> = {
   [K in keyof T as `${P}${Extract<K, string | number>}`]: T[K];
@@ -16,7 +16,7 @@ export interface CSSResolverArg<T, U> {
 export type BooleanMap<T> = T extends boolean ? "true" | "false" : T;
 
 export type ValueMap<K extends string> = Record<K, string>;
-export type StyleMap<K extends string> = Record<K, Styles<object>>;
+export type StyleMap<K extends string> = Record<K, CSSObject>;
 
 export interface ResolverValueMapArg<U extends string> {
   prop: U | undefined;
@@ -35,7 +35,7 @@ export const styleResolver = <K extends string, T extends StyleMap<K>>(
   value: K | undefined,
   map: T,
   defaultValue: K,
-): Styles<object> => {
+): CSSObject => {
   const prop = value ?? defaultValue;
   const style = map[prop];
   if (style === undefined) {
