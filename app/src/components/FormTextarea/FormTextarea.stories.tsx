@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { FormTextInput } from "./FormTextInput";
+import { FormTextarea } from "./FormTextarea";
 import { inputVariantStyleMap, type InputVariant } from "../props";
 
 const meta = {
-  title: "Form/FormTextInput",
-  component: FormTextInput,
+  title: "Form/FormTextarea",
+  component: FormTextarea,
   argTypes: {
     variant: {
       options: Object.keys(inputVariantStyleMap),
@@ -13,7 +13,7 @@ const meta = {
       control: "boolean",
     },
   },
-} satisfies Meta<typeof FormTextInput>;
+} satisfies Meta<typeof FormTextarea>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -50,7 +50,7 @@ export const VariantProp: Story = {
             >
               <div>{prop}</div>
               <div>
-                <FormTextInput {...args} variant={value} />
+                <FormTextarea {...args} variant={value} />
               </div>
             </div>
           );
@@ -74,7 +74,7 @@ export const ErrorProp: Story = {
         >
           <div>true</div>
           <div>
-            <FormTextInput {...args} error={true} />
+            <FormTextarea {...args} error={true} />
           </div>
         </div>
         <div
@@ -87,7 +87,7 @@ export const ErrorProp: Story = {
         >
           <div>false</div>
           <div>
-            <FormTextInput {...args} error={false} />
+            <FormTextarea {...args} error={false} />
           </div>
         </div>
       </div>
