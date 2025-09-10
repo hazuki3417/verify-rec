@@ -60,6 +60,24 @@ export const VariantProp: Story = {
   },
 };
 
+export const VariantPropHover: Story = {
+  ...VariantProp,
+  parameters: {
+    pseudo: {
+      hover: true,
+    },
+  },
+};
+
+export const VariantPropFocus: Story = {
+  ...VariantProp,
+  parameters: {
+    pseudo: {
+      focus: true,
+    },
+  },
+};
+
 export const ErrorProp: Story = {
   render: (args) => {
     return (
@@ -92,5 +110,23 @@ export const ErrorProp: Story = {
         </div>
       </div>
     );
+  },
+};
+
+export const ErrorPropHover: Story = {
+  ...ErrorProp,
+  parameters: {
+    pseudo: {
+      hover: true,
+    },
+  },
+};
+
+export const ErrorPropFocus: Story = {
+  ...ErrorProp,
+  parameters: {
+    pseudo: {
+      focus: true,
+    },
   },
 };
