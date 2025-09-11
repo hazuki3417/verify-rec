@@ -7,7 +7,7 @@ import {
 } from "./resolver";
 
 export type TextLineMode = "single" | "multi";
-export type TextOverflowMode = "normal" | "ellipsis" | "scrollX";
+export type TextOverflowMode = "normal" | "hidden" | "ellipsis" | "scrollX";
 
 export type TextLineModeProp = { lineMode?: TextLineMode };
 export type TextOverflowModeProp = { overflowMode?: TextOverflowMode };
@@ -25,7 +25,6 @@ export const textLineModeStyleMap: TextLineModeStyleMap = {
     wordBreak: "break-word",
   },
   single: {
-    overflow: "hidden",
     whiteSpace: "nowrap",
   },
 };
@@ -34,10 +33,15 @@ export const textOverflowModeStyleMap: TextOverflowModeStyleMap = {
   normal: {
     // NOTE: 要素側のデフォルトスタイルを利用するためcssの指定なし
   },
+  hidden: {
+    overflow: "hidden",
+  },
   ellipsis: {
+    overflow: "hidden",
     textOverflow: "ellipsis",
   },
   scrollX: {
+    overflow: "hidden",
     overflowX: "scroll",
   },
 };
