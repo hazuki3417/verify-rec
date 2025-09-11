@@ -12,6 +12,9 @@ const meta = {
     error: {
       control: "boolean",
     },
+    disabled: {
+      control: "boolean",
+    },
   },
 } satisfies Meta<typeof FormTextarea>;
 

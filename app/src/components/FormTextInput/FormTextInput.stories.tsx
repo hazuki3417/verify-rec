@@ -12,6 +12,9 @@ const meta = {
     error: {
       control: "boolean",
     },
+    disabled: {
+      control: "boolean",
+    },
   },
 } satisfies Meta<typeof FormTextInput>;
 
@@ -23,6 +26,7 @@ export const Default: Story = {};
 export const ValueProp: Story = {
   args: {
     value: "text",
+    disabled: true,
   },
 };
 

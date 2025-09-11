@@ -44,9 +44,14 @@ export const inputVariantStyleMap: InputVariantStyleMap = {
     // "&:read-only": {
     //   color: theme.color.sub.lightGray, // TODO: 確認。developの実装から持ってきたもの。disabledと見た目がかぶるため差異がわからない
     // },
-    // "&:disabled": {
-    //   color: theme.color.sub.lightGray, // TODO: 確認。figma, developどちらにもない。ただ使うときはあるので定義した方が良いやつ
-    // },
+    "&:disabled": {
+      backgroundColor: theme.color.sub.lightGray,
+      cursor: "not-allowed",
+    },
+    "&:disabled:hover,&:disabled:focus,&:disabled:focus-visible": {
+      border: `1px solid ${theme.color.sub.gray}`,
+      outline: `1px solid transparent`,
+    },
   },
   filled: {
     border: "1px solid transparent",
@@ -67,9 +72,14 @@ export const inputVariantStyleMap: InputVariantStyleMap = {
     // "&:read-only": {
     //   color: theme.color.sub.lightGray, // TODO: 確認。developの実装から持ってきたもの。disabledと見た目がかぶるため差異がわからない
     // },
-    // "&:disabled": {
-    //   color: theme.color.sub.lightGray, // TODO: 確認。figma, developどちらにもない。ただ使うときはあるので定義した方が良いやつ
-    // },
+    "&:disabled": {
+      backgroundColor: theme.color.sub.lightGray,
+      cursor: "not-allowed",
+    },
+    "&:disabled:hover,&:disabled:focus,&:disabled:focus-visible": {
+      border: `1px solid ${theme.color.sub.gray}`,
+      outline: `1px solid transparent`,
+    },
   },
 };
 

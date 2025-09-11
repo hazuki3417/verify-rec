@@ -1,4 +1,5 @@
-import React from "react";
+import { Text } from "@/components";
+import { useHorizontalWheelScroll } from "@/hooks";
 import { useNavigate } from "react-router";
 
 export default function Root() {
@@ -8,13 +9,29 @@ export default function Root() {
     key: "aaaaa%0Abbbbb",
   });
 
+  const horizontalWheelScrollHandler = useHorizontalWheelScroll();
+
   return (
-    <button
-      onClick={() => {
-        navigate(`?${query.toString()}`);
-      }}
-    >
-      click
-    </button>
+    <>
+      <div
+        style={{
+          height: "100px",
+          width: "400px",
+          overflow: "scroll",
+        }}
+        onWheel={horizontalWheelScrollHandler}
+      >
+        <Text lineMode="single" overflowMode="normal">
+          ながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツ
+        </Text>
+      </div>
+      <button
+        onClick={() => {
+          navigate(`?${query.toString()}`);
+        }}
+      >
+        click
+      </button>
+    </>
   );
 }
