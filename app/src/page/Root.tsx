@@ -1,5 +1,6 @@
 import { Text } from "@/components";
-import { useHorizontalWheelScroll } from "@/hooks";
+import { useHorizontalWheelScroll, useVerticalWheelScroll } from "@/hooks";
+import { useRef } from "react";
 import { useNavigate } from "react-router";
 
 export default function Root() {
@@ -9,20 +10,50 @@ export default function Root() {
     key: "aaaaa%0Abbbbb",
   });
 
-  const horizontalWheelScrollHandler = useHorizontalWheelScroll();
+  const parentRef = useRef(null);
+  const childrenRef = useRef(null);
+  const whellSchrollX = useHorizontalWheelScroll({ ref: childrenRef });
+  const whellSchrollY = useVerticalWheelScroll({ ref: parentRef });
 
   return (
     <>
       <div
+        ref={parentRef}
+        onWheel={whellSchrollY.onWheel}
         style={{
           height: "100px",
-          width: "400px",
-          overflow: "scroll",
+          ...whellSchrollY.style,
         }}
-        onWheel={horizontalWheelScrollHandler}
       >
+        <div
+          ref={childrenRef}
+          onWheel={whellSchrollX.onWheel}
+          style={{
+            width: "100px",
+            ...whellSchrollX.style,
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "GrayText",
+              width: "500px",
+            }}
+          >
+            aaaaaaaaaaaaaaaaaa bbbbbbbbbbbbbbbbbb cccccccccccccccccc
+            dddddddddddddddddd eeeeeeeeeeeeeeeeee aaaaaaaaaaaaaaaaaa
+            bbbbbbbbbbbbbbbbbb cccccccccccccccccc dddddddddddddddddd
+            eeeeeeeeeeeeeeeeee aaaaaaaaaaaaaaaaaa bbbbbbbbbbbbbbbbbb
+            cccccccccccccccccc dddddddddddddddddd eeeeeeeeeeeeeeeeee
+            aaaaaaaaaaaaaaaaaa bbbbbbbbbbbbbbbbbb cccccccccccccccccc
+            dddddddddddddddddd eeeeeeeeeeeeeeeeee aaaaaaaaaaaaaaaaaa
+            bbbbbbbbbbbbbbbbbb cccccccccccccccccc dddddddddddddddddd
+            eeeeeeeeeeeeeeeeee aaaaaaaaaaaaaaaaaa bbbbbbbbbbbbbbbbbb
+            cccccccccccccccccc dddddddddddddddddd eeeeeeeeeeeeeeeeee
+          </div>
+        </div>
         <Text lineMode="single" overflowMode="normal">
           ながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツながいコンテンツ
+          <br />
         </Text>
       </div>
       <button

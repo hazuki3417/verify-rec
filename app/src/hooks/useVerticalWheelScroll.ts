@@ -1,18 +1,19 @@
 import { useCallback, type CSSProperties, type RefObject } from "react";
 
-export interface UseHorizontalWheelScrollOption {
+export interface UseVerticalWheelScrollOption {
   ref: RefObject<HTMLElement | null>;
   speed?: number;
 }
 
 /**
- * マウスホイール操作による横スクロールを提供するカスタムフック
+ * マウスホイール操作による縦スクロールを提供するカスタムフック
+ *
  * @example
  * ```
- * const xRef = useRef(null)
- * const xHandler = useVerticalWheelScroll({ref: xRef})
+ * const yRef = useRef(null)
+ * const yHandler = useVerticalWheelScroll({ref: yRef})
  *
- * return (<div {...xHandler}>scroll content</div>)
+ * return (<div {...yHandler}>scroll content</div>)
  * ```
  *
  * 要素内で縦・横混在のscrollを提供したい場合
@@ -33,14 +34,14 @@ export interface UseHorizontalWheelScrollOption {
  * return (<div {...xHandler}>scroll content</div>)
  * ```
  */
-export const useHorizontalWheelScroll = (
-  option: UseHorizontalWheelScrollOption,
+export const useVerticalWheelScroll = (
+  option: UseVerticalWheelScrollOption,
 ) => {
   const { ref, speed = 0.5 } = option;
 
   const style: CSSProperties = {
-    overflowX: "scroll",
-    overflowY: "hidden",
+    overflowX: "hidden",
+    overflowY: "scroll",
   };
 
   const onWheel = useCallback(
@@ -50,22 +51,21 @@ export const useHorizontalWheelScroll = (
       }
       const target = event.target as HTMLElement;
 
-      const isScrollableY =
-        target.scrollHeight > target.clientHeight &&
-        ((target.scrollTop > 0 && event.deltaY < 0) ||
-          (target.scrollTop + target.clientHeight < target.scrollHeight &&
-            event.deltaY > 0));
+      const isScrollableX =
+        target.scrollWidth > target.clientWidth &&
+        ((event.deltaX < 0 && target.scrollLeft > 0) ||
+          (event.deltaX > 0 &&
+            target.scrollLeft + target.clientWidth < target.scrollWidth));
 
-      if (isScrollableY) {
+      if (isScrollableX) {
         // 子要素がスクロールできる場合は通常の挙動に任せる
         return;
       }
 
       event.preventDefault();
-      const parent = ref.current;
-      parent.scrollLeft += event.deltaY * speed;
+      ref.current.scrollTop += event.deltaY * speed;
     },
-    [speed],
+    [ref, speed],
   );
 
   return {
