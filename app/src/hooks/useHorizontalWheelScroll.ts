@@ -7,6 +7,7 @@ export interface UseHorizontalWheelScrollOption {
 
 /**
  * マウスホイール操作による横スクロールを提供するカスタムフック
+ *
  * @example
  * ```
  * const xRef = useRef(null)
@@ -62,8 +63,7 @@ export const useHorizontalWheelScroll = (
       }
 
       event.preventDefault();
-      const parent = ref.current;
-      parent.scrollLeft += event.deltaY * speed;
+      ref.current.scrollLeft += event.deltaY * speed;
     },
     [speed],
   );
