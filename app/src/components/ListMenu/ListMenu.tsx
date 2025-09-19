@@ -11,7 +11,7 @@ type BaseProps = React.HTMLAttributes<HTMLUListElement>;
 
 const Ul = styled.ul`
   background: ${theme.color.base.white};
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid ${theme.color.sub.slightlyLightGray};
   box-shadow: 0px 4px 10px 0px #0000001A;
   list-style: none;
