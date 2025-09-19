@@ -38,7 +38,9 @@ export const cssDisabled = (
     return css(
       resolveDisabled({
         prop:
-          typeof prop === "boolean" ? transform.bool.toString(prop) : undefined,
+          typeof prop === "boolean"
+            ? transform.bool.toBooleanString(prop)
+            : undefined,
         style: args.style,
       }),
     );

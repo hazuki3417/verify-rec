@@ -149,7 +149,7 @@ export const cssInputError = () => css<StyledProps<InputErrorProp>>`
       resolveInputError({
         prop:
           typeof $error === "boolean"
-            ? transform.bool.toString($error)
+            ? transform.bool.toBooleanString($error)
             : undefined,
         style: inputErrorStyleMap,
       }),

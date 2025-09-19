@@ -36,7 +36,9 @@ export const cssError = (args: CSSResolverArg<ErrorStyleMap, Error>) => css<
     return css(
       resolveError({
         prop:
-          typeof prop === "boolean" ? transform.bool.toString(prop) : undefined,
+          typeof prop === "boolean"
+            ? transform.bool.toBooleanString(prop)
+            : undefined,
         style: args.style,
       }),
     );

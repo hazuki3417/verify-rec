@@ -19,8 +19,14 @@ const txStyledProps = <T extends Record<string, unknown>>(
 
 export const transform = {
   bool: {
-    toString: (value: boolean): "true" | "false" => {
+    toBooleanString: (value: boolean): "true" | "false" => {
       return value ? "true" : "false";
+    },
+    toNumber: (value: boolean): 1 | 0 => {
+      return value ? 1 : 0;
+    },
+    toNumberString: (value: boolean): "1" | "0" => {
+      return value ? "1" : "0";
     },
   },
   props: {

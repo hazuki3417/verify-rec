@@ -36,7 +36,9 @@ export const cssActive = (args: CSSResolverArg<ActiveStyleMap, Active>) => css<
     return css(
       resolveActive({
         prop:
-          typeof prop === "boolean" ? transform.bool.toString(prop) : undefined,
+          typeof prop === "boolean"
+            ? transform.bool.toBooleanString(prop)
+            : undefined,
         style: args.style,
       }),
     );
