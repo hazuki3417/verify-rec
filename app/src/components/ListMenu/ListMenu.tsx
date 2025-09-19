@@ -5,13 +5,14 @@ import React, {
 } from "react";
 import styled from "styled-components";
 import { resolveStyle, type StylableProp } from "../props";
+import { theme } from "@/theme";
 
 type BaseProps = React.HTMLAttributes<HTMLUListElement>;
 
 const Ul = styled.ul`
   background: #FDFDFD;
   border-radius: 4px;
-  border: 1px solid #DDEAEEFF;
+  border: 1px solid ${theme.color.sub.slightlyLightGray};
   box-shadow: 0px 4px 10px 0px #0000001A;
   list-style: none;
   margin: 0px;
@@ -20,8 +21,8 @@ const Ul = styled.ul`
 `;
 
 const Li = styled.li`
-  border-bottom: 1px solid #DDEAEEFF;
-  color: #50737E;
+  border-bottom: 1px solid ${theme.color.sub.slightlyLightGray};
+  color: ${theme.color.base.riverBlue};
   cursor: pointer;
   line-height: 24px;
   padding: 12px 16px;
