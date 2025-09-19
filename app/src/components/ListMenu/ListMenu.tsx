@@ -10,7 +10,7 @@ import { theme } from "@/theme";
 type BaseProps = React.HTMLAttributes<HTMLUListElement>;
 
 const Ul = styled.ul`
-  background: #FDFDFD;
+  background: ${theme.color.base.white};
   border-radius: 4px;
   border: 1px solid ${theme.color.sub.slightlyLightGray};
   box-shadow: 0px 4px 10px 0px #0000001A;
@@ -35,11 +35,11 @@ type ItemProp = ComponentPropsWithoutRef<"li"> & {
   show: boolean;
 };
 
-interface StyleProps extends StylableProp {}
+interface StyleProps extends StylableProp { }
 
 export interface ListMenuProps
   extends StyleProps,
-    Omit<BaseProps, "style" | "children"> {
+  Omit<BaseProps, "style" | "children"> {
   items: ItemProp[];
 }
 
