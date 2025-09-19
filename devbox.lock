@@ -4,6 +4,71 @@
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
       "last_modified": "2025-07-02T16:07:57Z",
       "resolved": "github:NixOS/nixpkgs/b32441ec0fae600e647cf4e6d6c245286a583106?lastModified=1751472477&narHash=sha256-DpGMd%2F4DAawRGegP8ISHHbpARRhDS2ABwjiLTAjO7Uk%3D"
+    },
+    "nodejs@18.16.0": {
+      "last_modified": "2023-05-21T19:52:09Z",
+      "plugin_version": "0.0.2",
+      "resolved": "github:NixOS/nixpkgs/9356eead97d8d16956b0226d78f76bd66e06cb60#nodejs",
+      "source": "devbox-search",
+      "version": "18.16.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/mfrzb46340qzyzf0laa24y0xg06xsif9-nodejs-18.16.0",
+              "default": true
+            },
+            {
+              "name": "libv8",
+              "path": "/nix/store/6j279kfynk7n9q05li85bq33zbh0rrc8-nodejs-18.16.0-libv8"
+            }
+          ],
+          "store_path": "/nix/store/mfrzb46340qzyzf0laa24y0xg06xsif9-nodejs-18.16.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ik3qmf89kcrcgnlvl5nbb95xyrh0qkh5-nodejs-18.16.0",
+              "default": true
+            },
+            {
+              "name": "libv8",
+              "path": "/nix/store/nfw3xwwfihz859s5cblqxg20fqis7r5k-nodejs-18.16.0-libv8"
+            }
+          ],
+          "store_path": "/nix/store/ik3qmf89kcrcgnlvl5nbb95xyrh0qkh5-nodejs-18.16.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/4d4sar5gv82d7wn96lq1ddxq3vxfh7h1-nodejs-18.16.0",
+              "default": true
+            },
+            {
+              "name": "libv8",
+              "path": "/nix/store/6xsyd5kkzay7bkjjflwxg7dwspi6yz4f-nodejs-18.16.0-libv8"
+            }
+          ],
+          "store_path": "/nix/store/4d4sar5gv82d7wn96lq1ddxq3vxfh7h1-nodejs-18.16.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/hdwy8j1jvj2d68p449vvpf5j4mrgzldi-nodejs-18.16.0",
+              "default": true
+            },
+            {
+              "name": "libv8",
+              "path": "/nix/store/syfxaz8ml4i259y0j9lyhvlwbyag4hsp-nodejs-18.16.0-libv8"
+            }
+          ],
+          "store_path": "/nix/store/hdwy8j1jvj2d68p449vvpf5j4mrgzldi-nodejs-18.16.0"
+        }
+      }
     }
   }
 }
