@@ -42,7 +42,7 @@ export const theme = {
   },
   font: {
     family: {
-      base: "var(--font-family-base)"
+      base: "var(--font-family-base)",
     },
     size: {
       "10": "var(--font-size-10)",

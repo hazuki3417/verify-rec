@@ -8,10 +8,11 @@ import {
   type StyleMap,
 } from "./resolver";
 
-export type FontColor = Color;
-export type FontSize = keyof typeof theme.font.size;
-export type FontLineHeight = keyof typeof theme.font.lineHeight;
-export type FontWeight = keyof typeof theme.font.weight;
+export type ExtendStyle = "inherit";
+export type FontColor = Color | ExtendStyle;
+export type FontSize = keyof typeof theme.font.size | ExtendStyle;
+export type FontLineHeight = keyof typeof theme.font.lineHeight | ExtendStyle;
+export type FontWeight = keyof typeof theme.font.weight | ExtendStyle;
 
 export type FontColorProp = { fontColor?: FontColor };
 export type FontSizeProp = { fontSize?: FontSize };
@@ -33,30 +34,42 @@ export type FontWeightStyleMap = StyleMap<FontWeight>;
  * themeからコンポーネント内で利用するtokenを作成
  */
 
-export const fontColorStyleMap = Object.fromEntries(
-  Object.entries(color).map(([key, value]) => [key, { color: value }]),
-) as FontColorStyleMap;
+export const fontColorStyleMap = {
+  ...Object.fromEntries(
+    Object.entries(color).map(([key, value]) => [key, { color: value }]),
+  ),
+  inherit: { color: "inherit" },
+} as FontColorStyleMap;
 
-export const fontSizeStyleMap = Object.fromEntries(
-  Object.entries(theme.font.size).map(([key, value]) => [
-    key,
-    { fontSize: value },
-  ]),
-) as FontSizeStyleMap;
+export const fontSizeStyleMap = {
+  ...Object.fromEntries(
+    Object.entries(theme.font.size).map(([key, value]) => [
+      key,
+      { fontSize: value },
+    ]),
+  ),
+  inherit: { fontSize: "inherit" },
+} as FontSizeStyleMap;
 
-export const fontLineHeightStyleMap = Object.fromEntries(
-  Object.entries(theme.font.lineHeight).map(([key, value]) => [
-    key,
-    { lineHeight: value },
-  ]),
-) as FontLineHeightStyleMap;
+export const fontLineHeightStyleMap = {
+  ...Object.fromEntries(
+    Object.entries(theme.font.lineHeight).map(([key, value]) => [
+      key,
+      { lineHeight: value },
+    ]),
+  ),
+  inherit: { lineHeight: "inherit" },
+} as FontLineHeightStyleMap;
 
-export const fontWeightStyleMap = Object.fromEntries(
-  Object.entries(theme.font.weight).map(([key, value]) => [
-    key,
-    { fontWeight: value },
-  ]),
-) as FontWeightStyleMap;
+export const fontWeightStyleMap = {
+  ...Object.fromEntries(
+    Object.entries(theme.font.weight).map(([key, value]) => [
+      key,
+      { fontWeight: value },
+    ]),
+  ),
+  inherit: { fontWeight: "inherit" },
+} as FontWeightStyleMap;
 
 /**
  * propsの値に対応するcss propertiesを返す関数群
