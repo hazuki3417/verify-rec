@@ -2,6 +2,8 @@ import { createGlobalStyle } from "styled-components";
 
 export const FontToken = createGlobalStyle`
 :root{
+  --font-family-base: "Nato Sans JP", sans-serif;
+
   --font-size-10: 10px;
   --font-size-11: 11px;
   --font-size-12: 12px;

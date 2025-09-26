@@ -12,14 +12,16 @@ import {
   type StyledProps,
   transform,
 } from "../../props";
+import { theme } from "@/theme";
 
 type BaseProps = React.ComponentPropsWithoutRef<"p">;
 
-interface StyleProps extends FontStyleProps, TextStyleProps {}
+interface StyleProps extends FontStyleProps, TextStyleProps { }
 
 const Base = styled.p<StyledProps<StyleProps>>`
-  padding: 0px;
+  font-family: ${theme.font.family.base};
   margin: 0px;
+  padding: 0px;
   ${cssFontColor()}
   ${cssFontSize()}
   ${cssFontLineHeight()}
@@ -28,7 +30,7 @@ const Base = styled.p<StyledProps<StyleProps>>`
   ${cssTextOverflowMode()}
 `;
 
-export interface TextProps extends StyleProps, BaseProps {}
+export interface TextProps extends StyleProps, BaseProps { }
 
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
   (props, ref) => {
