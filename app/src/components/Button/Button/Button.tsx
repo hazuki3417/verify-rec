@@ -7,17 +7,25 @@ import {
   type SizeStyleMap,
   cssVariant,
   cssSize,
-  cssFontColor,
-  cssFontSize,
-  cssFontLineHeight,
-  cssFontWeight,
-  type FontStyleProps,
   type StyledProps,
+  transform,
+  type Variant,
+  type Size,
 } from "../../props";
+import { theme } from "@/theme";
 
 type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
-const variantStyleMap: VariantStyleMap = {
+export type ButtonVariant = Variant;
+export type ButtonSize = Size;
+
+export type ButtonVariantProp = VariantProp;
+export type ButtonSizeProp = SizeProp;
+
+export type ButtonVariantStyleMap = VariantStyleMap;
+export type ButtonSizeStyleMap = SizeStyleMap;
+
+export const buttonVariantStyleMap: ButtonVariantStyleMap = {
   primary: {
     backgroundColor: "#23b18f",
     border: "1px solid transparent",
@@ -45,7 +53,7 @@ const variantStyleMap: VariantStyleMap = {
   },
 };
 
-const sizeStyleMap: SizeStyleMap = {
+export const buttonSizeStyleMap: ButtonSizeStyleMap = {
   xs: {
     height: "19px",
     fontSize: "12px",
@@ -64,27 +72,30 @@ const sizeStyleMap: SizeStyleMap = {
   },
 };
 
-interface StyleProps extends VariantProp, SizeProp, FontStyleProps {}
+interface StyleProps extends ButtonVariantProp, ButtonSizeProp {}
 
 const Base = styled.button<StyledProps<StyleProps>>`
   border-radius: 8px;
+  box-shadow: #263a4033 0px 2px 4px 0px;
   cursor: pointer;
+  fontWeight: ${theme.font.weight.regular}
+  line-height: ${theme.font.lineHeight[160]}
   padding: 0px 8px;
   text-align: center;
-  box-shadow: #263a4033 0px 2px 4px 0px;
-  ${cssVariant({ style: variantStyleMap })}
-  ${cssSize({ style: sizeStyleMap })}
-  ${cssFontColor()}
-  ${cssFontSize()}
-  ${cssFontLineHeight()}
-  ${cssFontWeight({ defaultValue: "bold" })}
+  ${cssVariant({ style: buttonVariantStyleMap })}
+  ${cssSize({ style: buttonSizeStyleMap })}
 `;
 
 export interface ButtonProps extends StyleProps, BaseProps {}
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const { ...rest } = props;
-    return <Base ref={ref} {...rest} />;
+    const { variant, size, ...rest } = props;
+
+    const styled = transform.props.toStyled({
+      variant,
+      size,
+    });
+    return <Base ref={ref} {...styled} {...rest} />;
   },
 );
