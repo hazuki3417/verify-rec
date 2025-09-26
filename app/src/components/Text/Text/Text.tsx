@@ -1,8 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import {
-  resolveStyle,
-  type StylableProp,
   type FontStyleProps,
   type TextStyleProps,
   cssFontColor,
@@ -17,7 +15,7 @@ import {
 
 type BaseProps = React.ComponentPropsWithoutRef<"p">;
 
-interface StyleProps extends StylableProp, FontStyleProps, TextStyleProps {}
+interface StyleProps extends FontStyleProps, TextStyleProps {}
 
 const Base = styled.p<StyledProps<StyleProps>>`
   padding: 0px;
@@ -30,7 +28,7 @@ const Base = styled.p<StyledProps<StyleProps>>`
   ${cssTextOverflowMode()}
 `;
 
-export interface TextProps extends StyleProps, Omit<BaseProps, "style"> {}
+export interface TextProps extends StyleProps, BaseProps {}
 
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
   (props, ref) => {
@@ -55,6 +53,6 @@ export const Text = forwardRef<HTMLParagraphElement, TextProps>(
       overflowMode,
     });
 
-    return <Base ref={ref} style={resolveStyle(style)} {...styled} {...rest} />;
+    return <Base ref={ref} {...styled} {...rest} />;
   },
 );

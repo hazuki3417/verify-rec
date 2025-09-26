@@ -3,17 +3,15 @@ import styled from "styled-components";
 import {
   cssInputError,
   cssInputVariant,
-  resolveStyle,
   transform,
   type InputStyleProps,
-  type StylableProp,
   type StyledProps,
 } from "../props";
 import { theme } from "@/theme";
 
 type BaseProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-interface StyleProps extends StylableProp, InputStyleProps {}
+interface StyleProps extends InputStyleProps {}
 
 const Base = styled.input<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -35,21 +33,13 @@ export interface FormTextInputProps
 
 export const FormTextInput = forwardRef<HTMLInputElement, FormTextInputProps>(
   (props, ref) => {
-    const { style, variant, error, ...rest } = props;
+    const { variant, error, ...rest } = props;
 
     const styled = transform.props.toStyled({
       variant,
       error,
     });
     // NOTE: type="text" に固定するため一番最後に指定（スプレッド演算子をあとに記述すると値が上書きされる）
-    return (
-      <Base
-        ref={ref}
-        style={resolveStyle(style)}
-        {...styled}
-        {...rest}
-        type="text"
-      />
-    );
+    return <Base ref={ref} {...styled} {...rest} type="text" />;
   },
 );

@@ -1,8 +1,6 @@
 import React, { forwardRef } from "react";
 import styled, { css } from "styled-components";
 import {
-  resolveStyle,
-  type StylableProp,
   type Size,
   type StyleMap,
   type ResolverStyleMapArg,
@@ -70,8 +68,7 @@ export const iconButtonDisabledStyleMap: ActiveStyleMap = {
 export type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
 export interface StyleProps
-  extends StylableProp,
-    IconButtonStyleProps,
+  extends IconButtonStyleProps,
     ActiveProp,
     DisabledProp {}
 
@@ -99,11 +96,11 @@ const Base = styled.button<StyledProps<StyleProps>>`
   ${cssDisabled({ style: iconButtonDisabledStyleMap })}
 `;
 
-export interface IconButton extends StyleProps, Omit<BaseProps, "style"> {}
+export interface IconButton extends StyleProps, BaseProps {}
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
   (props, ref) => {
-    const { style, size, active, disabled, ...rest } = props;
+    const { size, active, disabled, ...rest } = props;
 
     const styled = transform.props.toStyled({
       size,
@@ -111,14 +108,6 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
       disabled,
     });
 
-    return (
-      <Base
-        ref={ref}
-        style={resolveStyle(style)}
-        {...styled}
-        disabled={disabled}
-        {...rest}
-      />
-    );
+    return <Base ref={ref} {...styled} disabled={disabled} {...rest} />;
   },
 );

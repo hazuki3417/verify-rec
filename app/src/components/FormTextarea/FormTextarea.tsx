@@ -3,17 +3,15 @@ import styled from "styled-components";
 import {
   cssInputError,
   cssInputVariant,
-  resolveStyle,
   transform,
   type InputStyleProps,
-  type StylableProp,
   type StyledProps,
 } from "../props";
 import { theme } from "@/theme";
 
 type BaseProps = React.InputHTMLAttributes<HTMLTextAreaElement>;
 
-interface StyleProps extends StylableProp, InputStyleProps {}
+interface StyleProps extends InputStyleProps {}
 
 const Base = styled.textarea<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -35,13 +33,13 @@ export interface FormTextareaProps
 
 export const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextareaProps>(
   (props, ref) => {
-    const { style, variant, error, ...rest } = props;
+    const { variant, error, ...rest } = props;
 
     const styled = transform.props.toStyled({
       variant,
       error,
     });
     // NOTE: type="text" に固定するため一番最後に指定（スプレッド演算子をあとに記述すると値が上書きされる）
-    return <Base ref={ref} style={resolveStyle(style)} {...styled} {...rest} />;
+    return <Base ref={ref} {...styled} {...rest} />;
   },
 );

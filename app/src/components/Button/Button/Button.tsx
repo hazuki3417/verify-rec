@@ -1,9 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import {
-  resolveStyle,
   type SizeProp,
-  type StylableProp,
   type VariantProp,
   type VariantStyleMap,
   type SizeStyleMap,
@@ -66,11 +64,7 @@ const sizeStyleMap: SizeStyleMap = {
   },
 };
 
-interface StyleProps
-  extends StylableProp,
-    VariantProp,
-    SizeProp,
-    FontStyleProps {}
+interface StyleProps extends VariantProp, SizeProp, FontStyleProps {}
 
 const Base = styled.button<StyledProps<StyleProps>>`
   border-radius: 8px;
@@ -86,11 +80,11 @@ const Base = styled.button<StyledProps<StyleProps>>`
   ${cssFontWeight({ defaultValue: "bold" })}
 `;
 
-export interface ButtonProps extends StyleProps, Omit<BaseProps, "style"> {}
+export interface ButtonProps extends StyleProps, BaseProps {}
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const { style, ...rest } = props;
-    return <Base ref={ref} style={resolveStyle(style)} {...rest} />;
+    const { ...rest } = props;
+    return <Base ref={ref} {...rest} />;
   },
 );

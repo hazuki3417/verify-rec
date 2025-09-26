@@ -4,7 +4,7 @@ import React, {
   type ComponentPropsWithoutRef,
 } from "react";
 import styled from "styled-components";
-import { resolveStyle, type StylableProp } from "../props";
+
 import { theme } from "@/theme";
 
 type BaseProps = React.HTMLAttributes<HTMLUListElement>;
@@ -35,7 +35,7 @@ type ItemProp = ComponentPropsWithoutRef<"li"> & {
   show: boolean;
 };
 
-interface StyleProps extends StylableProp {}
+interface StyleProps {}
 
 export interface ListMenuProps
   extends StyleProps,
@@ -45,7 +45,7 @@ export interface ListMenuProps
 
 export const ListMenu = forwardRef<HTMLUListElement, ListMenuProps>(
   (props, ref) => {
-    const { style, items, ...rest } = props;
+    const { items, ...rest } = props;
 
     const menu = useMemo(() => {
       return items
@@ -55,7 +55,7 @@ export const ListMenu = forwardRef<HTMLUListElement, ListMenuProps>(
     }, [items]);
 
     return (
-      <Ul ref={ref} style={resolveStyle(style)} {...rest}>
+      <Ul ref={ref} {...rest}>
         {menu}
       </Ul>
     );

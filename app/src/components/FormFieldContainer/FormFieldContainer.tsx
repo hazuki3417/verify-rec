@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { resolveStyle, type StylableProp } from "../props";
+
 import { FormLabel } from "../FormLabel";
 import { FormDescription } from "../FormDescription";
 import { FormFieldMessage } from "../FormFieldMessage";
@@ -17,11 +17,9 @@ const Base = styled.div`
   gap: 4px
 `;
 
-interface StyleProps extends StylableProp {}
+interface StyleProps {}
 
-export interface FormFieldContainerProps
-  extends StyleProps,
-    Omit<BaseProps, "style"> {
+export interface FormFieldContainerProps extends StyleProps, BaseProps {
   label?: React.ReactNode;
   description?: React.ReactNode;
   message?: React.ReactNode;
@@ -32,9 +30,9 @@ export const FormFieldContainer = forwardRef<
   HTMLDivElement,
   FormFieldContainerProps
 >((props, ref) => {
-  const { style, label, description, message, children, ...rest } = props;
+  const { label, description, message, children, ...rest } = props;
   return (
-    <Base ref={ref} style={resolveStyle(style)} {...rest}>
+    <Base ref={ref} {...rest}>
       {label && typeof label === "string" ? (
         <FormLabel>{label}</FormLabel>
       ) : (
