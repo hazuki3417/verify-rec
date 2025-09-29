@@ -14,7 +14,7 @@ import {
   type FontWeight,
   type TextLineMode,
   type TextOverflowMode,
-} from "../../props";
+} from "@/utils/props";
 
 const meta = {
   title: "Text/Text",

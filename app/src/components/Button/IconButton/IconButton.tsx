@@ -1,20 +1,19 @@
 import React, { forwardRef } from "react";
 import styled, { css } from "styled-components";
 import {
-  type Size,
-  type StyleMap,
-  type ResolverStyleMapArg,
-  styleResolver,
-  type StyledProps,
-  transform,
-} from "../../props";
-import { theme } from "@/theme";
-import {
   cssActive,
+  cssDisabled,
+  styleResolver,
+  transform,
   type ActiveProp,
   type ActiveStyleMap,
-} from "../../props/active";
-import { cssDisabled, type DisabledProp } from "../../props/disabled";
+  type DisabledProp,
+  type ResolverStyleMapArg,
+  type Size,
+  type StyledProps,
+  type StyleMap,
+} from "@/utils/props";
+import { theme } from "@/theme";
 
 /**
  * md: figmaのIconButton
@@ -25,7 +24,7 @@ export type IconButtonSize = Extract<Size, "md" | "sm">;
 
 export type IconButtonSizeProp = { size?: IconButtonSize };
 
-export interface IconButtonStyleProps extends IconButtonSizeProp {}
+export interface IconButtonStyleProps extends IconButtonSizeProp { }
 
 export type IconButtonSizeStyleMap = StyleMap<IconButtonSize>;
 
@@ -69,8 +68,8 @@ export type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
 export interface StyleProps
   extends IconButtonStyleProps,
-    ActiveProp,
-    DisabledProp {}
+  ActiveProp,
+  DisabledProp { }
 
 const Base = styled.button<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -96,7 +95,7 @@ const Base = styled.button<StyledProps<StyleProps>>`
   ${cssDisabled({ style: iconButtonDisabledStyleMap })}
 `;
 
-export interface IconButton extends StyleProps, BaseProps {}
+export interface IconButton extends StyleProps, BaseProps { }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
   (props, ref) => {

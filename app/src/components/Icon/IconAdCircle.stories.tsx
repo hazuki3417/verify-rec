@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { IconAdCircle } from "./IconAdCircle";
-import { iconColorValueMap, iconSizeValueMap } from "../props/icon";
+import { iconColorValueMap, iconSizeValueMap } from "@/utils/props/icon";
 
 const meta = {
   title: "IconAdCircle",

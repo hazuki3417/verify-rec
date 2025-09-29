@@ -11,10 +11,8 @@ import {
   transform,
   type Variant,
   type Size,
-} from "../../props";
+} from "@/utils/props";
 import { theme } from "@/theme";
-
-type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
 export type ButtonVariant = Variant;
 export type ButtonSize = Size;
@@ -72,21 +70,23 @@ export const buttonSizeStyleMap: ButtonSizeStyleMap = {
   },
 };
 
-interface StyleProps extends ButtonVariantProp, ButtonSizeProp {}
+interface StyleProps extends ButtonVariantProp, ButtonSizeProp { }
 
 const Base = styled.button<StyledProps<StyleProps>>`
   border-radius: 8px;
   box-shadow: #263a4033 0px 2px 4px 0px;
   cursor: pointer;
-  fontWeight: ${theme.font.weight.regular}
-  line-height: ${theme.font.lineHeight[160]}
+  font-weight: ${theme.font.weight.regular};
+  line-height: ${theme.font.lineHeight[160]};
   padding: 0px 8px;
   text-align: center;
   ${cssVariant({ style: buttonVariantStyleMap })}
   ${cssSize({ style: buttonSizeStyleMap })}
 `;
 
-export interface ButtonProps extends StyleProps, BaseProps {}
+type BaseProps = React.ComponentPropsWithoutRef<"button">;
+
+export interface ButtonProps extends StyleProps, BaseProps { }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -96,6 +96,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant,
       size,
     });
+
     return <Base ref={ref} {...styled} {...rest} />;
   },
 );

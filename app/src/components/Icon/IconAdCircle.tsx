@@ -4,7 +4,7 @@ import {
   resolveIconColor,
   resolveIconSize,
   type IconStyleProps,
-} from "../props";
+} from "@/utils/props";
 
 export const IconAdCircle = (props: IconStyleProps) => {
   const { color, size } = props;

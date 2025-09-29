@@ -6,12 +6,12 @@ import {
   transform,
   type InputStyleProps,
   type StyledProps,
-} from "../props";
+} from "@/utils/props";
 import { theme } from "@/theme";
 
 type BaseProps = React.InputHTMLAttributes<HTMLTextAreaElement>;
 
-interface StyleProps extends InputStyleProps {}
+interface StyleProps extends InputStyleProps { }
 
 const Base = styled.textarea<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -29,7 +29,7 @@ const Base = styled.textarea<StyledProps<StyleProps>>`
 
 export interface FormTextareaProps
   extends StyleProps,
-    Omit<BaseProps, "style" | "type"> {}
+  Omit<BaseProps, "style" | "type"> { }
 
 export const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextareaProps>(
   (props, ref) => {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { FormTextInput } from "./FormTextInput";
-import { inputVariantStyleMap, type InputVariant } from "../props";
+import { inputVariantStyleMap, type InputVariant } from "@/utils/props";
 
 const meta = {
   title: "Form/FormTextInput",

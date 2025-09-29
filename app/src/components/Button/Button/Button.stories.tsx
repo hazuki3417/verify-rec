@@ -7,6 +7,9 @@ import {
   type ButtonSize,
   type ButtonVariant,
 } from "./Button";
+import { IconAdCircle } from "@/components/Icon";
+import { Text } from "@/components/Text";
+import { IconText } from "@/components/IconText";
 
 const meta = {
   title: "Button/Button",
@@ -87,4 +90,16 @@ export const SizeProp: Story = {
       </div>
     );
   },
+};
+
+export const IconTextButton: Story = {
+  render: (args) => (
+    <Button {...args}>
+      <IconText icon={<IconAdCircle />}>
+        {/* <Text fontColor="inherit" fontSize="inherit"> */}
+        保存
+        {/* </Text> */}
+      </IconText>
+    </Button>
+  ),
 };
