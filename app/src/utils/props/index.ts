@@ -6,7 +6,6 @@ export * from "./icon";
 export * from "./input";
 export * from "./resolver";
 export * from "./size";
-export * from "./style";
 export * from "./text";
 export * from "./transform";
 export * from "./variant";
