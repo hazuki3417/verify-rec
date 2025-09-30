@@ -24,7 +24,7 @@ export type IconButtonSize = Extract<Size, "md" | "sm">;
 
 export type IconButtonSizeProp = { size?: IconButtonSize };
 
-export interface IconButtonStyleProps extends IconButtonSizeProp { }
+export interface IconButtonStyleProps extends IconButtonSizeProp {}
 
 export type IconButtonSizeStyleMap = StyleMap<IconButtonSize>;
 
@@ -68,8 +68,8 @@ export type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
 export interface StyleProps
   extends IconButtonStyleProps,
-  ActiveProp,
-  DisabledProp { }
+    ActiveProp,
+    DisabledProp {}
 
 const Base = styled.button<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -95,7 +95,7 @@ const Base = styled.button<StyledProps<StyleProps>>`
   ${cssDisabled({ style: iconButtonDisabledStyleMap })}
 `;
 
-export interface IconButton extends StyleProps, BaseProps { }
+export interface IconButton extends StyleProps, BaseProps {}
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
   (props, ref) => {

@@ -37,7 +37,7 @@ const resolveIconTextPosition = (
   return styleResolver(prop, style, "left");
 };
 
-interface StyleProps extends IconTextPositionProp { }
+interface StyleProps extends IconTextPositionProp {}
 
 /**
  * NOTE: 下記のPropertyはButtonコンポーネントと組み合わせたときにスタイルが適用されるように指定

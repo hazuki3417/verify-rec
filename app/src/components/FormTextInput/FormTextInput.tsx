@@ -11,7 +11,7 @@ import { theme } from "@/theme";
 
 type BaseProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-interface StyleProps extends InputStyleProps { }
+interface StyleProps extends InputStyleProps {}
 
 const Base = styled.input<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -29,7 +29,7 @@ const Base = styled.input<StyledProps<StyleProps>>`
 
 export interface FormTextInputProps
   extends StyleProps,
-  Omit<BaseProps, "style" | "type"> { }
+    Omit<BaseProps, "style" | "type"> {}
 
 export const FormTextInput = forwardRef<HTMLInputElement, FormTextInputProps>(
   (props, ref) => {

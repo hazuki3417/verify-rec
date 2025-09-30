@@ -4,7 +4,7 @@ import type { StyledProps } from "@/utils/props";
 
 type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
-interface StyleProps { }
+interface StyleProps {}
 
 /**
  * NOTE: Floating UI共通のスタイルを定義
@@ -17,7 +17,7 @@ export interface ContainerProps {
   children: React.ReactNode;
 }
 
-export interface ContainerProps extends StyleProps, BaseProps { }
+export interface ContainerProps extends StyleProps, BaseProps {}
 
 export const Container = forwardRef<HTMLDivElement, ContainerProps>(
   (props, ref) => {
