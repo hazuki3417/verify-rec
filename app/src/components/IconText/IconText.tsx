@@ -49,7 +49,7 @@ const Base = styled.div<StyledProps<StyleProps>>`
   display: inline-flex;
   font-size: inherit;
   font-weight: inherit;
-  gap: 4px;
+  gap: 4px; // default value 必要であればstyleで上書き
   justify-content: center;
   line-height: 1; // icon と text の位置調整
   ${({ $position }) =>

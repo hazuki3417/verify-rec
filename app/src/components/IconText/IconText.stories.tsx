@@ -6,6 +6,7 @@ import {
   type IconTextPosition,
 } from "./IconText";
 import { IconAdCircle } from "@/components/Icon";
+import { Text } from "../Text";
 
 const meta = {
   title: "IconText",
@@ -21,13 +22,14 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     icon: <IconAdCircle />,
+    // children: <Text fontSize="16">icon text</Text>,
     children: "icon text",
   },
 };
 
 export const PositionProp: Story = {
   args: {
-    icon: <IconAdCircle />,
+    icon: <IconAdCircle size="24" />,
   },
   render: (args) => {
     return (
@@ -47,7 +49,7 @@ export const PositionProp: Story = {
               <div>{prop}</div>
               <div>
                 <IconText {...args} position={value}>
-                  icon text
+                  <Text>図面検索</Text>
                 </IconText>
               </div>
             </div>
