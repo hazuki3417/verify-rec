@@ -35,11 +35,11 @@ type ItemProp = ComponentPropsWithoutRef<"li"> & {
   show: boolean;
 };
 
-interface StyleProps {}
+interface StyleProps { }
 
 export interface ListMenuProps
   extends StyleProps,
-    Omit<BaseProps, "style" | "children"> {
+  Omit<BaseProps, "style" | "children"> {
   items: ItemProp[];
 }
 
