@@ -81,7 +81,7 @@ export const LeftOnly: Story = {
   args: {
     children: (
       <>
-        <ActionPanel.Left>
+        <ActionPanel.Left style={{ display: "flex", gap: "8px" }}>
           <button>ok</button>
           <button>cancel</button>
         </ActionPanel.Left>
@@ -94,7 +94,7 @@ export const CenterOnly: Story = {
   args: {
     children: (
       <>
-        <ActionPanel.Center>
+        <ActionPanel.Center style={{ display: "flex", gap: "8px" }}>
           <button>ok</button>
           <button>cancel</button>
         </ActionPanel.Center>
@@ -107,7 +107,7 @@ export const RightOnly: Story = {
   args: {
     children: (
       <>
-        <ActionPanel.Right>
+        <ActionPanel.Right style={{ display: "flex", gap: "8px" }}>
           <button>ok</button>
           <button>cancel</button>
         </ActionPanel.Right>
