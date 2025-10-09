@@ -14,14 +14,14 @@ import {
 } from "@/utils/props";
 import { theme } from "@/theme";
 
-type ButtonVariant = Variant;
-type ButtonSize = Size;
+export type ButtonVariant = Variant;
+export type ButtonSize = Size;
 
-type ButtonVariantProp = VariantProp;
-type ButtonSizeProp = SizeProp;
+export type ButtonVariantProp = VariantProp;
+export type ButtonSizeProp = SizeProp;
 
-type ButtonVariantStyleMap = VariantStyleMap;
-type ButtonSizeStyleMap = SizeStyleMap;
+export type ButtonVariantStyleMap = VariantStyleMap;
+export type ButtonSizeStyleMap = SizeStyleMap;
 
 export const buttonVariantStyleMap: ButtonVariantStyleMap = {
   primary: {
@@ -70,7 +70,7 @@ export const buttonSizeStyleMap: ButtonSizeStyleMap = {
   },
 };
 
-interface StyleProps extends ButtonVariantProp, ButtonSizeProp {}
+interface StyleProps extends ButtonVariantProp, ButtonSizeProp { }
 
 const Base = styled.button<StyledProps<StyleProps>>`
   border-radius: 8px;
@@ -86,7 +86,7 @@ const Base = styled.button<StyledProps<StyleProps>>`
 
 type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
-export interface ButtonProps extends StyleProps, BaseProps {}
+export interface ButtonProps extends StyleProps, BaseProps { }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {

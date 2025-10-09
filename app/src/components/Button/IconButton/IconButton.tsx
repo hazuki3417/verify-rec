@@ -20,11 +20,11 @@ import { theme } from "@/theme";
  * sm: figmaのMiniButton
  * 違いはpaddingの大きさだけ
  */
-type IconButtonSize = Extract<Size, "md" | "sm">;
+export type IconButtonSize = Extract<Size, "md" | "sm">;
 
-type IconButtonSizeProp = { size?: IconButtonSize };
+export type IconButtonSizeProp = { size?: IconButtonSize };
 
-type IconButtonSizeStyleMap = StyleMap<IconButtonSize>;
+export type IconButtonSizeStyleMap = StyleMap<IconButtonSize>;
 
 export const iconButtonSizeStyleMap: IconButtonSizeStyleMap = {
   sm: {
@@ -64,8 +64,8 @@ export const iconButtonDisabledStyleMap: ActiveStyleMap = {
 
 export interface StyleProps
   extends IconButtonSizeProp,
-    ActiveProp,
-    DisabledProp {}
+  ActiveProp,
+  DisabledProp { }
 
 const Base = styled.button<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -93,7 +93,7 @@ const Base = styled.button<StyledProps<StyleProps>>`
 
 type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
-export interface IconButton extends StyleProps, BaseProps {}
+export interface IconButton extends StyleProps, BaseProps { }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
   (props, ref) => {
