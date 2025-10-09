@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Modal } from "./Modal";
 import { Text } from "../Text";
 import { ActionPanel } from "../ActionPanel";
+import { action } from "@storybook/addon-actions";
 
 const meta = {
   title: "Modal",
@@ -20,7 +21,7 @@ export const Example: Story = {
   args: {
     children: (
       <>
-        <Modal.CloseButton onClick={() => alert("close button clicked")}>a</Modal.CloseButton>
+        <Modal.CloseButton onClick={() => action("onClock")} />
         <Modal.Header>
           <Text fontSize="20" fontWeight="bold">
             モーダルタイトル

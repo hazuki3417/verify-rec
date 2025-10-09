@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { transform, type StyledProps } from "@/utils/props";
+import { IconX } from "../Icon";
 
 type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
-interface StyleProps { }
+interface StyleProps {}
 
 const Base = styled.button<StyledProps<StyleProps>>`
   background: none;
@@ -17,7 +18,9 @@ const Base = styled.button<StyledProps<StyleProps>>`
   padding: 0;
 `;
 
-export interface ModalCloseButtonProps extends StyleProps, BaseProps { }
+export interface ModalCloseButtonProps
+  extends StyleProps,
+    Omit<BaseProps, "children"> {}
 
 export const ModalCloseButton = (props: ModalCloseButtonProps) => {
   const { style, ...rest } = props;
@@ -27,13 +30,21 @@ export const ModalCloseButton = (props: ModalCloseButtonProps) => {
     // NOTE: 必要に応じてここにStylePropsを追加
   });
 
-  return <Base {...styled} style={{
-    ...style,
-    // NOTE: ボタンの配置場所を右上に固定
-    position: "absolute",
-    top: "8px",
-    right: "8px",
-  }} {...rest} />;
+  return (
+    <Base
+      {...styled}
+      style={{
+        ...style,
+        // NOTE: ボタンの配置場所を右上に固定
+        position: "absolute",
+        top: "8px",
+        right: "8px",
+      }}
+      {...rest}
+    >
+      <IconX />
+    </Base>
+  );
 };
 
 ModalCloseButton.displayName = "Modal.CloseButton";

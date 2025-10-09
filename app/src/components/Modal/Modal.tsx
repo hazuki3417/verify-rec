@@ -10,7 +10,7 @@ import { ModalCloseButton } from "./ModalCloseButton";
 
 type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
-interface StyleProps { }
+interface StyleProps {}
 
 const Base = styled.div<StyledProps<StyleProps>>`
   position: relative;
@@ -22,7 +22,7 @@ const Base = styled.div<StyledProps<StyleProps>>`
   min-width: 600px;
 `;
 
-export interface ModalProps extends StyleProps, BaseProps { }
+export interface ModalProps extends StyleProps, BaseProps {}
 
 /**
  * モーダルレイアウトを提供するコンポーネントです。
@@ -31,6 +31,7 @@ export interface ModalProps extends StyleProps, BaseProps { }
  * @example
  * ```
  * <Modal>
+ *  <Modal.CloseButton onClick={() => {}} />
  *  <Modal.Header>
  *    <h2>Title</h2>
  *    <button>close</button>
