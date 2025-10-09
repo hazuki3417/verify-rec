@@ -16,7 +16,7 @@ const Base = styled.div<StyledProps<StyleProps>>`
 export interface ActionPanelLeftProps extends StyleProps, BaseProps {}
 
 export const ActionPanelLeft = (props: ActionPanelLeftProps) => {
-  const { style, ...rest } = props;
+  const { ...rest } = props;
 
   // key: value -> $key: value に変換($をkey名の先頭に付与)
   const styled = transform.props.toStyled({

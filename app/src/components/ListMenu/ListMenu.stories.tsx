@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions";
 import { ListMenu } from "./ListMenu";
 
 const meta = {
-  title: "Components/ListMenu",
+  title: "ListMenu",
   component: ListMenu,
 } satisfies Meta<typeof ListMenu>;
 
@@ -11,35 +11,45 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {},
+};
+
+export const Example1: Story = {
   args: {
-    items: [],
+    children: (
+      <ListMenu>
+        <ListMenu.Item onClick={action("onEditImage")}>
+          図面に書き込み
+        </ListMenu.Item>
+        <ListMenu.Item onClick={action("onEditImage")}>
+          図面ファイルの差し替え
+          <br />
+          （バージョン追加）
+        </ListMenu.Item>
+        <ListMenu.Item onClick={action("onEditImage")}>
+          図面の向きを変更
+        </ListMenu.Item>
+      </ListMenu>
+    ),
   },
 };
 
-export const SetChildren: Story = {
+export const Example2: Story = {
   args: {
-    items: [
-      {
-        show: true,
-        children: "図面に書き込み",
-        onClick: action("onEditImage"),
-      },
-      {
-        show: true,
-        children: (
-          <>
-            図面ファイルの差し替え
-            <br />
-            （バージョン追加）
-          </>
-        ),
-        onClick: action("onEditImage"),
-      },
-      {
-        show: true,
-        children: "図面の向きを変更",
-        onClick: action("onEditImage"),
-      },
-    ],
+    children: (
+      <ListMenu>
+        <ListMenu.Item onClick={action("onEditImage")}>
+          図面に書き込み
+        </ListMenu.Item>
+        <ListMenu.Item onClick={action("onEditImage")}>
+          図面ファイルの差し替え
+          <br />
+          （バージョン追加）
+        </ListMenu.Item>
+        <ListMenu.Item show={false} onClick={action("onEditImage")}>
+          図面の向きを変更
+        </ListMenu.Item>
+      </ListMenu>
+    ),
   },
 };

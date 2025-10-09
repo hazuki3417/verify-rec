@@ -1,14 +1,16 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import {
-  type ActiveProp,
-  type ActiveStyleMap,
   cssActive,
-  type StyledProps,
   transform,
   type Active,
+  type ActiveProp,
+  type ActiveStyleMap,
+  type StyledProps,
 } from "@/utils/props";
 import { theme } from "@/theme";
+import { List } from "../List";
+import type { ListItemProps } from "../List/ListItem";
 
 export type GlobalMenuItemActive = Active;
 
@@ -29,25 +31,28 @@ export const navigationMenuActiveStyleMap: GlobalMenuItemActiveStyleMap = {
 
 interface StyleProps extends GlobalMenuItemActiveProp {}
 
-const Base = styled.span<StyledProps<StyleProps>>`
+const Base = styled(List.Item)<StyledProps<StyleProps>>`
   cursor: pointer;
   padding: 16px 16px 13px 16px;
   border-bottom: 3px solid transparent;
   ${cssActive({ style: navigationMenuActiveStyleMap })}
+  &:hover{
+    color: ${theme.color.main.emerald};
+    border-bottom: 3px solid ${theme.color.main.emerald};
+  },
+  &:hover svg{
+    fill: ${theme.color.main.emerald};
+  }
 `;
 
-type BaseProps = React.ComponentPropsWithoutRef<"span">;
+export interface GlobalMenuItemProps extends StyleProps, ListItemProps {}
 
-export interface GlobalMenuItemProps extends StyleProps, BaseProps {}
+export const GlobalMenuItem = (props: GlobalMenuItemProps) => {
+  const { active, ...rest } = props;
 
-export const GlobalMenuItem = forwardRef<HTMLSpanElement, GlobalMenuItemProps>(
-  (props, ref) => {
-    const { active, ...rest } = props;
+  const styled = transform.props.toStyled({
+    active,
+  });
 
-    const styled = transform.props.toStyled({
-      active,
-    });
-
-    return <Base ref={ref} {...styled} {...rest} />;
-  },
-);
+  return <Base {...styled} {...rest} />;
+};

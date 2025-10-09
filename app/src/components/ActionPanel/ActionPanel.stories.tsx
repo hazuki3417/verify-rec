@@ -32,6 +32,51 @@ export const LeftCenterRight: Story = {
   },
 };
 
+export const LeftAndCenter: Story = {
+  args: {
+    children: (
+      <>
+        <ActionPanel.Left>
+          <button>left</button>
+        </ActionPanel.Left>
+        <ActionPanel.Center>
+          <button>center</button>
+        </ActionPanel.Center>
+      </>
+    ),
+  },
+};
+
+export const CenterAndRight: Story = {
+  args: {
+    children: (
+      <>
+        <ActionPanel.Center>
+          <button>center</button>
+        </ActionPanel.Center>
+        <ActionPanel.Right>
+          <button>right</button>
+        </ActionPanel.Right>
+      </>
+    ),
+  },
+};
+
+export const LeftAndRight: Story = {
+  args: {
+    children: (
+      <>
+        <ActionPanel.Left>
+          <button>left</button>
+        </ActionPanel.Left>
+        <ActionPanel.Right>
+          <button>right</button>
+        </ActionPanel.Right>
+      </>
+    ),
+  },
+};
+
 export const LeftOnly: Story = {
   args: {
     children: (

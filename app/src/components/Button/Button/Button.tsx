@@ -14,14 +14,14 @@ import {
 } from "@/utils/props";
 import { theme } from "@/theme";
 
-export type ButtonVariant = Variant;
-export type ButtonSize = Size;
+type ButtonVariant = Variant;
+type ButtonSize = Size;
 
-export type ButtonVariantProp = VariantProp;
-export type ButtonSizeProp = SizeProp;
+type ButtonVariantProp = VariantProp;
+type ButtonSizeProp = SizeProp;
 
-export type ButtonVariantStyleMap = VariantStyleMap;
-export type ButtonSizeStyleMap = SizeStyleMap;
+type ButtonVariantStyleMap = VariantStyleMap;
+type ButtonSizeStyleMap = SizeStyleMap;
 
 export const buttonVariantStyleMap: ButtonVariantStyleMap = {
   primary: {

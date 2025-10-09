@@ -7,15 +7,12 @@ type BaseProps = React.ComponentPropsWithoutRef<"div">;
 interface StyleProps {}
 
 const Base = styled.div<StyledProps<StyleProps>>`
-  align-items: center;
-  display: flex;
-  flex: 1;
-  justify-content: center;
+  padding: 0px 16px;
 `;
 
-export interface ActionPanelCenterProps extends StyleProps, BaseProps {}
+export interface ModalBodyProps extends StyleProps, BaseProps {}
 
-export const ActionPanelCenter = (props: ActionPanelCenterProps) => {
+export const ModalBody = (props: ModalBodyProps) => {
   const { ...rest } = props;
 
   // key: value -> $key: value に変換($をkey名の先頭に付与)
@@ -26,4 +23,4 @@ export const ActionPanelCenter = (props: ActionPanelCenterProps) => {
   return <Base {...styled} {...rest} />;
 };
 
-ActionPanelCenter.displayName = "ActionPanel.Center";
+ModalBody.displayName = "Modal.Body";

@@ -9,11 +9,11 @@ import {
 } from "@/utils/props";
 import { forwardRef } from "react";
 
-export type IconTextPosition = "top" | "bottom" | "left" | "right";
+type IconTextPosition = "top" | "bottom" | "left" | "right";
 
-export type IconTextPositionProp = { position?: IconTextPosition };
+type IconTextPositionProp = { position?: IconTextPosition };
 
-export type IconTextPositionStyleMap = StyleMap<IconTextPosition>;
+type IconTextPositionStyleMap = StyleMap<IconTextPosition>;
 
 export const iconTextPositionStyleMap: IconTextPositionStyleMap = {
   top: {

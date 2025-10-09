@@ -7,18 +7,21 @@ import { ActionPanelCenter } from "./ActionPanelCenter";
 
 type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
-interface StyleProps { }
+interface StyleProps {}
 
 const Base = styled.div<StyledProps<StyleProps>>`
   align-items: center;
   display: flex;
 `;
 
-export interface ActionPanelProps extends StyleProps, BaseProps { }
+export interface ActionPanelProps extends StyleProps, BaseProps {}
 
 /**
  * ユーザーのアクションを促すためのパネルコンポーネント
  * レイアウトのみを提供します。スタイルの調整が必要な場合はinline styleで調整してください。
+ *
+ * 基本的にLeft,Center,Rightの3つを配置して利用してください。コンテンツの配置が不要な場合は空で配置してください。
+ * （Left,CenterまたはCenter,Rightの組み合わせで利用するとCenterの位置がずれるため）
  *
  * @example three buttons
  * ```
@@ -46,7 +49,7 @@ export interface ActionPanelProps extends StyleProps, BaseProps { }
  * ```
  */
 export const ActionPanel = (props: ActionPanelProps) => {
-  const { style, ...rest } = props;
+  const { ...rest } = props;
 
   // key: value -> $key: value に変換($をkey名の先頭に付与)
   const styled = transform.props.toStyled({

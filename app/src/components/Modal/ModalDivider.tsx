@@ -1,21 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { transform, type StyledProps } from "@/utils/props";
+import { theme } from "@/theme";
 
 type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
 interface StyleProps {}
 
 const Base = styled.div<StyledProps<StyleProps>>`
-  align-items: center;
-  display: flex;
-  flex: 1;
-  justify-content: center;
+  background-color: ${theme.color.sub.lightGray};
+  height: 1px;
 `;
 
-export interface ActionPanelCenterProps extends StyleProps, BaseProps {}
+export interface ModalDividerProps extends StyleProps, BaseProps {}
 
-export const ActionPanelCenter = (props: ActionPanelCenterProps) => {
+export const ModalDivider = (props: ModalDividerProps) => {
   const { ...rest } = props;
 
   // key: value -> $key: value に変換($をkey名の先頭に付与)
@@ -26,4 +25,4 @@ export const ActionPanelCenter = (props: ActionPanelCenterProps) => {
   return <Base {...styled} {...rest} />;
 };
 
-ActionPanelCenter.displayName = "ActionPanel.Center";
+ModalDivider.displayName = "Modal.Divider";
