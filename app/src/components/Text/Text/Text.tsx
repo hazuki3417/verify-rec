@@ -16,7 +16,7 @@ import { theme } from "@/theme";
 
 type BaseProps = React.ComponentPropsWithoutRef<"p">;
 
-interface StyleProps extends FontStyleProps, TextStyleProps {}
+interface StyleProps extends FontStyleProps, TextStyleProps { }
 
 const Base = styled.p<StyledProps<StyleProps>>`
   font-family: ${theme.font.family.base};
@@ -30,12 +30,11 @@ const Base = styled.p<StyledProps<StyleProps>>`
   ${cssTextOverflowMode()}
 `;
 
-export interface TextProps extends StyleProps, BaseProps {}
+export interface TextProps extends StyleProps, BaseProps { }
 
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
   (props, ref) => {
     const {
-      style,
       fontColor,
       fontSize,
       fontLineHeight,
