@@ -6,12 +6,14 @@ import { ModalFooter } from "./ModalFooter";
 import { ModalBody } from "./ModalBody";
 import { theme } from "@/theme";
 import { ModalDivider } from "./ModalDivider";
+import { ModalCloseButton } from "./ModalCloseButton";
 
 type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
-interface StyleProps {}
+interface StyleProps { }
 
 const Base = styled.div<StyledProps<StyleProps>>`
+  position: relative;
   background-color: ${theme.color.base.white};
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -20,7 +22,7 @@ const Base = styled.div<StyledProps<StyleProps>>`
   min-width: 600px;
 `;
 
-export interface ModalProps extends StyleProps, BaseProps {}
+export interface ModalProps extends StyleProps, BaseProps { }
 
 /**
  * モーダルレイアウトを提供するコンポーネントです。
@@ -59,3 +61,4 @@ Modal.Header = ModalHeader;
 Modal.Footer = ModalFooter;
 Modal.Body = ModalBody;
 Modal.Divider = ModalDivider;
+Modal.CloseButton = ModalCloseButton;

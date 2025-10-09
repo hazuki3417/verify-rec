@@ -80,12 +80,10 @@ export const LeftAndRight: Story = {
 export const LeftOnly: Story = {
   args: {
     children: (
-      <>
-        <ActionPanel.Left style={{ display: "flex", gap: "8px" }}>
-          <button>ok</button>
-          <button>cancel</button>
-        </ActionPanel.Left>
-      </>
+      <ActionPanel.Left style={{ display: "flex", gap: "8px" }}>
+        <button>ok</button>
+        <button>cancel</button>
+      </ActionPanel.Left>
     ),
   },
 };
@@ -93,12 +91,10 @@ export const LeftOnly: Story = {
 export const CenterOnly: Story = {
   args: {
     children: (
-      <>
-        <ActionPanel.Center style={{ display: "flex", gap: "8px" }}>
-          <button>ok</button>
-          <button>cancel</button>
-        </ActionPanel.Center>
-      </>
+      <ActionPanel.Center style={{ display: "flex", gap: "8px" }}>
+        <button>ok</button>
+        <button>cancel</button>
+      </ActionPanel.Center>
     ),
   },
 };
@@ -106,12 +102,10 @@ export const CenterOnly: Story = {
 export const RightOnly: Story = {
   args: {
     children: (
-      <>
-        <ActionPanel.Right style={{ display: "flex", gap: "8px" }}>
-          <button>ok</button>
-          <button>cancel</button>
-        </ActionPanel.Right>
-      </>
+      <ActionPanel.Right style={{ display: "flex", gap: "8px" }}>
+        <button>ok</button>
+        <button>cancel</button>
+      </ActionPanel.Right>
     ),
   },
 };

@@ -20,6 +20,7 @@ export const Example: Story = {
   args: {
     children: (
       <>
+        <Modal.CloseButton onClick={() => alert("close button clicked")}>a</Modal.CloseButton>
         <Modal.Header>
           <Text fontSize="20" fontWeight="bold">
             モーダルタイトル
