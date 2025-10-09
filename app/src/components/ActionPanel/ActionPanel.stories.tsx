@@ -19,13 +19,13 @@ export const LeftCenterRight: Story = {
     children: (
       <>
         <ActionPanel.Left>
-          <button>left</button>
+          <button>delete</button>
         </ActionPanel.Left>
         <ActionPanel.Center>
-          <button>center</button>
+          <button>cancel</button>
         </ActionPanel.Center>
         <ActionPanel.Right>
-          <button>right</button>
+          <button>ok</button>
         </ActionPanel.Right>
       </>
     ),
@@ -37,10 +37,10 @@ export const LeftAndCenter: Story = {
     children: (
       <>
         <ActionPanel.Left>
-          <button>left</button>
+          <button>cancel</button>
         </ActionPanel.Left>
         <ActionPanel.Center>
-          <button>center</button>
+          <button>ok</button>
         </ActionPanel.Center>
       </>
     ),
@@ -52,10 +52,10 @@ export const CenterAndRight: Story = {
     children: (
       <>
         <ActionPanel.Center>
-          <button>center</button>
+          <button>cancel</button>
         </ActionPanel.Center>
         <ActionPanel.Right>
-          <button>right</button>
+          <button>ok</button>
         </ActionPanel.Right>
       </>
     ),
@@ -67,10 +67,10 @@ export const LeftAndRight: Story = {
     children: (
       <>
         <ActionPanel.Left>
-          <button>left</button>
+          <button>cancel</button>
         </ActionPanel.Left>
         <ActionPanel.Right>
-          <button>right</button>
+          <button>ok</button>
         </ActionPanel.Right>
       </>
     ),
