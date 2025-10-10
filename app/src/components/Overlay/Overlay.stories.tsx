@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Overlay } from "./Overlay";
+import { Text } from "../Text";
 
 const meta = {
   title: "Components/Overlay",
@@ -10,5 +11,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  render: (args) => {
+    return (
+      <div>
+        <Text>コンテンツ</Text>
+        <Overlay {...args} />
+      </div>
+    );
+  },
 };

@@ -6,14 +6,16 @@ interface StyleProps {}
 
 const Base = styled.div<StyledProps<StyleProps>>`
   background-color: rgba(0, 0, 0, 0.2);
-  height: 100vh;
   position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
   width: 100vw;
 `;
 
 type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
-export interface OverlayProps extends StyleProps, BaseProps {}
+export interface OverlayProps extends StyleProps, Omit<BaseProps, "children"> {}
 
 /**
  * 画面全体をカバーする背景オーバーレイを提供するコンポーネントです。
