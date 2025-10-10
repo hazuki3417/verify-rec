@@ -18,6 +18,13 @@ export const ModalContainer = (props: ModalContainerProps) => {
          *       ただしデザインの装飾は含めないこと。
          */
         zIndex: 3000,
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
       {...rest}
     />

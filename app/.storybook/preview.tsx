@@ -12,8 +12,8 @@ export const decorators = [
     return (
       <>
         <Styles />
-        <div id="portal"></div>
         <Providers>{renderStory()}</Providers>
+        <div id="portal"></div>
       </>
     );
   },

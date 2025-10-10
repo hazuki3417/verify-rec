@@ -16,17 +16,21 @@ type BaseProps = React.ComponentPropsWithoutRef<"div">;
 export interface OverlayProps extends StyleProps, BaseProps {}
 
 /**
- * 画面全体をカバーする背景オーバーレイコンポーネント
- * モーダルやドロワーなどのコンポーネントと組み合わせて利用します
+ * 画面全体をカバーする背景オーバーレイを提供するコンポーネントです。
+ * モーダルやドロワーなどのコンポーネントと組み合わせて利用します。
+ * 表示するコンテンツの前面に配置してください。
+ * （z-indexを使用せずstacking contextで制御することを推奨します）
  *
  * @example
  * ```tsx
- * <>
- *   <Modal>
- *     モーダルの内容
- *   </Modal>
- *   <Overlay onClick={handleClose} />
- * </>
+ * <Portal>
+ *   <Portal.ModalContainer>
+ *     <Overlay onClick={handleClose} />
+ *     <Modal>
+ *       モーダルの内容
+ *     </Modal>
+ *   </Portal.ModalContainer>
+ * </Portal>
  * ```
  */
 export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(
