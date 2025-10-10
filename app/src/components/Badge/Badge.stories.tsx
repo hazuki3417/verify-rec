@@ -3,7 +3,7 @@ import { Badge, badgeVariantStyleMap, badgeColorStyleMap } from "./Badge";
 import type { BadgeVariant, BadgeColor } from "./Badge";
 
 const meta = {
-  title: "Badge",
+  title: "Components/Badge",
   component: Badge,
   args: {
     children: "Badge",

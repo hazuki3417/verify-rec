@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions";
 import { HoverToggle } from "./HoverToggle";
 
 const meta = {
-  title: "HoverToggle",
+  title: "Components/HoverToggle",
   component: HoverToggle,
   args: {
     onClick: action("onClick"),

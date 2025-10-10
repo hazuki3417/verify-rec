@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { transform, type StyledProps } from "@/utils/props";
 
-type BaseProps = React.ComponentPropsWithoutRef<"div">;
-
 interface StyleProps {}
 
 const Base = styled.div<StyledProps<StyleProps>>`
@@ -12,6 +10,8 @@ const Base = styled.div<StyledProps<StyleProps>>`
   flex: 1;
   justify-content: flex-start;
 `;
+
+type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
 export interface ActionPanelLeftProps extends StyleProps, BaseProps {}
 

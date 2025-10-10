@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { FormLabel } from "./FormLabel";
 
 const meta = {
-  title: "Form/FormLabel",
+  title: "Components/Form/FormLabel",
   component: FormLabel,
 } satisfies Meta<typeof FormLabel>;
 

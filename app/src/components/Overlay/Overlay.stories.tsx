@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Overlay } from "./Overlay";
 
 const meta = {
-  title: "Overlay",
+  title: "Components/Overlay",
   component: Overlay,
 } satisfies Meta<typeof Overlay>;
 

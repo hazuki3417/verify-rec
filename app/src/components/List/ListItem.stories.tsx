@@ -3,7 +3,7 @@ import { ListItem } from "./ListItem";
 import { List } from "./List";
 
 const meta = {
-  title: "List/List.Item",
+  title: "Components/List/List.Item",
   component: ListItem,
 } satisfies Meta<typeof ListItem>;
 

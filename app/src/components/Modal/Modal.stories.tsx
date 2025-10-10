@@ -6,7 +6,7 @@ import { ActionPanel } from "../ActionPanel";
 import { action } from "@storybook/addon-actions";
 
 const meta = {
-  title: "Modal",
+  title: "Components/Modal",
   component: Modal,
 } satisfies Meta<typeof Modal>;
 

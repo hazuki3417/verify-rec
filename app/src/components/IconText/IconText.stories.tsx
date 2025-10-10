@@ -9,7 +9,7 @@ import { IconAdCircle } from "@/components/Icon";
 import { Text } from "../Text";
 
 const meta = {
-  title: "IconText",
+  title: "Components/IconText",
   component: IconText,
   args: {
     onClick: action("onClick"),

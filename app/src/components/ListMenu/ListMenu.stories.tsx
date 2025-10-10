@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions";
 import { ListMenu } from "./ListMenu";
 
 const meta = {
-  title: "ListMenu",
+  title: "Components/ListMenu",
   component: ListMenu,
 } satisfies Meta<typeof ListMenu>;
 

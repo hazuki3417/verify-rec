@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { List } from "./List";
 
 const meta = {
-  title: "List",
+  title: "Components/List",
   component: List,
 } satisfies Meta<typeof List>;
 

@@ -4,7 +4,7 @@ import { IconText } from "../IconText";
 import { IconAdCircle } from "../Icon";
 
 const meta = {
-  title: "GlobalMenu",
+  title: "Components/GlobalMenu",
   component: GlobalMenu,
 } satisfies Meta<typeof GlobalMenu>;
 

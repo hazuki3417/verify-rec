@@ -3,7 +3,7 @@ import { IconAdCircle } from "./IconAdCircle";
 import { iconColorValueMap, iconSizeValueMap } from "@/utils/props/icon";
 
 const meta = {
-  title: "IconAdCircle",
+  title: "Components/IconAdCircle",
   component: IconAdCircle,
   argTypes: {
     size: {

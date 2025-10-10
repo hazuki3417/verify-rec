@@ -5,14 +5,14 @@ import { ActionPanelLeft } from "./ActionPanelLeft";
 import { ActionPanelRight } from "./ActionPanelRight";
 import { ActionPanelCenter } from "./ActionPanelCenter";
 
-type BaseProps = React.ComponentPropsWithoutRef<"div">;
-
 interface StyleProps {}
 
 const Base = styled.div<StyledProps<StyleProps>>`
   align-items: center;
   display: flex;
 `;
+
+type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
 export interface ActionPanelProps extends StyleProps, BaseProps {}
 

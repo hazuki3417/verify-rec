@@ -11,13 +11,13 @@ import { ModalCloseButton } from "./ModalCloseButton";
 interface StyleProps {}
 
 const Base = styled.div<StyledProps<StyleProps>>`
-position: relative;
-background-color: ${theme.color.base.white};
-border-radius: 16px;
-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-display: flex;
-flex-direction: column;
-min-width: 600px;
+  position: relative;
+  background-color: ${theme.color.base.white};
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
 `;
 
 type BaseProps = React.ComponentPropsWithoutRef<"div">;

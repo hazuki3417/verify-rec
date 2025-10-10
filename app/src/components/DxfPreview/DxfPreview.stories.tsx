@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { DxfPreview } from "./DxfPreview";
 
 const meta = {
-  title: "DxfPreview",
+  title: "Components/DxfPreview",
   component: DxfPreview,
   argTypes: {
     rotate: {

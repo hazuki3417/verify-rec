@@ -4,7 +4,7 @@ import { FormFieldContainer } from "./FormFieldContainer";
 import { FormTextInput } from "../FormTextInput";
 
 const meta = {
-  title: "Form/FormFieldContainer",
+  title: "Components/Form/FormFieldContainer",
   component: FormFieldContainer,
 } satisfies Meta<typeof FormFieldContainer>;
 

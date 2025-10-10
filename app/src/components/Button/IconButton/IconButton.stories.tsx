@@ -9,7 +9,7 @@ import { IconAdCircle } from "../../Icon";
 import { action } from "@storybook/addon-actions";
 
 const meta = {
-  title: "Button/IconButton",
+  title: "Components/Button/IconButton",
   component: IconButton,
   args: {
     onClick: action("onClick"),

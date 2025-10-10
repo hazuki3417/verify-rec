@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { DxfViewer } from "./DxfViewer";
 
 const meta = {
-  title: "DxfViewer",
+  title: "Components/DxfViewer",
   component: DxfViewer,
 } satisfies Meta<typeof DxfViewer>;
 

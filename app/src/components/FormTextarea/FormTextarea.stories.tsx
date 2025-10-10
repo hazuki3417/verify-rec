@@ -3,7 +3,7 @@ import { FormTextarea } from "./FormTextarea";
 import { inputVariantStyleMap, type InputVariant } from "@/utils/props";
 
 const meta = {
-  title: "Form/FormTextarea",
+  title: "Components/Form/FormTextarea",
   component: FormTextarea,
   argTypes: {
     variant: {
