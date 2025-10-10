@@ -66,7 +66,7 @@ export const resolveBadgeColor = (arg: ResolverStyleMapArg<BadgeColor>) => {
   return styleResolver(prop, style, "blue");
 };
 
-interface StyleProps extends BadgeVariantProp, BadgeColorProp { }
+interface StyleProps extends BadgeVariantProp, BadgeColorProp {}
 
 const Base = styled.span<StyledProps<StyleProps>>`
   align-items: center;
@@ -97,7 +97,7 @@ const Base = styled.span<StyledProps<StyleProps>>`
 
 type BaseProps = Omit<React.ComponentPropsWithoutRef<"span">, "color">;
 
-export interface BadgeProps extends StyleProps, BaseProps { }
+export interface BadgeProps extends StyleProps, BaseProps {}
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   const { variant, color, ...rest } = props;

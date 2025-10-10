@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Portal } from "./Portal";
-import { rgbShift } from "three/examples/jsm/tsl/display/RGBShiftNode.js";
 
 const meta = {
   title: "Portal",

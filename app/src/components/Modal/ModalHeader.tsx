@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { transform, type StyledProps } from "@/utils/props";
 
-type BaseProps = React.ComponentPropsWithoutRef<"div">;
-
 interface StyleProps {}
 
 const Base = styled.div<StyledProps<StyleProps>>`
-  border-radius: 16px 16px 0 0;
-  padding: 16px 16px 24px 16px;
+border-radius: 16px 16px 0 0;
+padding: 16px 16px 24px 16px;
 `;
+
+type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
 export interface ModalHeaderProps extends StyleProps, BaseProps {}
 

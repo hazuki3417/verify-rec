@@ -3,20 +3,20 @@ import styled from "styled-components";
 import { transform, type StyledProps } from "@/utils/props";
 import { IconX } from "../Icon";
 
-type BaseProps = React.ComponentPropsWithoutRef<"button">;
-
 interface StyleProps {}
 
 const Base = styled.button<StyledProps<StyleProps>>`
-  background: none;
-  border: none;
-  cursor: pointer;
-  max-height: 24px;
-  max-width: 24px;
-  min-height: 24px;
-  min-width: 24px;
-  padding: 0;
+background: none;
+border: none;
+cursor: pointer;
+max-height: 24px;
+max-width: 24px;
+min-height: 24px;
+min-width: 24px;
+padding: 0;
 `;
+
+type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
 export interface ModalCloseButtonProps
   extends StyleProps,

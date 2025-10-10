@@ -3,14 +3,14 @@ import styled from "styled-components";
 import { transform, type StyledProps } from "@/utils/props";
 import { theme } from "@/theme";
 
-type BaseProps = React.ComponentPropsWithoutRef<"div">;
-
 interface StyleProps {}
 
 const Base = styled.div<StyledProps<StyleProps>>`
-  background-color: ${theme.color.sub.lightGray};
-  height: 1px;
+background-color: ${theme.color.sub.lightGray};
+height: 1px;
 `;
+
+type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
 export interface ModalDividerProps extends StyleProps, BaseProps {}
 

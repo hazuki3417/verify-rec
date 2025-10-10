@@ -64,8 +64,8 @@ export const iconButtonDisabledStyleMap: ActiveStyleMap = {
 
 export interface StyleProps
   extends IconButtonSizeProp,
-  ActiveProp,
-  DisabledProp { }
+    ActiveProp,
+    DisabledProp {}
 
 const Base = styled.button<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -93,7 +93,7 @@ const Base = styled.button<StyledProps<StyleProps>>`
 
 type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
-export interface IconButton extends StyleProps, BaseProps { }
+export interface IconButton extends StyleProps, BaseProps {}
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
   (props, ref) => {
