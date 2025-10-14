@@ -19,7 +19,14 @@ export interface PortalProps {
  */
 export const Portal = (props: PortalProps) => {
   const { children } = props;
-  return ReactDOM.createPortal(children, document.getElementById("portal")!);
+  const root = document.getElementById("portal");
+
+  if (!root) {
+    console.warn('Portal: No element with id "portal" found in document.');
+    return null;
+  }
+
+  return ReactDOM.createPortal(children, root);
 };
 
 /**
