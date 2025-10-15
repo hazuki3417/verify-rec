@@ -38,7 +38,7 @@ export const PlaceholderProps: Story = {
 export const DisabledProps: Story = {
   args: {
     value: "text",
-    disabled: true
+    disabled: true,
   },
 };
 
