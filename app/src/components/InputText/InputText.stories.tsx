@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { FormTextInput } from "./FormTextInput";
+import { InputText } from "./InputText";
 import { inputVariantStyleMap, type InputVariant } from "@/utils/props";
 
 const meta = {
-  title: "Components/Form/FormTextInput",
-  component: FormTextInput,
+  title: "Components/InputText",
+  component: InputText,
   argTypes: {
     variant: {
       options: Object.keys(inputVariantStyleMap),
@@ -16,7 +16,7 @@ const meta = {
       control: "boolean",
     },
   },
-} satisfies Meta<typeof FormTextInput>;
+} satisfies Meta<typeof InputText>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -26,13 +26,19 @@ export const Default: Story = {};
 export const ValueProp: Story = {
   args: {
     value: "text",
-    disabled: true,
   },
 };
 
 export const PlaceholderProps: Story = {
   args: {
     placeholder: "例：",
+  },
+};
+
+export const DisabledProps: Story = {
+  args: {
+    value: "text",
+    disabled: true
   },
 };
 
@@ -54,7 +60,7 @@ export const VariantProp: Story = {
             >
               <div>{prop}</div>
               <div>
-                <FormTextInput {...args} variant={value} />
+                <InputText {...args} variant={value} />
               </div>
             </div>
           );
@@ -96,7 +102,7 @@ export const ErrorProp: Story = {
         >
           <div>true</div>
           <div>
-            <FormTextInput {...args} error={true} />
+            <InputText {...args} error={true} />
           </div>
         </div>
         <div
@@ -109,7 +115,7 @@ export const ErrorProp: Story = {
         >
           <div>false</div>
           <div>
-            <FormTextInput {...args} error={false} />
+            <InputText {...args} error={false} />
           </div>
         </div>
       </div>

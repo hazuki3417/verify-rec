@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { FormTextarea } from "./FormTextarea";
+import { InputTextarea } from "./InputTextarea";
 import { inputVariantStyleMap, type InputVariant } from "@/utils/props";
 
 const meta = {
-  title: "Components/Form/FormTextarea",
-  component: FormTextarea,
+  title: "Components/InputTextarea",
+  component: InputTextarea,
   argTypes: {
     variant: {
       options: Object.keys(inputVariantStyleMap),
@@ -16,7 +16,7 @@ const meta = {
       control: "boolean",
     },
   },
-} satisfies Meta<typeof FormTextarea>;
+} satisfies Meta<typeof InputTextarea>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -32,6 +32,13 @@ export const ValueProp: Story = {
 export const PlaceholderProps: Story = {
   args: {
     placeholder: "例：",
+  },
+};
+
+export const DisabledProps: Story = {
+  args: {
+    placeholder: "text",
+    disabled: true,
   },
 };
 
@@ -53,7 +60,7 @@ export const VariantProp: Story = {
             >
               <div>{prop}</div>
               <div>
-                <FormTextarea {...args} variant={value} />
+                <InputTextarea {...args} variant={value} />
               </div>
             </div>
           );
@@ -95,7 +102,7 @@ export const ErrorProp: Story = {
         >
           <div>true</div>
           <div>
-            <FormTextarea {...args} error={true} />
+            <InputTextarea {...args} error={true} />
           </div>
         </div>
         <div
@@ -108,7 +115,7 @@ export const ErrorProp: Story = {
         >
           <div>false</div>
           <div>
-            <FormTextarea {...args} error={false} />
+            <InputTextarea {...args} error={false} />
           </div>
         </div>
       </div>
