@@ -9,6 +9,9 @@ const meta = {
     variant: {
       options: Object.keys(inputVariantStyleMap),
     },
+    resize: {
+      control: "boolean",
+    },
     error: {
       control: "boolean",
     },
@@ -35,10 +38,73 @@ export const PlaceholderProps: Story = {
   },
 };
 
-export const DisabledProps: Story = {
-  args: {
-    placeholder: "text",
-    disabled: true,
+export const ResizeProp: Story = {
+  render: (args) => {
+    return (
+      <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+            padding: "8px",
+          }}
+        >
+          <div>true</div>
+          <div>
+            <InputTextarea {...args} resize={true} />
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+            padding: "8px",
+          }}
+        >
+          <div>false</div>
+          <div>
+            <InputTextarea {...args} resize={false} />
+          </div>
+        </div>
+      </div>
+    );
+  },
+};
+
+export const DisabledProp: Story = {
+  render: (args) => {
+    return (
+      <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+            padding: "8px",
+          }}
+        >
+          <div>true</div>
+          <div>
+            <InputTextarea {...args} disabled={true} />
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+            padding: "8px",
+          }}
+        >
+          <div>false</div>
+          <div>
+            <InputTextarea {...args} disabled={false} />
+          </div>
+        </div>
+      </div>
+    );
   },
 };
 

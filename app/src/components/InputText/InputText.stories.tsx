@@ -35,10 +35,38 @@ export const PlaceholderProps: Story = {
   },
 };
 
-export const DisabledProps: Story = {
-  args: {
-    value: "text",
-    disabled: true,
+export const DisabledProp: Story = {
+  render: (args) => {
+    return (
+      <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+            padding: "8px",
+          }}
+        >
+          <div>true</div>
+          <div>
+            <InputText {...args} disabled={true} />
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+            padding: "8px",
+          }}
+        >
+          <div>false</div>
+          <div>
+            <InputText {...args} disabled={false} />
+          </div>
+        </div>
+      </div>
+    );
   },
 };
 
