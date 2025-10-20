@@ -5,14 +5,29 @@ import {
   iconTextPositionStyleMap,
   type IconTextPosition,
 } from "./IconText";
-import { IconAdCircle } from "@/components/Icon";
+import { IconX } from "@/components/Icon";
 import { Text } from "../Text";
+import { fontColorStyleMap, fontSizeStyleMap, fontWeightStyleMap } from "@/utils/props";
 
 const meta = {
   title: "Components/IconText",
   component: IconText,
   args: {
     onClick: action("onClick"),
+  },
+  argTypes: {
+    position: {
+      options: Object.keys(iconTextPositionStyleMap),
+    },
+    fontColor: {
+      options: Object.keys(fontColorStyleMap),
+    },
+    fontWeight: {
+      options: Object.keys(fontWeightStyleMap),
+    },
+    fontSize: {
+      options: Object.keys(fontSizeStyleMap),
+    },
   },
 } satisfies Meta<typeof IconText>;
 
@@ -21,15 +36,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    icon: <IconAdCircle />,
-    // children: <Text fontSize="16">icon text</Text>,
+    icon: <IconX />,
     children: "icon text",
   },
 };
 
 export const PositionProp: Story = {
   args: {
-    icon: <IconAdCircle size="24" />,
+    icon: <IconX size="24" />,
   },
   render: (args) => {
     return (

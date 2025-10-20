@@ -1,19 +1,25 @@
 import type React from "react";
 import styled, { css } from "styled-components";
 import {
+  cssFontColor,
+  cssFontSize,
+  cssFontWeight,
   styleResolver,
   transform,
+  type FontColorProp,
+  type FontSizeProp,
+  type FontWeightProp,
   type ResolverStyleMapArg,
   type StyledProps,
   type StyleMap,
 } from "@/utils/props";
 import { forwardRef } from "react";
 
-type IconTextPosition = "top" | "bottom" | "left" | "right";
+export type IconTextPosition = "top" | "bottom" | "left" | "right";
 
-type IconTextPositionProp = { position?: IconTextPosition };
+export type IconTextPositionProp = { position?: IconTextPosition };
 
-type IconTextPositionStyleMap = StyleMap<IconTextPosition>;
+export type IconTextPositionStyleMap = StyleMap<IconTextPosition>;
 
 export const iconTextPositionStyleMap: IconTextPositionStyleMap = {
   top: {
@@ -37,18 +43,15 @@ const resolveIconTextPosition = (
   return styleResolver(prop, style, "left");
 };
 
-interface StyleProps extends IconTextPositionProp {}
+interface StyleProps extends IconTextPositionProp, FontColorProp, FontSizeProp, FontWeightProp { }
 
 /**
- * NOTE: 下記のPropertyはButtonコンポーネントと組み合わせたときにスタイルが適用されるように指定
+ * NOTE: 下記のpropertyはButtonコンポーネントと組み合わせたときにスタイルが適用されるように指定
  *       color, font-size, font-weight: inherit
  */
 const Base = styled.div<StyledProps<StyleProps>>`
   align-items: center;
-  color: inherit;
   display: inline-flex;
-  font-size: inherit;
-  font-weight: inherit;
   gap: 4px; // default value 必要であればstyleで上書き
   justify-content: center;
   line-height: 1; // icon と text の位置調整
@@ -59,6 +62,9 @@ const Base = styled.div<StyledProps<StyleProps>>`
         style: iconTextPositionStyleMap,
       }),
     )}
+  ${cssFontColor({ defaultValue: "inherit" })}
+  ${cssFontSize({ defaultValue: "inherit" })}
+  ${cssFontWeight({ defaultValue: "inherit" })}
 `;
 
 type BaseProps = React.ComponentPropsWithoutRef<"div">;
@@ -67,12 +73,18 @@ export interface IconTextProps extends StyleProps, BaseProps {
   icon: React.ReactNode;
 }
 
+/**
+ * IconTextとTextのprops（fontColor, fontSize, fontWeight）初期値は異なるので注意してください
+ */
 export const IconText = forwardRef<HTMLDivElement, IconTextProps>(
   (props, ref) => {
-    const { icon, position, style, children, ...rest } = props;
+    const { icon, position, fontColor, fontSize, fontWeight, children, ...rest } = props;
 
     const styled = transform.props.toStyled({
       position,
+      fontColor,
+      fontSize,
+      fontWeight,
     });
 
     const isHorizontalLine = position === "left" || position === "right";

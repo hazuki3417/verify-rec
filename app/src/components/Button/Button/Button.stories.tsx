@@ -96,9 +96,7 @@ export const IconTextButton: Story = {
   render: (args) => (
     <Button {...args}>
       <IconText icon={<IconAdCircle />}>
-        {/* <Text fontColor="inherit" fontSize="inherit"> */}
         保存
-        {/* </Text> */}
       </IconText>
     </Button>
   ),
