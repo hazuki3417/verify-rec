@@ -8,7 +8,6 @@ import {
   type ButtonVariant,
 } from "./Button";
 import { IconAdCircle } from "@/components/Icon";
-import { Text } from "@/components/Text";
 import { IconText } from "@/components/IconText";
 
 const meta = {

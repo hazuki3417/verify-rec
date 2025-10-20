@@ -25,48 +25,48 @@ export type ButtonSizeStyleMap = SizeStyleMap;
 
 export const buttonVariantStyleMap: ButtonVariantStyleMap = {
   primary: {
-    backgroundColor: "#23b18f",
-    border: "1px solid transparent",
-    color: "#ffffff",
+    backgroundColor: theme.color.main.emerald,
+    border: `1px solid transparent`,
+    color: theme.color.base.white,
   },
   secondary: {
-    backgroundColor: "#ffffff",
-    border: "solid 1px #bac9ce",
-    color: "#23b18f",
+    backgroundColor: theme.color.base.white,
+    border: `solid 1px ${theme.color.sub.lightGray}`,
+    color: theme.color.main.emerald,
   },
   tertiary: {
-    backgroundColor: "#ffffff",
-    border: "solid 1px #bac9ce",
-    color: "#50737e",
+    backgroundColor: theme.color.base.white,
+    border: `solid 1px ${theme.color.sub.lightGray}`,
+    color: theme.color.base.riverBlue,
   },
   quaternary: {
-    backgroundColor: "#f0f5f6",
-    border: "1px solid transparent",
-    color: "#23b18f",
+    backgroundColor: theme.color.base.pealGray,
+    border: `1px solid transparent`,
+    color: theme.color.main.emerald,
   },
   quinary: {
-    backgroundColor: "#f0f5f6",
-    border: "1px solid transparent",
-    color: "#50737e",
+    backgroundColor: theme.color.base.pealGray,
+    border: `1px solid transparent`,
+    color: theme.color.base.riverBlue,
   },
 };
 
 export const buttonSizeStyleMap: ButtonSizeStyleMap = {
   xs: {
     height: "19px",
-    fontSize: "12px",
+    fontSize: theme.font.size[12],
   },
   sm: {
     height: "28px",
-    fontSize: "14px",
+    fontSize: theme.font.size[14],
   },
   md: {
     height: "42px",
-    fontSize: "16px",
+    fontSize: theme.font.size[16],
   },
   lg: {
     height: "48px",
-    fontSize: "20px",
+    fontSize: theme.font.size[20],
   },
 };
 
