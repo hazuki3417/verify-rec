@@ -39,7 +39,7 @@ export const messageStatusStyleMap: MessageStatusStyleMap = {
   },
 };
 
-interface StyleProps extends MessageStatusProp { }
+interface StyleProps extends MessageStatusProp {}
 
 const Base = styled.div<StyledProps<StyleProps>>`
   position: relative;
@@ -61,7 +61,7 @@ const Base = styled.div<StyledProps<StyleProps>>`
 
 type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
-export interface MessageProps extends StyleProps, BaseProps { }
+export interface MessageProps extends StyleProps, BaseProps {}
 
 /**
  * モーダルレイアウトを提供するコンポーネントです。

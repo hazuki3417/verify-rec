@@ -6,6 +6,7 @@ import { Modal } from "../Modal";
 import { Text } from "../Text";
 import { ActionPanel } from "../ActionPanel";
 import { useState } from "react";
+import { Message } from "../Message";
 
 const meta = {
   title: "Components/Portal",
@@ -21,50 +22,28 @@ export const Default: Story = {
   },
 };
 
-export const ModalContainer: Story = {
-  args: {
-    children: <Portal.ModalContainer>Modal content</Portal.ModalContainer>,
-  },
-};
-
-export const ToastContainer: Story = {
-  args: {
-    children: <Portal.ToastContainer>Toast content</Portal.ToastContainer>,
-  },
-};
-
-export const TooltipContainer: Story = {
-  args: {
-    children: (
-      <Portal.TooltipContainer>Tooltip content</Portal.TooltipContainer>
-    ),
-  },
-};
-
-const SampleModal = ({ onClose }: { onClose: () => void }) => {
-  return (
-    <Modal>
-      <Modal.CloseButton onClick={onClose} />
-      <Modal.Header>
-        <Text fontSize="20" fontWeight="bold">
-          モーダルタイトル
-        </Text>
-      </Modal.Header>
-      <Modal.Body>
-        <Text>これはPortalを使用したモーダルの実装例です。</Text>
-      </Modal.Body>
-      <Modal.Divider />
-      <Modal.Footer>
-        <ActionPanel>
-          <ActionPanel.Center style={{ display: "flex", gap: "8px" }}>
-            <button onClick={onClose}>キャンセル</button>
-            <button onClick={onClose}>保存</button>
-          </ActionPanel.Center>
-        </ActionPanel>
-      </Modal.Footer>
-    </Modal>
-  );
-};
+const SampleModal = ({ onClose }: { onClose: () => void }) => (
+  <Modal>
+    <Modal.CloseButton onClick={onClose} />
+    <Modal.Header>
+      <Text fontSize="20" fontWeight="bold">
+        モーダルタイトル
+      </Text>
+    </Modal.Header>
+    <Modal.Body>
+      <Text>これはPortalを使用したモーダルの実装例です。</Text>
+    </Modal.Body>
+    <Modal.Divider />
+    <Modal.Footer>
+      <ActionPanel>
+        <ActionPanel.Center style={{ display: "flex", gap: "8px" }}>
+          <button onClick={onClose}>キャンセル</button>
+          <button onClick={onClose}>保存</button>
+        </ActionPanel.Center>
+      </ActionPanel>
+    </Modal.Footer>
+  </Modal>
+);
 
 /**
  * PortalとModalを組み合わせた実装例
@@ -99,50 +78,41 @@ export const ExampleModal: Story = {
   },
 };
 
-const box = {
-  backgroundColor: "#0000004d",
-  width: "200px",
-  height: "200px",
-};
+const SampleToast = ({ onClose }: { onClose: () => void }) => (
+  <Message status="success">
+    <Message.CloseButton onClick={onClose} />
+    <Message.Title>保存しました</Message.Title>
+  </Message>
+);
 
 /**
- * 各レイヤーの重なりを確認
+ * PortalとModalを組み合わせた実装例
  */
-export const Layer: Story = {
-  args: {
-    children: (
+export const ExampleToast: Story = {
+  args: { children: null },
+  render: () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleOpen = () => {
+      setIsOpen(true);
+    };
+
+    const handleClose = () => {
+      setIsOpen(false);
+    };
+
+    return (
       <>
-        <Portal.ModalContainer
-          style={{
-            ...box,
-            backgroundColor: "blue",
-            top: "50px",
-            left: "50px",
-          }}
-        >
-          Modal content
-        </Portal.ModalContainer>
-        <Portal.TooltipContainer
-          style={{
-            ...box,
-            backgroundColor: "red",
-            top: "100px",
-            left: "100px",
-          }}
-        >
-          Tooltip content
-        </Portal.TooltipContainer>
-        <Portal.ToastContainer
-          style={{
-            ...box,
-            backgroundColor: "green",
-            top: "150px",
-            left: "150px",
-          }}
-        >
-          Toast content
-        </Portal.ToastContainer>
+        <button onClick={handleOpen}>トーストを表示</button>
+
+        {isOpen && (
+          <Portal>
+            <Portal.ToastContainer>
+              <SampleToast onClose={handleClose} />
+            </Portal.ToastContainer>
+          </Portal>
+        )}
       </>
-    ),
+    );
   },
 };

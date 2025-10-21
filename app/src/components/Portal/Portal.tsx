@@ -34,8 +34,6 @@ export const Portal = (props: PortalProps) => {
  * NOTE: z-indexの順位は下記のようになるよう調整してください
  *       tooltop > toast > modal
  * TODO: drawerも対応できるように拡張する
- * TODO: toastの表示位置を指定できるように拡張する
- * TODO: tooltipの表示位置を指定できるように拡張する
  */
 Portal.ModalContainer = ModalContainer;
 Portal.TooltipContainer = TooltipContainer;
