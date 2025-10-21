@@ -25,6 +25,10 @@ export const theme = {
       slightlyEmerald: "var(--color-sub-slightly-emerald)",
       slightlyLightGray: "var(--color-sub-slightly-light-gray)",
       slightlyLightPink: "var(--color-sub-slightly-light-pink)",
+
+      // FIX: 定義されていないやつ
+      addLightYellow: "#DCD69F",
+      addSlightlyLightYellow: "#FFFDEA",
     },
     status: {
       lightBeige: "var(--color-status-light-beige)",
