@@ -1,8 +1,8 @@
 import React, { type CSSProperties } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Message } from "./Message";
-import { Text } from "../Text";
-import { Button } from "../Button";
+import { Text } from "@/components/Text";
+import { Button } from "@/components/Button";
 
 const meta = {
   title: "Components/Message",

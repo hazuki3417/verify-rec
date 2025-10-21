@@ -2,8 +2,12 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import { transform, type StyledProps } from "@/utils/props";
 import { useMessageContext } from "./Message.context";
-import { IconText } from "../IconText";
-import { IconCircleCheck, IconCircleInfo, IconWarning } from "../Icon";
+import { IconText } from "@/components/IconText";
+import {
+  IconCircleCheck,
+  IconCircleInfo,
+  IconWarning,
+} from "@/components/Icon";
 
 interface StyleProps {}
 

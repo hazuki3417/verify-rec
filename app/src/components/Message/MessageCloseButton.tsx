@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { transform, type StyledProps } from "@/utils/props";
-import { IconX } from "../Icon";
+import { IconX } from "@/components/Icon";
 
 interface StyleProps {}
 

@@ -39,7 +39,7 @@ export const messageStatusStyleMap: MessageStatusStyleMap = {
   },
 };
 
-interface StyleProps extends MessageStatusProp {}
+interface StyleProps extends MessageStatusProp { }
 
 const Base = styled.div<StyledProps<StyleProps>>`
   position: relative;
@@ -61,7 +61,7 @@ const Base = styled.div<StyledProps<StyleProps>>`
 
 type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
-export interface MessageProps extends StyleProps, BaseProps {}
+export interface MessageProps extends StyleProps, BaseProps { }
 
 /**
  * モーダルレイアウトを提供するコンポーネントです。
@@ -79,22 +79,32 @@ export interface MessageProps extends StyleProps, BaseProps {}
  * </Message>
  * ```
  */
-export const Message = (props: MessageProps) => {
-  const { status, children, ...rest } = props;
-
-  // key: value -> $key: value に変換($をkey名の先頭に付与)
-  const styled = transform.props.toStyled({
-    status,
-  });
-
-  // NOTE: 親で指定したstateに連動してアイコンやテキストカラーを変更するように実装しています
-
-  return (
-    <Base {...styled} {...rest}>
-      <MessageProvider value={{ status }}>{children}</MessageProvider>
-    </Base>
-  );
+type MessageComponent = React.ForwardRefExoticComponent<
+  MessageProps & React.RefAttributes<HTMLDivElement>
+> & {
+  Title: typeof MessageTitle;
+  Content: typeof MessageContent;
+  CloseButton: typeof MessageCloseButton;
 };
+
+export const Message = React.forwardRef<HTMLDivElement, MessageProps>(
+  (props, ref) => {
+    const { status, children, ...rest } = props;
+
+    // key: value -> $key: value に変換($をkey名の先頭に付与)
+    const styled = transform.props.toStyled({
+      status,
+    });
+
+    // NOTE: 親で指定したstateに連動してアイコンやテキストカラーを変更するように実装しています
+
+    return (
+      <Base ref={ref} {...styled} {...rest}>
+        <MessageProvider value={{ status }}>{children}</MessageProvider>
+      </Base>
+    );
+  },
+) as MessageComponent;
 
 Message.displayName = "Message";
 Message.Title = MessageTitle;
