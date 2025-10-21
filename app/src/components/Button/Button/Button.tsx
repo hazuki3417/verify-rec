@@ -70,7 +70,7 @@ export const buttonSizeStyleMap: ButtonSizeStyleMap = {
   },
 };
 
-interface StyleProps extends ButtonVariantProp, ButtonSizeProp { }
+interface StyleProps extends ButtonVariantProp, ButtonSizeProp {}
 
 const Base = styled.button<StyledProps<StyleProps>>`
   align-items: center;
@@ -88,7 +88,7 @@ const Base = styled.button<StyledProps<StyleProps>>`
 
 type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
-export interface ButtonProps extends StyleProps, BaseProps { }
+export interface ButtonProps extends StyleProps, BaseProps {}
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {

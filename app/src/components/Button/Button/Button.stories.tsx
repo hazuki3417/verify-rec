@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import {
@@ -95,9 +95,7 @@ export const SizeProp: Story = {
 export const IconTextButton: Story = {
   render: (args) => (
     <Button {...args}>
-      <IconText icon={<IconAdCircle />}>
-        保存
-      </IconText>
+      <IconText icon={<IconAdCircle />}>保存</IconText>
     </Button>
   ),
 };

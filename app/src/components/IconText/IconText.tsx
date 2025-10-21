@@ -43,7 +43,11 @@ const resolveIconTextPosition = (
   return styleResolver(prop, style, "left");
 };
 
-interface StyleProps extends IconTextPositionProp, FontColorProp, FontSizeProp, FontWeightProp { }
+interface StyleProps
+  extends IconTextPositionProp,
+    FontColorProp,
+    FontSizeProp,
+    FontWeightProp {}
 
 /**
  * NOTE: 下記のpropertyはButtonコンポーネントと組み合わせたときにスタイルが適用されるように指定
@@ -78,7 +82,15 @@ export interface IconTextProps extends StyleProps, BaseProps {
  */
 export const IconText = forwardRef<HTMLDivElement, IconTextProps>(
   (props, ref) => {
-    const { icon, position, fontColor, fontSize, fontWeight, children, ...rest } = props;
+    const {
+      icon,
+      position,
+      fontColor,
+      fontSize,
+      fontWeight,
+      children,
+      ...rest
+    } = props;
 
     const styled = transform.props.toStyled({
       position,

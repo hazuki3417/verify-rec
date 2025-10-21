@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import {
@@ -8,7 +8,11 @@ import {
 } from "./IconText";
 import { IconX } from "@/components/Icon";
 import { Text } from "../Text";
-import { fontColorStyleMap, fontSizeStyleMap, fontWeightStyleMap } from "@/utils/props";
+import {
+  fontColorStyleMap,
+  fontSizeStyleMap,
+  fontWeightStyleMap,
+} from "@/utils/props";
 
 const meta = {
   title: "Components/IconText",
