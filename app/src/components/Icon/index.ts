@@ -5,4 +5,8 @@ import { IconAdCircle } from "./IconAdCircle";
  *       名前だけ変えて使うイメージ。
  */
 const IconX = IconAdCircle;
-export { IconAdCircle, IconX };
+const IconWarning = IconAdCircle;
+const IconCircleInfo = IconAdCircle;
+const IconCircleCheck = IconAdCircle;
+
+export { IconAdCircle, IconX, IconWarning, IconCircleInfo, IconCircleCheck };
