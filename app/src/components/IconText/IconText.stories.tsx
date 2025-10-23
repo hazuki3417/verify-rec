@@ -68,7 +68,7 @@ export const PositionProp: Story = {
               <div>{prop}</div>
               <div>
                 <IconText {...args} position={value}>
-                  <Text>図面検索</Text>
+                  図面検索
                 </IconText>
               </div>
             </div>

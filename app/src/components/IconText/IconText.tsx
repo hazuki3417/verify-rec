@@ -12,8 +12,10 @@ import {
   type ResolverStyleMapArg,
   type StyledProps,
   type StyleMap,
+  type TextStyleProps,
 } from "@/utils/props";
 import { forwardRef } from "react";
+import { Text } from "../Text";
 
 export type IconTextPosition = "top" | "bottom" | "left" | "right";
 
@@ -43,22 +45,18 @@ const resolveIconTextPosition = (
   return styleResolver(prop, style, "left");
 };
 
-interface StyleProps
-  extends IconTextPositionProp,
-    FontColorProp,
-    FontSizeProp,
-    FontWeightProp {}
+interface StyleProps extends IconTextPositionProp {}
 
 /**
  * NOTE: 下記のpropertyはButtonコンポーネントと組み合わせたときにスタイルが適用されるように指定
  *       color, font-size, font-weight: inherit
  */
 const Base = styled.div<StyledProps<StyleProps>>`
-  align-items: center;
   display: inline-flex;
-  gap: 4px; // default value 必要であればstyleで上書き
+  align-items: center;
   justify-content: center;
   line-height: 1; // icon と text の位置調整
+  gap: 4px; // default value 必要であればstyleで上書き
   ${({ $position }) =>
     css(
       resolveIconTextPosition({
@@ -66,14 +64,17 @@ const Base = styled.div<StyledProps<StyleProps>>`
         style: iconTextPositionStyleMap,
       }),
     )}
-  ${cssFontColor({ defaultValue: "inherit" })}
-  ${cssFontSize({ defaultValue: "inherit" })}
-  ${cssFontWeight({ defaultValue: "inherit" })}
 `;
 
 type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
-export interface IconTextProps extends StyleProps, BaseProps {
+export interface IconTextProps
+  extends StyleProps,
+    BaseProps,
+    FontColorProp,
+    FontSizeProp,
+    FontWeightProp,
+    TextStyleProps {
   icon: React.ReactNode;
 }
 
@@ -85,30 +86,37 @@ export const IconText = forwardRef<HTMLDivElement, IconTextProps>(
     const {
       icon,
       position,
-      fontColor,
-      fontSize,
-      fontWeight,
+      fontColor = "inherit",
+      fontSize = "inherit",
+      fontWeight = "inherit",
+      lineMode,
+      overflowMode,
       children,
       ...rest
     } = props;
 
     const styled = transform.props.toStyled({
       position,
-      fontColor,
-      fontSize,
-      fontWeight,
     });
 
     const isHorizontalLine = position === "left" || position === "right";
+
+    const textStyled = {
+      fontColor,
+      fontSize,
+      fontWeight,
+      lineMode,
+      overflowMode,
+    };
 
     return (
       <Base ref={ref} {...styled} {...rest}>
         {isHorizontalLine ? (
           <HorizontalLineIconWrapper>{icon}</HorizontalLineIconWrapper>
         ) : (
-          icon
+          <VerticalLineIconWrapper>{icon}</VerticalLineIconWrapper>
         )}
-        {children}
+        <Text {...textStyled}>{children}</Text>
       </Base>
     );
   },
@@ -120,4 +128,11 @@ export const IconText = forwardRef<HTMLDivElement, IconTextProps>(
 const HorizontalLineIconWrapper = styled.span`
   position: relative;
   top: 0.05em;
+`;
+
+/**
+ * icon の位置調整を提供するコンポーネント（縦並び）
+ */
+const VerticalLineIconWrapper = styled.span`
+  position: relative;
 `;

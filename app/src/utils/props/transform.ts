@@ -17,6 +17,46 @@ const txStyledProps = <T extends Record<string, unknown>>(
   return styledProps as StyledProps<T>;
 };
 
+/**
+ * objectから指定したキーのkey,valueセットを抽出する関数
+ * @param obj
+ * @param keys
+ * @returns
+ */
+const pickKeys = <T extends object, K extends keyof T>(
+  obj: T,
+  keys: K[],
+): Pick<T, K> => {
+  return keys.reduce(
+    (acc, key) => {
+      if (key in obj) acc[key] = obj[key];
+      return acc;
+    },
+    {} as Pick<T, K>,
+  );
+};
+
+/**
+ * objectから指定したキーのkey,valueセットを除外する関数
+ * @param obj
+ * @param keys
+ * @returns
+ */
+const omitKeys = <T extends object, K extends keyof T>(
+  obj: T,
+  keys: K[],
+): Omit<T, K> => {
+  return Object.keys(obj).reduce(
+    (acc, key) => {
+      if (!keys.includes(key as K)) {
+        (acc as any)[key] = obj[key as K];
+      }
+      return acc;
+    },
+    {} as Omit<T, K>,
+  );
+};
+
 export const transform = {
   bool: {
     toBooleanString: (value: boolean): "true" | "false" => {
@@ -28,6 +68,10 @@ export const transform = {
     toNumberString: (value: boolean): "1" | "0" => {
       return value ? "1" : "0";
     },
+  },
+  object: {
+    pick: pickKeys,
+    omit: omitKeys,
   },
   props: {
     toStyled: txStyledProps,

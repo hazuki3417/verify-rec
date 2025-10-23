@@ -1,7 +1,8 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useMemo, type CSSProperties } from "react";
 import styled, { css } from "styled-components";
 import {
   cssDisabled,
+  resolveDisabled,
   styleResolver,
   transform,
   type DisabledProp,
@@ -78,17 +79,39 @@ const Base = styled.button<StyledProps<StyleProps>>`
 
 type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
-export interface IconButton extends StyleProps, BaseProps {}
+export interface IconButton extends StyleProps, Omit<BaseProps, "children"> {
+  children: React.ReactNode | ((style: CSSProperties) => React.ReactNode);
+}
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
   (props, ref) => {
-    const { size, disabled, ...rest } = props;
+    const { size, disabled, children, ...rest } = props;
 
     const styled = transform.props.toStyled({
       size,
       disabled,
     });
 
-    return <Base ref={ref} {...styled} disabled={disabled} {...rest} />;
+    const style: CSSProperties = useMemo(() => {
+      /**
+       * NOTE: props で指定されたスタイルからcss styleを算出・マージする。その後子要素に渡したいcss propertiyを算出
+       *       variantやdisabledで指定されたstyleを子要素でも利用したいケースに対応するための実装
+       */
+      const style = {
+        ...resolveDisabled({
+          prop: transform.bool.toBooleanString(disabled ?? false),
+          style: iconButtonDisabledStyleMap,
+        }),
+      };
+      return {
+        ...transform.object.pick(style, ["color"]),
+      };
+    }, [disabled]);
+
+    return (
+      <Base ref={ref} {...styled} disabled={disabled} {...rest}>
+        {typeof children === "function" ? children(style) : children}
+      </Base>
+    );
   },
 );

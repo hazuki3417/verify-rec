@@ -19,9 +19,6 @@ const meta = {
       options: Object.keys(iconButtonSizeStyleMap),
       control: "select",
     },
-    active: {
-      control: "boolean",
-    },
     disabled: {
       control: "boolean",
     },
@@ -64,45 +61,6 @@ export const SizeProp: Story = {
             </div>
           );
         })}
-      </div>
-    );
-  },
-};
-
-export const ActiveProp: Story = {
-  render: (args) => {
-    return (
-      <div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "8px",
-            padding: "8px",
-          }}
-        >
-          <div>true</div>
-          <div>
-            <IconButton {...args} active={true}>
-              <IconAdCircle size="36" />
-            </IconButton>
-          </div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "8px",
-            padding: "8px",
-          }}
-        >
-          <div>false</div>
-          <div>
-            <IconButton {...args} active={false}>
-              <IconAdCircle size="36" />
-            </IconButton>
-          </div>
-        </div>
       </div>
     );
   },

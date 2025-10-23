@@ -10,6 +10,7 @@ import {
 } from "./Button";
 import { IconAdCircle } from "@/components/Icon";
 import { IconText } from "@/components/IconText";
+import { Text } from "@/components/Text";
 
 const meta = {
   title: "Components/Button/Button",
@@ -23,16 +24,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
-};
-
-export const SetChildren: Story = {
   args: {
-    children: "書き込みした図面を保存",
+    children: "button",
   },
 };
 
 export const VariantProp: Story = {
+  args: {
+    children: "button",
+  },
   render: (args) => {
     return (
       <div>
@@ -50,9 +50,7 @@ export const VariantProp: Story = {
             >
               <div>{prop}</div>
               <div>
-                <Button {...args} variant={value}>
-                  button
-                </Button>
+                <Button {...args} variant={value} />
               </div>
             </div>
           );
@@ -63,6 +61,9 @@ export const VariantProp: Story = {
 };
 
 export const SizeProp: Story = {
+  args: {
+    children: "button",
+  },
   render: (args) => {
     return (
       <div>
@@ -80,9 +81,7 @@ export const SizeProp: Story = {
             >
               <div>{prop}</div>
               <div>
-                <Button {...args} size={value}>
-                  button
-                </Button>
+                <Button {...args} size={value} />
               </div>
             </div>
           );
@@ -92,10 +91,55 @@ export const SizeProp: Story = {
   },
 };
 
+export const DisabledProp: Story = {
+  args: {
+    children: "button",
+  },
+  render: (args) => {
+    return (
+      <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+            padding: "8px",
+          }}
+        >
+          <div>true</div>
+          <div>
+            <Button {...args} disabled={true} />
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+            padding: "8px",
+          }}
+        >
+          <div>false</div>
+          <div>
+            <Button {...args} disabled={false} />
+          </div>
+        </div>
+      </div>
+    );
+  },
+};
+
 export const IconTextButton: Story = {
-  render: (args) => (
-    <Button {...args}>
-      <IconText icon={<IconAdCircle />}>保存</IconText>
-    </Button>
-  ),
+  args: {
+    children: <IconText icon={<IconAdCircle />}>保存</IconText>,
+  },
+  render: (args) => <Button {...args} />,
+};
+
+export const TextButton: Story = {
+  args: {
+    // NOTE: button childrenから渡されるstyleを任意のコンポーネントに渡して連動するように実装する例
+    children: (style) => <Text style={style}>保存</Text>,
+  },
+  render: (args) => <Button {...args} />,
 };
