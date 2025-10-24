@@ -1,9 +1,6 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled, { css } from "styled-components";
 import {
-  cssFontColor,
-  cssFontSize,
-  cssFontWeight,
   styleResolver,
   transform,
   type FontColorProp,
@@ -17,24 +14,72 @@ import {
 import { forwardRef } from "react";
 import { Text } from "../Text";
 
-export type IconTextPosition = "top" | "bottom" | "left" | "right";
+export type IconTextPosition =
+  | "top-left"
+  | "top-center"
+  | "top-right"
+  | "left-top"
+  | "left-center"
+  | "left-bottom"
+  | "right-top"
+  | "right-center"
+  | "right-bottom"
+  | "bottom-left"
+  | "bottom-center"
+  | "bottom-right";
 
 export type IconTextPositionProp = { position?: IconTextPosition };
 
 export type IconTextPositionStyleMap = StyleMap<IconTextPosition>;
 
 export const iconTextPositionStyleMap: IconTextPositionStyleMap = {
-  top: {
+  "top-left": {
     flexDirection: "column",
+    alignItems: "start",
   },
-  bottom: {
-    flexDirection: "column-reverse",
+  "top-center": {
+    flexDirection: "column",
+    alignItems: "center",
   },
-  left: {
+  "top-right": {
+    flexDirection: "column",
+    alignItems: "end",
+  },
+  "left-top": {
     flexDirection: "row",
+    alignItems: "start",
   },
-  right: {
+  "left-center": {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  "left-bottom": {
+    flexDirection: "row",
+    alignItems: "end",
+  },
+  "right-top": {
     flexDirection: "row-reverse",
+    alignItems: "start",
+  },
+  "right-center": {
+    flexDirection: "row-reverse",
+    alignItems: "center",
+  },
+  "right-bottom": {
+    flexDirection: "row-reverse",
+    alignItems: "end",
+  },
+  "bottom-left": {
+    flexDirection: "column-reverse",
+    alignItems: "start",
+  },
+  "bottom-center": {
+    flexDirection: "column-reverse",
+    alignItems: "center",
+  },
+  "bottom-right": {
+    flexDirection: "column-reverse",
+    alignItems: "end",
   },
 };
 
@@ -42,7 +87,7 @@ const resolveIconTextPosition = (
   arg: ResolverStyleMapArg<IconTextPosition>,
 ) => {
   const { prop, style } = arg;
-  return styleResolver(prop, style, "left");
+  return styleResolver(prop, style, "left-center");
 };
 
 interface StyleProps extends IconTextPositionProp {}
@@ -53,8 +98,6 @@ interface StyleProps extends IconTextPositionProp {}
  */
 const Base = styled.div<StyledProps<StyleProps>>`
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   line-height: 1; // icon と text の位置調整
   gap: 4px; // default value 必要であればstyleで上書き
   ${({ $position }) =>
@@ -85,7 +128,7 @@ export const IconText = forwardRef<HTMLDivElement, IconTextProps>(
   (props, ref) => {
     const {
       icon,
-      position,
+      position = "left-center",
       fontColor = "inherit",
       fontSize = "inherit",
       fontWeight = "inherit",
@@ -99,7 +142,17 @@ export const IconText = forwardRef<HTMLDivElement, IconTextProps>(
       position,
     });
 
-    const isHorizontalLine = position === "left" || position === "right";
+    const isHorizontalLine: boolean = useMemo(() => {
+      const horizontalType: IconTextPosition[] = [
+        "left-top",
+        "left-center",
+        "left-bottom",
+        "right-top",
+        "right-center",
+        "right-bottom",
+      ];
+      return horizontalType.includes(position);
+    }, [position]);
 
     const textStyled = {
       fontColor,

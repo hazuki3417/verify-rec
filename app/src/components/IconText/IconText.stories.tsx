@@ -7,7 +7,6 @@ import {
   type IconTextPosition,
 } from "./IconText";
 import { IconX } from "@/components/Icon";
-import { Text } from "../Text";
 import {
   fontColorStyleMap,
   fontSizeStyleMap,
@@ -68,7 +67,18 @@ export const PositionProp: Story = {
               <div>{prop}</div>
               <div>
                 <IconText {...args} position={value}>
-                  図面検索
+                  複数行のテキスト
+                  <br />
+                  複数行のテキスト
+                  <br />
+                  複数行のテキスト
+                  <br />
+                  複数行のテキスト
+                  <br />
+                  複数行のテキスト
+                  <br />
+                  複数行のテキスト
+                  <br />
                 </IconText>
               </div>
             </div>
