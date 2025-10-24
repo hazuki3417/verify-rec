@@ -37,7 +37,7 @@ const resolveResize = (
   return styleResolver(prop, style, "true");
 };
 
-interface StyleProps extends InputStyleProps, InputTextareaResizeProp { }
+interface StyleProps extends InputStyleProps, InputTextareaResizeProp {}
 
 const Base = styled.textarea<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -68,7 +68,7 @@ type BaseProps = React.InputHTMLAttributes<HTMLTextAreaElement>;
 
 export interface InputTextareaProps
   extends StyleProps,
-  Omit<BaseProps, "style" | "type"> { }
+    Omit<BaseProps, "style" | "type"> {}
 
 export const InputTextarea = forwardRef<
   HTMLTextAreaElement,

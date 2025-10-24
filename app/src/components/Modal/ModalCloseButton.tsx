@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { transform, type StyledProps } from "@/utils/props";
 import { IconX } from "../Icon";
 
-interface StyleProps { }
+interface StyleProps {}
 
 const Base = styled.button<StyledProps<StyleProps>>`
 background: none;
@@ -20,7 +20,7 @@ type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
 export interface ModalCloseButtonProps
   extends StyleProps,
-  Omit<BaseProps, "children" | "type"> { }
+    Omit<BaseProps, "children" | "type"> {}
 
 export const ModalCloseButton = (props: ModalCloseButtonProps) => {
   const { style, ...rest } = props;

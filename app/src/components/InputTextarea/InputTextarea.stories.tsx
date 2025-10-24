@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { InputTextarea } from "./InputTextarea";
 import { inputVariantStyleMap, type InputVariant } from "@/utils/props";
+import { Controller, FormProvider, useForm } from "react-hook-form";
 
 const meta = {
   title: "Components/InputTextarea",
@@ -27,9 +28,71 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const ValueProp: Story = {
-  args: {
-    value: "text",
+const FormDataView = ({ formData }: { formData: any }) => (
+  <pre
+    style={{
+      background: "#f8f8f8",
+      padding: "8px",
+      borderRadius: "4px",
+      fontSize: "12px",
+      whiteSpace: "pre-wrap",
+    }}
+  >
+    {JSON.stringify(formData, null, 2)}
+  </pre>
+);
+
+export const Uncontrolled: Story = {
+  render: () => {
+    const methods = useForm({
+      defaultValues: {
+        name: "",
+      },
+    });
+    return (
+      <FormProvider {...methods}>
+        <div
+          style={{
+            display: "inline-flex",
+            gap: "8px",
+            flexDirection: "column",
+          }}
+        >
+          <div>Uncontrolled form</div>
+          <InputTextarea {...methods.register("name")} />
+          <FormDataView formData={methods.watch()} />
+        </div>
+      </FormProvider>
+    );
+  },
+};
+
+export const Controlled: Story = {
+  render: () => {
+    const methods = useForm({
+      defaultValues: {
+        name: "",
+      },
+    });
+    return (
+      <FormProvider {...methods}>
+        <div
+          style={{
+            display: "inline-flex",
+            gap: "8px",
+            flexDirection: "column",
+          }}
+        >
+          <div>controlld form</div>
+          <Controller
+            name="name"
+            control={methods.control}
+            render={({ field }) => <InputTextarea {...field} />}
+          />
+          <FormDataView formData={methods.watch()} />
+        </div>
+      </FormProvider>
+    );
   },
 };
 
