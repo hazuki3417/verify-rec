@@ -5,11 +5,11 @@ import {
   iconButtonSizeStyleMap,
   type IconButtonSize,
 } from "./IconButton";
-import { IconAdCircle } from "../../Icon";
+import { IconPencil } from "../Icon";
 import { action } from "@storybook/addon-actions";
 
 const meta = {
-  title: "Components/Button/IconButton",
+  title: "Components/IconButton",
   component: IconButton,
   args: {
     onClick: action("onClick"),
@@ -28,15 +28,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    children: <IconPencil size="36" />,
+  },
+};
 
 export const SetIcon: Story = {
   args: {
-    children: <IconAdCircle size="36" />,
+    children: <IconPencil size="36" />,
   },
 };
 
 export const SizeProp: Story = {
+  args: {
+    children: <IconPencil size="36" />,
+  },
   render: (args) => {
     return (
       <div>
@@ -54,9 +61,7 @@ export const SizeProp: Story = {
             >
               <div>{prop}</div>
               <div>
-                <IconButton {...args} size={value}>
-                  <IconAdCircle size="36" />
-                </IconButton>
+                <IconButton {...args} size={value} />
               </div>
             </div>
           );
@@ -67,6 +72,9 @@ export const SizeProp: Story = {
 };
 
 export const DisabledProp: Story = {
+  args: {
+    children: <IconPencil size="36" />,
+  },
   render: (args) => {
     return (
       <div>
@@ -80,9 +88,7 @@ export const DisabledProp: Story = {
         >
           <div>true</div>
           <div>
-            <IconButton {...args} disabled={true}>
-              <IconAdCircle size="36" />
-            </IconButton>
+            <IconButton {...args} disabled={true} />
           </div>
         </div>
         <div
@@ -95,9 +101,7 @@ export const DisabledProp: Story = {
         >
           <div>false</div>
           <div>
-            <IconButton {...args} disabled={false}>
-              <IconAdCircle size="36" />
-            </IconButton>
+            <IconButton {...args} disabled={false} />
           </div>
         </div>
       </div>

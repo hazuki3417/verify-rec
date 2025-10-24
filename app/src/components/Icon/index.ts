@@ -8,5 +8,13 @@ const IconX = IconAdCircle;
 const IconWarning = IconAdCircle;
 const IconCircleInfo = IconAdCircle;
 const IconCircleCheck = IconAdCircle;
+const IconPencil = IconAdCircle;
 
-export { IconAdCircle, IconX, IconWarning, IconCircleInfo, IconCircleCheck };
+export {
+  IconAdCircle,
+  IconX,
+  IconWarning,
+  IconCircleInfo,
+  IconCircleCheck,
+  IconPencil,
+};

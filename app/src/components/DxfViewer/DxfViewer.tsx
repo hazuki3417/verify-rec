@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { DxfPreview } from "../DxfPreview";
 import styled from "styled-components";
-import { IconButton } from "../Button";
+import { IconButton } from "@/components/IconButton";
 import { IconAdCircle } from "../Icon";
 import { theme } from "@/theme";
 

@@ -13,7 +13,7 @@ import { IconText } from "@/components/IconText";
 import { Text } from "@/components/Text";
 
 const meta = {
-  title: "Components/Button/Button",
+  title: "Components/Button",
   component: Button,
   args: {
     onClick: action("onClick"),
