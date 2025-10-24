@@ -37,7 +37,7 @@ const resolveResize = (
   return styleResolver(prop, style, "true");
 };
 
-interface StyleProps extends InputStyleProps, InputTextareaResizeProp {}
+interface StyleProps extends InputStyleProps, InputTextareaResizeProp { }
 
 const Base = styled.textarea<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -68,7 +68,7 @@ type BaseProps = React.InputHTMLAttributes<HTMLTextAreaElement>;
 
 export interface InputTextareaProps
   extends StyleProps,
-    Omit<BaseProps, "style" | "type"> {}
+  Omit<BaseProps, "style" | "type"> { }
 
 export const InputTextarea = forwardRef<
   HTMLTextAreaElement,
@@ -81,6 +81,5 @@ export const InputTextarea = forwardRef<
     error,
     resize,
   });
-  // NOTE: type="text" に固定するため一番最後に指定（スプレッド演算子をあとに記述すると値が上書きされる）
   return <Base ref={ref} {...styled} {...rest} />;
 });
