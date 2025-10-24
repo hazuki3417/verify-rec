@@ -175,6 +175,8 @@ export const IconText = forwardRef<HTMLDivElement, IconTextProps>(
   },
 );
 
+IconText.displayName = "IconText";
+
 /**
  * icon の位置調整を提供するコンポーネント（横並び）
  */
