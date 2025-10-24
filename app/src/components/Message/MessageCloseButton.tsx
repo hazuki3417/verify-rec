@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { transform, type StyledProps } from "@/utils/props";
 import { IconX } from "@/components/Icon";
 
-interface StyleProps {}
+interface StyleProps { }
 
 const Base = styled.button<StyledProps<StyleProps>>`
   background: none;
@@ -20,7 +20,7 @@ type BaseProps = React.ComponentPropsWithoutRef<"button">;
 
 export interface MessageCloseButtonProps
   extends StyleProps,
-    Omit<BaseProps, "children"> {}
+  Omit<BaseProps, "children" | "type"> { }
 
 export const MessageCloseButton = (props: MessageCloseButtonProps) => {
   const { style, ...rest } = props;
@@ -41,6 +41,7 @@ export const MessageCloseButton = (props: MessageCloseButtonProps) => {
         right: "8px",
       }}
       {...rest}
+      type="button"
     >
       <IconX />
     </Base>
