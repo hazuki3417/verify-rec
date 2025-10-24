@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
-import { DxfPreview } from "../DxfPreview";
+import { DxfPreview } from "../../components/DxfPreview";
 import styled from "styled-components";
 import { IconButton } from "@/components/IconButton";
-import { IconAdCircle } from "../Icon";
+import { IconAdCircle } from "../../components/Icon";
 import { theme } from "@/theme";
 
 const Container = styled.div`

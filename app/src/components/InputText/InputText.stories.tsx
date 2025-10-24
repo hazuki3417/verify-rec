@@ -24,12 +24,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const ValueProp: Story = {
-  args: {
-    value: "text",
-  },
-};
-
 export const PlaceholderProps: Story = {
   args: {
     placeholder: "例：",
