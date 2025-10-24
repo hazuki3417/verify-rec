@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { InputTextarea } from "./InputTextarea";
 import { inputVariantStyleMap, type InputVariant } from "@/utils/props";
