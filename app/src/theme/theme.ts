@@ -49,8 +49,8 @@ export const theme = {
         "1": "var(--color-box-shadow-1)",
         // NOTE: rgba(38,58,64,0.2)
         "2": "var(--color-box-shadow-2)",
-      }
-    }
+      },
+    },
   },
   font: {
     family: {
