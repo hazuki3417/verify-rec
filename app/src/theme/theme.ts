@@ -43,6 +43,14 @@ export const theme = {
       slightlyLightRed: "var(--color-status-slightly-light-red)",
       yellowGreen: "var(--color-status-yellow-green)",
     },
+    box: {
+      shadow: {
+        // NOTE: rgba(0,0,0,0.2)
+        "1": "var(--color-box-shadow-1)",
+        // NOTE: rgba(38,58,64,0.2)
+        "2": "var(--color-box-shadow-2)",
+      }
+    }
   },
   font: {
     family: {

@@ -36,5 +36,8 @@ export const ColorToken = createGlobalStyle`
   --color-status-slightly-light-orange: #F4D7C1;
   --color-status-light-yellow: #FBF7D3;
   --color-status-light-beige: #EAE8C8;
+
+  --color-box-shadow-1: #00000033;
+  --color-box-shadow-2: #263a4033;
 }
 `;
