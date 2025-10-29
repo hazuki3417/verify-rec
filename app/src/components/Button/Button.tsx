@@ -88,7 +88,7 @@ export const buttonDisabledStyleMap: DisabledStyleMap = {
   },
 };
 
-interface StyleProps extends ButtonVariantProp, ButtonSizeProp, DisabledProp {}
+interface StyleProps extends ButtonVariantProp, ButtonSizeProp, DisabledProp { }
 
 const Base = styled.button<StyledProps<StyleProps>>`
   align-items: center;
@@ -103,6 +103,28 @@ const Base = styled.button<StyledProps<StyleProps>>`
   ${cssVariant({ style: buttonVariantStyleMap })}
   ${cssSize({ style: buttonSizeStyleMap })}
   ${cssDisabled({ style: buttonDisabledStyleMap })}
+
+  ${({ $variant }) =>
+    $variant === "primary" &&
+    `&:hover {
+      background-color: ${theme.color.sub.darkEmerald};
+    }`}
+  ${({ $variant }) =>
+    $variant === "secondary" &&
+    `&:hover {
+      border-color: ${theme.color.base.riverBlue};
+    }`}
+  ${({ $variant }) =>
+    $variant === "tertiary" &&
+    `&:hover {
+      border-color: ${theme.color.base.riverBlue};
+    }`}
+  ${({ $variant }) =>
+    $variant === "quaternary" &&
+    `&:hover {
+      background-color: ${theme.color.sub.slightlyLightGray};
+    }`}
+  // NOTE: quinaryのhoverはfigmaに定義されていないので指定なし
 `;
 
 type BaseProps = React.ComponentPropsWithoutRef<"button">;
