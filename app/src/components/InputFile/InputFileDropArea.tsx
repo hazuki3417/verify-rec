@@ -1,4 +1,4 @@
-import React, { useState, type DragEvent } from "react";
+import React, { type DragEvent } from "react";
 import { useInputFileContext } from "./InputFile.context";
 import styled from "styled-components";
 import type { StyledProps } from "@/utils/props";
@@ -33,32 +33,33 @@ export interface InputFileDropAreaProps
 export const InputFileDropArea = (props: InputFileDropAreaProps) => {
   const { ...rest } = props;
   const context = useInputFileContext();
-  const [isDragActive, setIsDragActive] = useState(false);
 
   const handleDragEnter = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
-    setIsDragActive(true);
+    context.action.setDragActive(true);
   };
 
   const handleDragLeave = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
-    setIsDragActive(false);
+    context.action.setDragActive(false);
   };
 
   const handleDrop = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
-    setIsDragActive(false);
+    context.action.setDragActive(false);
 
     // 非活性ならドラッグアンドドロップによるファイル選択を無効化
-    if (context.disabled) return;
+    if (context.value.disabled) return;
 
     const inputFiles = Array.from(event.dataTransfer.files);
 
     // multipleがfalseなら1件だけ採用
-    const handleFiles = context.multiple ? inputFiles : inputFiles.slice(0, 1);
+    const handleFiles = context.value.multiple
+      ? inputFiles
+      : inputFiles.slice(0, 1);
 
     if (handleFiles.length <= 0) {
       return;
@@ -66,7 +67,7 @@ export const InputFileDropArea = (props: InputFileDropAreaProps) => {
 
     const dt = new DataTransfer();
     handleFiles.forEach((file) => dt.items.add(file));
-    context.onFileChange(dt.files);
+    context.handler.onFileChange(dt.files);
   };
 
   const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
@@ -76,7 +77,7 @@ export const InputFileDropArea = (props: InputFileDropAreaProps) => {
 
   return (
     <Base
-      data-drag-state={isDragActive ? "active" : "idle"}
+      data-drag-state={context.value.isDragActive ? "active" : "idle"}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}

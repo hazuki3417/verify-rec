@@ -18,5 +18,7 @@ export const InputFileButtonContainer = (props: InputFileButtonContainer) => {
   const context = useInputFileContext();
   // NOTE: 子要素側でstopPropagation()を利用すると下記のイベントが発火しないので注意
   //       イベントのバブリングを利用した実装。デザインだけを持ったコンポーネントを子要素に配置するだけでよい。
-  return <Base {...rest} role="button" onClick={context.onFileSelect} />;
+  return (
+    <Base {...rest} role="button" onClick={context.handler.onFileSelect} />
+  );
 };

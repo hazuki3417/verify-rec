@@ -88,7 +88,7 @@ export const buttonDisabledStyleMap: DisabledStyleMap = {
   },
 };
 
-interface StyleProps extends ButtonVariantProp, ButtonSizeProp, DisabledProp { }
+interface StyleProps extends ButtonVariantProp, ButtonSizeProp, DisabledProp {}
 
 const Base = styled.button<StyledProps<StyleProps>>`
   align-items: center;

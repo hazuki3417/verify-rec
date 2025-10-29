@@ -1,5 +1,5 @@
 import React, { useRef, type ChangeEvent } from "react";
-import { InputFileProvider } from "./InputFile.context";
+import { InputFileProvider } from "./InputFileProvider";
 import { InputFileButtonContainer } from "./InputFileButtonContainer";
 import { InputFileDropArea } from "./InputFileDropArea";
 
@@ -30,23 +30,25 @@ export const InputFile = (props: InputFileProps) => {
     inputRef.current?.click();
   };
 
+  const handleFileChange = (files: FileList) => {
+    onFileChange?.(files);
+  };
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
     handleFileChange(event.target.files);
     event.target.value = ""; // 同一ファイル再選択対応
   };
 
-  const handleFileChange = (files: FileList) => {
-    onFileChange?.(files);
-  };
-
   return (
     <InputFileProvider
       value={{
+        disabled,
+        multiple,
+      }}
+      handler={{
         onFileSelect: handledDialog,
         onFileChange: handleFileChange,
-        multiple,
-        disabled,
       }}
     >
       <input
