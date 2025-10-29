@@ -36,37 +36,40 @@ export const InputFileDropArea = (props: InputFileDropAreaProps) => {
   const [isDragActive, setIsDragActive] = useState(false);
 
   const handleDragEnter = (event: DragEvent<HTMLDivElement>) => {
-    console.debug("Drag Enter");
     event.preventDefault();
     event.stopPropagation();
     setIsDragActive(true);
   };
 
   const handleDragLeave = (event: DragEvent<HTMLDivElement>) => {
-    console.debug("Drag Leave");
-
     event.preventDefault();
     event.stopPropagation();
-    if (event.currentTarget.contains(event.relatedTarget as Node)) return;
     setIsDragActive(false);
   };
 
   const handleDrop = (event: DragEvent<HTMLDivElement>) => {
-    console.debug("Drop");
-
     event.preventDefault();
     event.stopPropagation();
     setIsDragActive(false);
-    const files = event.dataTransfer.files;
-    if (files.length <= 0) {
+
+    // 非活性ならドラッグアンドドロップによるファイル選択を無効化
+    if (context.disabled) return;
+
+    const inputFiles = Array.from(event.dataTransfer.files);
+
+    // multipleがfalseなら1件だけ採用
+    const handleFiles = context.multiple ? inputFiles : inputFiles.slice(0, 1);
+
+    if (handleFiles.length <= 0) {
       return;
     }
-    context.onFileChange(files);
+
+    const dt = new DataTransfer();
+    handleFiles.forEach((file) => dt.items.add(file));
+    context.onFileChange(dt.files);
   };
 
   const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
-    console.debug("Drag Over");
-
     event.preventDefault();
     event.stopPropagation();
   };

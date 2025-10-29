@@ -4,6 +4,8 @@ import { createContext, useContext } from "react";
 export type InputFileContextType = {
   onFileSelect: () => void;
   onFileChange: (files: FileList) => void;
+  multiple: boolean | undefined;
+  disabled: boolean | undefined;
 };
 
 const InputFileContext = createContext<InputFileContextType | undefined>(

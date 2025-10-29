@@ -6,7 +6,10 @@ import { InputFileDropArea } from "./InputFileDropArea";
 type BaseProps = React.ComponentPropsWithoutRef<"input">;
 
 export interface InputFileProps
-  extends Omit<BaseProps, "type" | "style" | "onClick" | "onChange"> {
+  extends Omit<
+    BaseProps,
+    "type" | "style" | "onClick" | "onChange" | "accept"
+  > {
   onFileChange?: (files: FileList) => void;
 }
 
@@ -19,19 +22,18 @@ export interface InputFileProps
  * @returns
  */
 export const InputFile = (props: InputFileProps) => {
-  const { children, onFileChange, ...rest } = props;
+  const { children, onFileChange, multiple, disabled, ...rest } = props;
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handledDialog = () => {
-    console.debug("click");
+    if (disabled) return;
     inputRef.current?.click();
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      handleFileChange(event.target.files);
-      event.target.value = ""; // 同一ファイル再選択対応
-    }
+    if (!event.target.files) return;
+    handleFileChange(event.target.files);
+    event.target.value = ""; // 同一ファイル再選択対応
   };
 
   const handleFileChange = (files: FileList) => {
@@ -40,13 +42,20 @@ export const InputFile = (props: InputFileProps) => {
 
   return (
     <InputFileProvider
-      value={{ onFileSelect: handledDialog, onFileChange: handleFileChange }}
+      value={{
+        onFileSelect: handledDialog,
+        onFileChange: handleFileChange,
+        multiple,
+        disabled,
+      }}
     >
       <input
         ref={inputRef}
         type="file"
         style={{ display: "none" }}
         onChange={handleChange}
+        multiple={multiple}
+        disabled={disabled}
         {...rest}
       />
       {children}

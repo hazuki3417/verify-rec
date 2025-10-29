@@ -117,7 +117,7 @@ export const DragAndDropStyle: Story = {
           flexDirection: "column",
         }}
       >
-        <InputFile onFileChange={handleFileChange}>
+        <InputFile onFileChange={handleFileChange} multiple>
           <InputFile.ButtonContainer>
             {/* NOTE: OS標準のダイアログを開くクリックイベントの実装は不要。
                       イベントのバブリングによりButtonのonClickイベントはButtonContainerまで伝播し、
