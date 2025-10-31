@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, forwardRef } from "react";
 import styled, { css } from "styled-components";
 import {
   styleResolver,
@@ -11,8 +11,7 @@ import {
   type StyleMap,
   type TextStyleProps,
 } from "@/utils/props";
-import { forwardRef } from "react";
-import { Text } from "../Text";
+import { Text } from "@/components/Text";
 
 export type IconTextPosition =
   | "top-left"
@@ -90,7 +89,7 @@ const resolveIconTextPosition = (
   return styleResolver(prop, style, "left-center");
 };
 
-interface StyleProps extends IconTextPositionProp {}
+interface StyleProps extends IconTextPositionProp { }
 
 /**
  * NOTE: 下記のpropertyはButtonコンポーネントと組み合わせたときにスタイルが適用されるように指定
@@ -113,11 +112,11 @@ type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
 export interface IconTextProps
   extends StyleProps,
-    BaseProps,
-    FontColorProp,
-    FontSizeProp,
-    FontWeightProp,
-    TextStyleProps {
+  BaseProps,
+  FontColorProp,
+  FontSizeProp,
+  FontWeightProp,
+  TextStyleProps {
   icon: React.ReactNode;
 }
 
