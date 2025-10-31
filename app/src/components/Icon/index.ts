@@ -9,6 +9,7 @@ const IconWarning = IconAdCircle;
 const IconCircleInfo = IconAdCircle;
 const IconCircleCheck = IconAdCircle;
 const IconPencil = IconAdCircle;
+const IconCalendar = IconAdCircle;
 
 export {
   IconAdCircle,
@@ -17,4 +18,5 @@ export {
   IconCircleInfo,
   IconCircleCheck,
   IconPencil,
+  IconCalendar,
 };
