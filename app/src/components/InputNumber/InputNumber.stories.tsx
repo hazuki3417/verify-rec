@@ -43,7 +43,7 @@ export const Uncontrolled: Story = {
   render: () => {
     const methods = useForm({
       defaultValues: {
-        name: "",
+        value: "",
       },
     });
     return (
@@ -56,7 +56,7 @@ export const Uncontrolled: Story = {
           }}
         >
           <div>Uncontrolled form</div>
-          <InputNumber {...methods.register("name")} />
+          <InputNumber {...methods.register("value")} />
           <FormDataView formData={methods.watch()} />
         </div>
       </FormProvider>
@@ -68,7 +68,7 @@ export const Controlled: Story = {
   render: () => {
     const methods = useForm({
       defaultValues: {
-        name: "",
+        value: "",
       },
     });
     return (
@@ -82,7 +82,7 @@ export const Controlled: Story = {
         >
           <div>controlld form</div>
           <Controller
-            name="name"
+            name="value"
             control={methods.control}
             render={({ field }) => <InputNumber {...field} />}
           />

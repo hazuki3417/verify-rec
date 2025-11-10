@@ -41,4 +41,3 @@ export const InputFileProvider = (props: InputFileProviderProps) => {
     </InputFileContext.Provider>
   );
 };
-InputFileProvider.displayName = "component/InputFileProvider";

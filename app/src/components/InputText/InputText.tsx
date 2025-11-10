@@ -16,6 +16,7 @@ interface StyleProps extends InputStyleProps {}
 const Base = styled.input<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
   border-radius: 4px;
+  font-family: ${theme.font.family.base};
   font-size: ${theme.font.size[16]};
   font-weight: ${theme.font.weight.regular};
   color: ${theme.color.base.riverBlue};
