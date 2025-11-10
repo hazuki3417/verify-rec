@@ -11,14 +11,16 @@ const Base = styled.div<StyledProps<StyleProps>>`
 
 type BaseProps = React.ComponentPropsWithoutRef<"div">;
 
-export interface InputFileButtonContainer
+export interface InputFileAttachButtonContainer
   extends Omit<BaseProps, "onClick" | "children"> {
   children:
     | React.ReactNode
     | ((props: HTMLAttributes<HTMLButtonElement>) => React.ReactNode);
 }
 
-export const InputFileButtonContainer = (props: InputFileButtonContainer) => {
+export const InputFileAttachButtonContainer = (
+  props: InputFileAttachButtonContainer,
+) => {
   const { children, ...rest } = props;
   const context = useInputFileContext();
 

@@ -10,6 +10,7 @@ export interface InputFileContextValue {
 export interface InputFileContextHandler {
   onFileSelect: () => void;
   onFileChange: (files: FileList) => void;
+  onFileReset: () => void;
 }
 
 export interface InputFileContextAction {

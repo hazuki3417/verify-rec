@@ -1,6 +1,7 @@
 import React, { useRef, type ChangeEvent } from "react";
 import { InputFileProvider } from "./InputFileProvider";
-import { InputFileButtonContainer } from "./InputFileButtonContainer";
+import { InputFileAttachButtonContainer } from "./InputFileAttachButtonContainer";
+import { InputFileResetButtonContainer } from "./InputFileResetButtonContainer";
 import { InputFileDropArea } from "./InputFileDropArea";
 
 type BaseProps = React.ComponentPropsWithoutRef<"input">;
@@ -11,6 +12,7 @@ export interface InputFileProps
     "type" | "style" | "onClick" | "onChange" | "accept"
   > {
   onFileChange?: (files: FileList) => void;
+  onFileReset?: () => void;
 }
 
 /**
@@ -22,16 +24,25 @@ export interface InputFileProps
  * @returns
  */
 export const InputFile = (props: InputFileProps) => {
-  const { children, onFileChange, multiple, disabled, ...rest } = props;
+  const { children, onFileChange, onFileReset, multiple, disabled, ...rest } =
+    props;
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handledDialog = () => {
+  const handleFileSelect = () => {
     if (disabled) return;
+    // ファイル選択ダイアログを開く
     inputRef.current?.click();
   };
 
   const handleFileChange = (files: FileList) => {
     onFileChange?.(files);
+  };
+
+  const handleFileReset = () => {
+    onFileReset?.();
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -47,8 +58,9 @@ export const InputFile = (props: InputFileProps) => {
         multiple,
       }}
       handler={{
-        onFileSelect: handledDialog,
+        onFileSelect: handleFileSelect,
         onFileChange: handleFileChange,
+        onFileReset: handleFileReset,
       }}
     >
       <input
@@ -66,5 +78,6 @@ export const InputFile = (props: InputFileProps) => {
 };
 
 InputFile.displayName = "InputFile";
-InputFile.ButtonContainer = InputFileButtonContainer;
+InputFile.AttachButtonContainer = InputFileAttachButtonContainer;
+InputFile.ResetButtonContainer = InputFileResetButtonContainer;
 InputFile.DropArea = InputFileDropArea;

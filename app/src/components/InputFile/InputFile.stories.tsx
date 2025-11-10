@@ -52,6 +52,10 @@ export const Default: Story = {
       methods.setValue("files", attachs);
     };
 
+    const handleFileReset = () => {
+      methods.setValue("files", []);
+    };
+
     return (
       <div
         style={{
@@ -60,14 +64,20 @@ export const Default: Story = {
           flexDirection: "column",
         }}
       >
-        <InputFile onFileChange={handleFileChange}>
-          <InputFile.ButtonContainer>
-            {/* NOTE: OS標準のダイアログを開くクリックイベントの実装は不要。
-                      イベントのバブリングによりButtonのonClickイベントはButtonContainerまで伝播し、
-                      ButtonContainer側で実装されているonClickイベントが発火するため。
-            */}
+        <InputFile
+          onFileChange={handleFileChange}
+          onFileReset={handleFileReset}
+        >
+          {/* NOTE: OS標準のダイアログを開くクリックイベントの実装は不要。
+                    イベントのバブリングによりButtonのonClickイベントはButtonContainerまで伝播し、
+                    ButtonContainer側で実装されているonClickイベントが発火するため。
+          */}
+          <InputFile.AttachButtonContainer>
             <Button type="button">attache</Button>
-          </InputFile.ButtonContainer>
+          </InputFile.AttachButtonContainer>
+          <InputFile.ResetButtonContainer>
+            <Button type="button">reset</Button>
+          </InputFile.ResetButtonContainer>
           <InputFile.DropArea
             style={{
               border: "1px solid #aaaaaa",
@@ -109,6 +119,10 @@ export const DragAndDropStyle: Story = {
       methods.setValue("files", attachs);
     };
 
+    const handleFileReset = () => {
+      methods.setValue("files", []);
+    };
+
     return (
       <div
         style={{
@@ -117,14 +131,21 @@ export const DragAndDropStyle: Story = {
           flexDirection: "column",
         }}
       >
-        <InputFile onFileChange={handleFileChange} multiple>
-          <InputFile.ButtonContainer>
-            {/* NOTE: OS標準のダイアログを開くクリックイベントの実装は不要。
+        <InputFile
+          onFileChange={handleFileChange}
+          onFileReset={handleFileReset}
+          multiple
+        >
+          {/* NOTE: OS標準のダイアログを開くクリックイベントの実装は不要。
                       イベントのバブリングによりButtonのonClickイベントはButtonContainerまで伝播し、
                       ButtonContainer側で実装されているonClickイベントが発火するため。
-            */}
+          */}
+          <InputFile.AttachButtonContainer>
             <Button type="button">attache</Button>
-          </InputFile.ButtonContainer>
+          </InputFile.AttachButtonContainer>
+          <InputFile.ResetButtonContainer>
+            <Button type="button">reset</Button>
+          </InputFile.ResetButtonContainer>
           <StyledInputFileDropArea
             style={{
               border: "1px solid #aaaaaa",

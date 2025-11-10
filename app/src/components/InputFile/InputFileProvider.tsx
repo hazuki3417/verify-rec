@@ -9,6 +9,7 @@ export interface InputFileProviderValue {
 export interface InputFileProviderHandler {
   onFileSelect: () => void;
   onFileChange: (files: FileList) => void;
+  onFileReset: () => void;
 }
 
 export type InputFileProviderProps = {
