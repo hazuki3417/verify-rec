@@ -12,7 +12,7 @@ import { IconCalendar } from "../Icon";
 
 type BaseProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-interface StyleProps extends InputStyleProps {}
+interface StyleProps extends InputStyleProps { }
 
 const Base = styled.input<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -27,7 +27,7 @@ const Base = styled.input<StyledProps<StyleProps>>`
   }
   ${cssInputVariant}
   ${cssInputError}
-  padding-right: 32px; // カレンダーアイコン分の余白を確保
+  padding-right: 40px; // カレンダーアイコン分の余白を確保
   &::-webkit-calendar-picker-indicator {
     display: none;
   }
@@ -53,7 +53,7 @@ const IconBox = styled.div`
 
 export interface InputDateProps
   extends StyleProps,
-    Omit<BaseProps, "style" | "type"> {}
+  Omit<BaseProps, "style" | "type"> { }
 
 export const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
   (props, ref) => {

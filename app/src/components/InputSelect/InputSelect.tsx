@@ -10,7 +10,7 @@ import {
 import { theme } from "@/theme";
 import { InputSelectOption } from "./InputSelectOption";
 
-interface StyleProps extends InputStyleProps {}
+interface StyleProps extends InputStyleProps { }
 
 const Base = styled.select<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -25,13 +25,14 @@ const Base = styled.select<StyledProps<StyleProps>>`
   }
   ${cssInputVariant}
   ${cssInputError}
+  padding-right: 40px;
 `;
 
 type BaseProps = React.InputHTMLAttributes<HTMLSelectElement>;
 
 export interface InputSelectProps
   extends StyleProps,
-    Omit<BaseProps, "style"> {}
+  Omit<BaseProps, "style"> { }
 
 type InputSelectComponent = React.ForwardRefExoticComponent<
   InputSelectProps & React.RefAttributes<HTMLSelectElement>
