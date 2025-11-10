@@ -27,7 +27,7 @@ const Base = styled.input<StyledProps<StyleProps>>`
   }
   ${cssInputVariant}
   ${cssInputError}
-  padding-right: 40px; // カレンダーアイコン分の余白を確保
+  padding-right: 40px; // アイコン分の余白を確保
   &::-webkit-calendar-picker-indicator {
     display: none;
   }

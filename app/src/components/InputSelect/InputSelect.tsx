@@ -25,7 +25,7 @@ const Base = styled.select<StyledProps<StyleProps>>`
   }
   ${cssInputVariant}
   ${cssInputError}
-  padding-right: 40px;
+  padding-right: 40px; // アイコン分の余白を確保
 `;
 
 type BaseProps = React.InputHTMLAttributes<HTMLSelectElement>;
