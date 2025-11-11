@@ -18,7 +18,7 @@ const Base = styled.div`
   gap: 4px
 `;
 
-interface StyleProps { }
+interface StyleProps {}
 
 export interface FormItemProps extends StyleProps, BaseProps {
   children?: React.ReactNode;

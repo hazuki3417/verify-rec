@@ -32,7 +32,6 @@ export const Example: Story = {
   },
 };
 
-
 const FormDataView = ({ formData }: { formData: any }) => (
   <pre
     style={{
@@ -46,7 +45,6 @@ const FormDataView = ({ formData }: { formData: any }) => (
     {JSON.stringify(formData, null, 2)}
   </pre>
 );
-
 
 export const ExampleUncontrolled: Story = {
   render: () => {
@@ -65,12 +63,19 @@ export const ExampleUncontrolled: Story = {
           }}
         >
           <div>Uncontrolled form</div>
-          <FormItem style={{
-            backgroundColor: methods.watch("value") ? theme.color.sub.pealEmerald : undefined,
-          }}>
+          <FormItem
+            style={{
+              backgroundColor: methods.watch("value")
+                ? theme.color.sub.pealEmerald
+                : undefined,
+            }}
+          >
             <FormItem.Label>図面番号</FormItem.Label>
             <FormItem.Container>
-              <InputText placeholder="例：12345-67890"  {...methods.register("value")} />
+              <InputText
+                placeholder="例：12345-67890"
+                {...methods.register("value")}
+              />
             </FormItem.Container>
             <FormItem.Message>図面番号の入力は必須です</FormItem.Message>
             <FormItem.Description>
@@ -83,7 +88,6 @@ export const ExampleUncontrolled: Story = {
     );
   },
 };
-
 
 export const ExampleControlled: Story = {
   render: () => {
@@ -102,9 +106,13 @@ export const ExampleControlled: Story = {
           }}
         >
           <div>controlld form</div>
-          <FormItem style={{
-            backgroundColor: methods.watch("value") ? theme.color.sub.pealEmerald : undefined,
-          }}>
+          <FormItem
+            style={{
+              backgroundColor: methods.watch("value")
+                ? theme.color.sub.pealEmerald
+                : undefined,
+            }}
+          >
             <FormItem.Label>図面番号</FormItem.Label>
             <FormItem.Container>
               <Controller

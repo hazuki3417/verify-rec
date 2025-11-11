@@ -3,8 +3,8 @@ import { useCallback, useState } from "react";
 export type UseDisclosureState = "opened" | "closed";
 
 export type UseDisclosureOption = {
-  initial?: UseDisclosureState
-}
+  initial?: UseDisclosureState;
+};
 
 export interface UseDisclosureControls {
   open: () => void;

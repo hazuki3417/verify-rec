@@ -112,11 +112,13 @@ export const Controlled: Story = {
 export const PlaceholderProps: Story = {
   args: {
     placeholder: "例：",
-    children: (<>
-      <InputSelect.Option value="option1">Option 1</InputSelect.Option>
-      <InputSelect.Option value="option2">Option 2</InputSelect.Option>
-      <InputSelect.Option value="option3">Option 3</InputSelect.Option>
-    </>)
+    children: (
+      <>
+        <InputSelect.Option value="option1">Option 1</InputSelect.Option>
+        <InputSelect.Option value="option2">Option 2</InputSelect.Option>
+        <InputSelect.Option value="option3">Option 3</InputSelect.Option>
+      </>
+    ),
   },
 };
 

@@ -1,8 +1,5 @@
 import { useDisclosure } from "./useDisclosure";
-import type {
-  UseDisclosure,
-  UseDisclosureState,
-} from "./useDisclosure";
+import type { UseDisclosure, UseDisclosureState } from "./useDisclosure";
 
 /** useDisclosures のキー配列の型 */
 export type UseDisclosuresKeys = readonly string[];
