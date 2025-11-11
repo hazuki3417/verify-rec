@@ -1,10 +1,12 @@
 import { useCallback, useState } from "react";
 
-export type UseDisclosureState = "opend" | "closed";
+export type UseDisclosureState = "opened" | "closed";
 
-export type UseDisclosureOption = UseDisclosureState;
+export type UseDisclosureOption = {
+  initial?: UseDisclosureState
+}
 
-export interface UseDisclosureHandler {
+export interface UseDisclosureControls {
   open: () => void;
   close: () => void;
   toggle: () => void;
@@ -13,28 +15,38 @@ export interface UseDisclosureHandler {
 
 export interface UseDisclosure {
   state: UseDisclosureState;
-  handler: UseDisclosureHandler;
+  controls: UseDisclosureControls;
 }
 
 /**
- * コンポーネントの開閉を制御するカスタムフック
- * @param option
- * @returns
+ * 開閉可能なUIコンポーネントの状態と操作を管理するカスタムフック
+ *
+ * @example
+ * ```tsx
+ * const disclosure = useDisclosure({ initial: "opened" });
+ * disclosure.state; // "opened" | "closed"
+ * disclosure.controls.open();
+ * ```
+ *
+ * @param option 初期状態を指定するオプション（デフォルト: "closed"）
+ * @returns 開閉状態と操作関数群
  */
-export const useDisclosure = (option: UseDisclosureOption): UseDisclosure => {
-  const [state, setState] = useState<UseDisclosureState>(option);
 
-  const open = useCallback(() => setState("opend"), []);
+export const useDisclosure = (option?: UseDisclosureOption): UseDisclosure => {
+  const { initial = "closed" } = option || {};
+  const [state, setState] = useState<UseDisclosureState>(initial);
+
+  const open = useCallback(() => setState("opened"), []);
   const close = useCallback(() => setState("closed"), []);
   const toggle = useCallback(
-    () => setState((prev) => (prev === "opend" ? "closed" : "opend")),
+    () => setState((prev) => (prev === "opened" ? "closed" : "opened")),
     [],
   );
-  const reset = useCallback(() => setState(option), [option]);
+  const reset = useCallback(() => setState(initial), [initial]);
 
   return {
     state,
-    handler: {
+    controls: {
       open,
       close,
       toggle,
