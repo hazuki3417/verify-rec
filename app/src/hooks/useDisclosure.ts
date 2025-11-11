@@ -1,8 +1,6 @@
-import { useBoolean } from "./useBoolean";
+import { useCallback, useState } from "react";
 
-export type UseDisclosureState = {
-  opend: boolean;
-};
+export type UseDisclosureState = "opend" | "closed";
 
 export type UseDisclosureOption = UseDisclosureState;
 
@@ -24,15 +22,23 @@ export interface UseDisclosure {
  * @returns
  */
 export const useDisclosure = (option: UseDisclosureOption): UseDisclosure => {
-  const { state, handler } = useBoolean(option.opend);
+  const [state, setState] = useState<UseDisclosureState>(option);
+
+  const open = useCallback(() => setState("opend"), []);
+  const close = useCallback(() => setState("closed"), []);
+  const toggle = useCallback(
+    () => setState((prev) => (prev === "opend" ? "closed" : "opend")),
+    [],
+  );
+  const reset = useCallback(() => setState(option), [option]);
 
   return {
-    state: { opend: state },
+    state,
     handler: {
-      open: handler.setTrue,
-      close: handler.setFalse,
-      toggle: handler.toggle,
-      reset: handler.reset,
+      open,
+      close,
+      toggle,
+      reset,
     },
   };
 };
