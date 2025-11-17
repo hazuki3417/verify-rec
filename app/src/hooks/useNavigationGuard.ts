@@ -15,7 +15,7 @@ export interface UseNavigationGuard {
 
 /**
  * 画面遷移をブロックしブロック後の処理に関する制御を提供するカスタムフック
- * @param {() => boolean} callback 画面遷移をブロックするかどうかを判定するコールバック関数（true: ブロックする, false: ブロックしない）
+ * @param {() => boolean} callback 画面遷移ブロックの条件を実装するコールバック関数（true: ブロックする, false: ブロックしない）
  */
 export const useNavigationGuard = (
   callback?: () => boolean,
