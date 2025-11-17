@@ -1,7 +1,10 @@
 import { useCallback } from "react";
 import { useBlocker, type Blocker, type BlockerFunction } from "react-router";
 
-export type UseNavigationGuardState = Blocker["state"];
+export type UseNavigationGuardValue = {
+  state: Blocker["state"];
+  location: Blocker["location"];
+};
 
 export interface UseNavigationGuardControls {
   ok: () => void;
@@ -9,13 +12,49 @@ export interface UseNavigationGuardControls {
 }
 
 export interface UseNavigationGuard {
-  state: UseNavigationGuardState;
+  value: UseNavigationGuardValue;
   controls: UseNavigationGuardControls;
 }
 
 /**
  * 画面遷移をブロックしブロック後の処理に関する制御を提供するカスタムフック
- * @param {() => boolean} callback 画面遷移ブロックの条件を実装するコールバック関数（true: ブロックする, false: ブロックしない）
+ * @param {() => boolean} [callback] 画面遷移ブロックの条件を実装するコールバック関数（true: ブロックする, false: ブロックしない）
+ * @example
+ * ```jsx
+ * export default function Page() {
+ *   const navigationGuard = useNavigationGuard()
+ *
+ *   return (
+ *     <div>
+ *       <div>page</div>
+ *       <Portal>
+ *         {navigationGuard.value.state === "blocked" && (
+ *           <Portal.ModalContainer>
+ *             <Overlay />
+ *             <Modal>
+ *               <Modal.CloseButton onClick={navigationGuard.controls.cancel} />
+ *               <Modal.Header>画面遷移を検知</Modal.Header>
+ *               <Modal.Body>画面遷移します。よろしいですか？</Modal.Body>
+ *               <Modal.Divider />
+ *               <Modal.Footer>
+ *                 <ActionPanel>
+ *                   <ActionPanel.Left>
+ *                     <Button onClick={navigationGuard.controls.ok}>ok</Button>
+ *                   </ActionPanel.Left>
+ *                   <ActionPanel.Center></ActionPanel.Center>
+ *                   <ActionPanel.Right>
+ *                     <Button onClick={navigationGuard.controls.cancel}>cancel</Button>
+ *                   </ActionPanel.Right>
+ *                 </ActionPanel>
+ *               </Modal.Footer>
+ *             </Modal>
+ *           </Portal.ModalContainer>
+ *         )}
+ *       </Portal>
+ *     </div>
+ *   );
+ * }
+ * ```
  */
 export const useNavigationGuard = (
   callback?: () => boolean,
@@ -51,7 +90,10 @@ export const useNavigationGuard = (
   }, [blocker]);
 
   return {
-    state: blocker.state,
+    value: {
+      state: blocker.state,
+      location: blocker.location,
+    },
     controls: {
       ok,
       cancel,

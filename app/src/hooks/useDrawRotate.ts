@@ -1,7 +1,7 @@
 import { drawRotateReducer } from "@/reducers";
 import { useCallback, useReducer } from "react";
 
-export type UseImageRotateState = {
+export type UseImageRotateValue = {
   angle: number;
   initial: {
     angle: number;
@@ -9,7 +9,7 @@ export type UseImageRotateState = {
   meta: { action: "left" | "right" | "reset" | "idle" };
 };
 
-export type UseImageRotateOption = Pick<UseImageRotateState, "angle">;
+export type UseImageRotateOption = Pick<UseImageRotateValue, "angle">;
 
 export interface UseImageRotateHandler {
   right: () => void;
@@ -18,7 +18,7 @@ export interface UseImageRotateHandler {
 }
 
 export interface UseImageRotate {
-  state: UseImageRotateState;
+  value: UseImageRotateValue;
   handler: UseImageRotateHandler;
 }
 
@@ -44,7 +44,7 @@ export const useImageRotate = (
   }, []);
 
   return {
-    state: {
+    value: {
       angle: state.current.angle,
       initial: {
         angle: state.initial.angle,

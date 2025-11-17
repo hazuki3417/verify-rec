@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
 
-export type UseDisclosureState = "opened" | "closed";
+export type UseDisclosureValue = "opened" | "closed";
 
 export type UseDisclosureOption = {
-  initial?: UseDisclosureState;
+  initial?: UseDisclosureValue;
 };
 
 export interface UseDisclosureControls {
@@ -14,7 +14,7 @@ export interface UseDisclosureControls {
 }
 
 export interface UseDisclosure {
-  state: UseDisclosureState;
+  value: UseDisclosureValue;
   controls: UseDisclosureControls;
 }
 
@@ -24,7 +24,7 @@ export interface UseDisclosure {
  * @example
  * ```tsx
  * const disclosure = useDisclosure({ initial: "opened" });
- * disclosure.state; // "opened" | "closed"
+ * disclosure.value; // "opened" | "closed"
  * disclosure.controls.open();
  * ```
  *
@@ -34,7 +34,7 @@ export interface UseDisclosure {
 
 export const useDisclosure = (option?: UseDisclosureOption): UseDisclosure => {
   const { initial = "closed" } = option || {};
-  const [state, setState] = useState<UseDisclosureState>(initial);
+  const [state, setState] = useState<UseDisclosureValue>(initial);
 
   const open = useCallback(() => setState("opened"), []);
   const close = useCallback(() => setState("closed"), []);
@@ -45,7 +45,7 @@ export const useDisclosure = (option?: UseDisclosureOption): UseDisclosure => {
   const reset = useCallback(() => setState(initial), [initial]);
 
   return {
-    state,
+    value: state,
     controls: {
       open,
       close,
