@@ -10,6 +10,7 @@ export default function RootLayout() {
       <Providers>
         <Styles />
         <Outlet />
+        <div id="portal"></div>
       </Providers>
     </StrictMode>
   );
