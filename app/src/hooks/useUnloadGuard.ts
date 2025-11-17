@@ -6,17 +6,17 @@ import { useEffect } from "react";
  * - ブラウザを閉じる
  * - タブを閉じる
  * - 更新
- * @param {() => boolean} callback ページ離脱の条件を実装するコールバック関数(true: 許可, false: 許可しない)
+ * @param {() => boolean} callback ページ離脱の条件を実装するコールバック関数(true: ブロックする, false: ブロックしない)
  */
 export const useUnloadGuard = (callback: () => boolean) => {
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       if (callback()) {
-        // callbackがtrueを返した場合、ページ離脱を許可する
+        // callbackがtrueを返した場合、ページ離脱の確認をする
+        event.preventDefault();
+        event.returnValue = "";
         return;
       }
-      event.preventDefault();
-      event.returnValue = "";
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
