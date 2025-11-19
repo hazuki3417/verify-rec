@@ -1,13 +1,28 @@
 import React, { forwardRef, useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { type StyledProps } from "@/utils/props";
 
 type BaseProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 interface StyleProps { }
 
+const Label = styled.label<StyledProps<{ disabled: boolean }>>`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  ${({ $disabled }) => {
+    return css({
+      cursor: $disabled ? "not-allowed" : "pointer",
+    });
+  }}
+`;
+
 const Base = styled.input<StyledProps<StyleProps>>`
-  appearance: none;
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  height: 0px;
+  weight: 0px;
   opacity: 0;
   pointer-events: none;
 `;
@@ -53,7 +68,13 @@ export interface InputToggleProps
  */
 export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
   (props, ref) => {
-    const { node, defaultChecked = false, disabled, onChange, ...rest } = props;
+    const {
+      node,
+      defaultChecked = false,
+      disabled = false,
+      onChange,
+      ...rest
+    } = props;
 
     // NOTE: on/offの表示切り替えをするためのstate
     const [checked, setChecked] = useState(defaultChecked);
@@ -67,7 +88,7 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
     // NOTE: disabledのUI変更も必要な場合はnode.disabledを許容するように拡張する
 
     return (
-      <label style={{ cursor: disabled ? "not-allowed" : "pointer" }}>
+      <Label $disabled={disabled}>
         <Base
           ref={ref}
           {...rest}
@@ -77,7 +98,7 @@ export const InputToggle = forwardRef<HTMLInputElement, InputToggleProps>(
           type="checkbox"
         />
         {checked ? node.on : node.off}
-      </label>
+      </Label>
     );
   },
 );

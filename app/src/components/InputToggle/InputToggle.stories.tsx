@@ -9,8 +9,8 @@ const meta = {
   component: InputToggle,
   args: {
     node: {
-      on: <IconTakeOver color="pealEmerald" />,
-      off: <IconTakeOver color="pealGray" />,
+      on: <IconTakeOver color="emerald" />,
+      off: <IconTakeOver color="gray" />,
     },
   },
 } satisfies Meta<typeof InputToggle>;
@@ -53,8 +53,8 @@ export const Uncontrolled: Story = {
           <div>Uncontrolled form</div>
           <InputToggle
             node={{
-              on: <IconTakeOver color="pealEmerald" />,
-              off: <IconTakeOver color="pealGray" />,
+              on: <IconTakeOver color="emerald" />,
+              off: <IconTakeOver color="gray" />,
             }}
             {...methods.register("value")}
           />
@@ -88,8 +88,8 @@ export const Controlled: Story = {
             render={({ field }) => (
               <InputToggle
                 node={{
-                  on: <IconTakeOver color="pealEmerald" />,
-                  off: <IconTakeOver color="pealGray" />,
+                  on: <IconTakeOver color="emerald" />,
+                  off: <IconTakeOver color="gray" />,
                 }}
                 {...field}
               />
