@@ -4,7 +4,7 @@ import { type StyledProps } from "@/utils/props";
 
 type BaseProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-interface StyleProps {}
+interface StyleProps { }
 
 const Base = styled.input<StyledProps<StyleProps>>`
   appearance: none;
@@ -14,7 +14,7 @@ const Base = styled.input<StyledProps<StyleProps>>`
 
 export interface InputToggleProps
   extends StyleProps,
-    Omit<BaseProps, "style" | "type" | "children"> {
+  Omit<BaseProps, "style" | "type" | "children"> {
   node: {
     on: React.ReactNode;
     off: React.ReactNode;
@@ -45,8 +45,8 @@ export interface InputToggleProps
  * ```jsx
  * <InputToggle
  *   node={{
- *     on: <IconX color="pealEmerald" />, // on時の表示
- *     off: <IconX color="pealGray" />,   // off時の表示
+ *     on: <IconTakeOver color="pealEmerald" />, // on時の表示
+ *     off: <IconTakeOver color="pealGray" />,   // off時の表示
  *   }}
  * />
  * ```

@@ -1,17 +1,16 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { InputToggle } from "./InputToggle";
-import { inputVariantStyleMap, type InputVariant } from "@/utils/props";
 import { Controller, FormProvider, useForm } from "react-hook-form";
-import { IconX } from "../Icon";
+import { IconTakeOver } from "../Icon";
 
 const meta = {
   title: "Components/InputToggle",
   component: InputToggle,
   args: {
     node: {
-      on: <IconX color="pealEmerald" />,
-      off: <IconX color="pealGray" />,
+      on: <IconTakeOver color="pealEmerald" />,
+      off: <IconTakeOver color="pealGray" />,
     },
   },
 } satisfies Meta<typeof InputToggle>;
@@ -39,7 +38,7 @@ export const Uncontrolled: Story = {
   render: () => {
     const methods = useForm({
       defaultValues: {
-        value: "",
+        value: false,
       },
     });
     return (
@@ -54,8 +53,8 @@ export const Uncontrolled: Story = {
           <div>Uncontrolled form</div>
           <InputToggle
             node={{
-              on: <IconX color="pealEmerald" />,
-              off: <IconX color="pealGray" />,
+              on: <IconTakeOver color="pealEmerald" />,
+              off: <IconTakeOver color="pealGray" />,
             }}
             {...methods.register("value")}
           />
@@ -82,15 +81,15 @@ export const Controlled: Story = {
             flexDirection: "column",
           }}
         >
-          <div>controlld form</div>
+          <div>controlled form</div>
           <Controller
             name="value"
             control={methods.control}
             render={({ field }) => (
               <InputToggle
                 node={{
-                  on: <IconX color="pealEmerald" />,
-                  off: <IconX color="pealGray" />,
+                  on: <IconTakeOver color="pealEmerald" />,
+                  off: <IconTakeOver color="pealGray" />,
                 }}
                 {...field}
               />
