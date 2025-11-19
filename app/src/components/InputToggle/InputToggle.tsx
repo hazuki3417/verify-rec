@@ -14,7 +14,7 @@ const Base = styled.input<StyledProps<StyleProps>>`
 
 export interface InputToggleProps
   extends StyleProps,
-  Omit<BaseProps, "style" | "type" | "children"> {
+  Omit<BaseProps, "style" | "type" | "children" | "placeholder"> {
   node: {
     on: React.ReactNode;
     off: React.ReactNode;

@@ -102,12 +102,6 @@ export const Controlled: Story = {
   },
 };
 
-export const PlaceholderProps: Story = {
-  args: {
-    placeholder: "例：",
-  },
-};
-
 export const DisabledProp: Story = {
   render: (args) => {
     return (
