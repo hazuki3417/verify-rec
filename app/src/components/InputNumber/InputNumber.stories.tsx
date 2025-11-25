@@ -80,7 +80,7 @@ export const Controlled: Story = {
             flexDirection: "column",
           }}
         >
-          <div>controlld form</div>
+          <div>controlled form</div>
           <Controller
             name="value"
             control={methods.control}

@@ -105,7 +105,7 @@ export const ExampleControlled: Story = {
             flexDirection: "column",
           }}
         >
-          <div>controlld form</div>
+          <div>controlled form</div>
           <FormItem
             style={{
               backgroundColor: methods.watch("value")
