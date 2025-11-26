@@ -51,9 +51,7 @@ const IconBox = styled.div`
   height: 24px;
 `;
 
-export interface InputDateProps
-  extends StyleProps,
-    Omit<BaseProps, "style" | "type"> {}
+export interface InputDateProps extends StyleProps, Omit<BaseProps, "type"> {}
 
 export const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
   (props, ref) => {

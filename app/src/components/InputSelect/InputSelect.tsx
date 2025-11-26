@@ -30,9 +30,7 @@ const Base = styled.select<StyledProps<StyleProps>>`
 
 type BaseProps = React.InputHTMLAttributes<HTMLSelectElement>;
 
-export interface InputSelectProps
-  extends StyleProps,
-    Omit<BaseProps, "style"> {}
+export interface InputSelectProps extends StyleProps, BaseProps {}
 
 type InputSelectComponent = React.ForwardRefExoticComponent<
   InputSelectProps & React.RefAttributes<HTMLSelectElement>

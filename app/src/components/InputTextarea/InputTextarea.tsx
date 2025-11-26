@@ -69,7 +69,7 @@ type BaseProps = React.InputHTMLAttributes<HTMLTextAreaElement>;
 
 export interface InputTextareaProps
   extends StyleProps,
-    Omit<BaseProps, "style" | "type"> {}
+    Omit<BaseProps, "type"> {}
 
 export const InputTextarea = forwardRef<
   HTMLTextAreaElement,

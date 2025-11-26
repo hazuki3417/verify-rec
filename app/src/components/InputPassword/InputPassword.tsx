@@ -30,7 +30,7 @@ const Base = styled.input<StyledProps<StyleProps>>`
 
 export interface InputPasswordProps
   extends StyleProps,
-    Omit<BaseProps, "style" | "type" | "autoComplete"> {}
+    Omit<BaseProps, "type" | "autoComplete"> {}
 
 export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
   (props, ref) => {

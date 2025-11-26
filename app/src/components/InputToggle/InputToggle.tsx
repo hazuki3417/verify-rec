@@ -4,7 +4,7 @@ import { type StyledProps } from "@/utils/props";
 
 type BaseProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-interface StyleProps { }
+interface StyleProps {}
 
 const Label = styled.label<StyledProps<{ disabled: boolean }>>`
   position: relative;
@@ -29,7 +29,7 @@ const Base = styled.input<StyledProps<StyleProps>>`
 
 export interface InputToggleProps
   extends StyleProps,
-  Omit<BaseProps, "style" | "type" | "children" | "placeholder"> {
+    Omit<BaseProps, "style" | "type" | "children" | "placeholder"> {
   node: {
     on: React.ReactNode;
     off: React.ReactNode;

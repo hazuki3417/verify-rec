@@ -39,9 +39,7 @@ const Base = styled.input<StyledProps<StyleProps>>`
   }
 `;
 
-export interface InputNumberProps
-  extends StyleProps,
-    Omit<BaseProps, "style" | "type"> {}
+export interface InputNumberProps extends StyleProps, Omit<BaseProps, "type"> {}
 
 export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
   (props, ref) => {

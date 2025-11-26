@@ -28,9 +28,7 @@ const Base = styled.input<StyledProps<StyleProps>>`
   ${cssInputError}
 `;
 
-export interface InputTextProps
-  extends StyleProps,
-    Omit<BaseProps, "style" | "type"> {}
+export interface InputTextProps extends StyleProps, Omit<BaseProps, "type"> {}
 
 export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
   (props, ref) => {
