@@ -15,13 +15,14 @@ type BaseProps = React.InputHTMLAttributes<HTMLInputElement>;
 interface StyleProps extends InputStyleProps { }
 
 const Base = styled.input<StyledProps<StyleProps>>`
+  // NOTE: line-height: 160%を指定すると他のInputと高さが揃わなくなるため指定なし。
+  //       figmaのコンポーネント見直し時に要調整。
   background-color: ${theme.color.base.white};
   border-radius: 4px;
   font-family: ${theme.font.family.base};
   font-size: ${theme.font.size[16]};
   font-weight: ${theme.font.weight.regular};
   color: ${theme.color.base.riverBlue};
-  line-height: ${theme.font.lineHeight[160]};
   &::placeholder {
     color: ${theme.color.sub.lightGray};
   }
