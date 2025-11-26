@@ -12,7 +12,7 @@ import { IconCalendar } from "../Icon";
 
 type BaseProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-interface StyleProps extends InputStyleProps {}
+interface StyleProps extends InputStyleProps { }
 
 const Base = styled.input<StyledProps<StyleProps>>`
   background-color: ${theme.color.base.white};
@@ -51,11 +51,11 @@ const IconBox = styled.div`
   height: 24px;
 `;
 
-export interface InputDateProps extends StyleProps, Omit<BaseProps, "type"> {}
+export interface InputDateProps extends StyleProps, Omit<BaseProps, "type"> { }
 
 export const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
   (props, ref) => {
-    const { variant, error, ...rest } = props;
+    const { style, variant, error, ...rest } = props;
     const localRef = useRef<HTMLInputElement>(null);
 
     useImperativeHandle(ref, () => localRef.current as HTMLInputElement);
@@ -76,8 +76,8 @@ export const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
 
     // NOTE: typeを固定するため一番最後に指定（スプレッド演算子をあとに記述すると値が上書きされる）
     return (
-      <Container>
-        <Base ref={localRef} {...styled} {...rest} type="date" />
+      <Container style={style}>
+        <Base ref={localRef} style={style} {...styled} {...rest} type="date" />
         <IconBox onClick={handleIconClick}>
           <IconCalendar size="24" />
         </IconBox>
