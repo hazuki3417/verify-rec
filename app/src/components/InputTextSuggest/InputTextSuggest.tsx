@@ -13,14 +13,15 @@ import { Suggest } from "../Suggest";
 import { useFormContext, useWatch } from "react-hook-form";
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
 `;
 
-interface StyleProps {}
+interface StyleProps { }
 
-const Base = styled(InputText)<StyledProps<StyleProps>>`
+const Base = styled(InputText) <StyledProps<StyleProps>>`
 `;
 
 export interface InputTextSuggestProps extends InputTextProps, StyleProps {
@@ -89,7 +90,7 @@ export const InputTextSuggest = forwardRef<
     <Container onBlur={handleBlur}>
       <Base ref={ref} name={name} onFocus={handleFocus} {...styled} {...rest} />
       {open && (
-        <Suggest>
+        <Suggest style={{ position: "absolute", top: "100%", left: "-1px", width: "100%", zIndex: "1" }}>
           {/* NOTE: onClickだとonBlueが発火した後に動くため、onMouseDownを利用 */}
           {items.map((item) => (
             <Suggest.Item key={item} onMouseDown={handleSelectSuggest}>
