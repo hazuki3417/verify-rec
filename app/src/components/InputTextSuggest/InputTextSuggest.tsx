@@ -3,6 +3,7 @@ import React, {
   useCallback,
   useMemo,
   useState,
+  type ChangeEvent,
   type FocusEvent,
   type MouseEvent,
 } from "react";
@@ -35,7 +36,7 @@ export const InputTextSuggest = forwardRef<
   HTMLInputElement,
   InputTextSuggestProps
 >((props, ref) => {
-  const { suggestions, name, ...rest } = props;
+  const { suggestions, name, onFocus, onChange, ...rest } = props;
 
   const [showSuggest, setShowSuggest] = useState(false);
   const { setValue, control } = useFormContext();
@@ -47,9 +48,13 @@ export const InputTextSuggest = forwardRef<
 
   const open = showSuggest && suggestions.length > 0;
 
-  const handleFocus = useCallback((event: FocusEvent<HTMLInputElement>) => {
-    setShowSuggest(true);
-  }, []);
+  const handleFocus = useCallback(
+    (event: FocusEvent<HTMLInputElement>) => {
+      setShowSuggest(true);
+      onFocus?.(event);
+    },
+    [onFocus],
+  );
 
   const handleBlur = useCallback((event: FocusEvent<HTMLDivElement>) => {
     setShowSuggest(false);
@@ -70,11 +75,26 @@ export const InputTextSuggest = forwardRef<
     [setValue, setShowSuggest, name],
   );
 
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setShowSuggest(true);
+      onChange?.(event);
+    },
+    [onChange],
+  );
+
   const styled = transform.props.toStyled({});
 
   return (
     <Container onBlur={handleBlur}>
-      <Base ref={ref} name={name} onFocus={handleFocus} {...styled} {...rest} />
+      <Base
+        ref={ref}
+        name={name}
+        onFocus={handleFocus}
+        onChange={handleChange}
+        {...styled}
+        {...rest}
+      />
       {open && (
         <Suggest
           style={{
