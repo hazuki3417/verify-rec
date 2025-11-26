@@ -40,7 +40,7 @@ const Base = styled.li<StyledProps<StyleProps>>`
   `}
 `;
 
-export interface SuggestItemProps extends StyleProps, BaseProps { }
+export interface SuggestItemProps extends StyleProps, BaseProps {}
 
 export const SuggestItem = forwardRef<HTMLLIElement, SuggestItemProps>(
   (props, ref) => {
