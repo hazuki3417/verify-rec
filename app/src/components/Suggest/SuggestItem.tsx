@@ -10,32 +10,37 @@ interface StyleProps {
 }
 
 const Base = styled.li<StyledProps<StyleProps>>`
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   border-bottom: 1px solid ${theme.color.sub.gray};
   cursor: pointer;
+  display: -webkit-box;
+  color: ${theme.color.base.riverBlue};
   font-size: ${theme.font.size[14]};
   line-height: 18px; // TODO: token管理されていない値（どうするか検討）
   max-height: 42px;
-  overflow: hidden;
   overflow-wrap: break-word;
-  text-overflow: ellipsis;
+  overflow: hidden;
   padding: 4px 8px;
+  text-overflow: ellipsis;
   white-space: pre-wrap;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 
   &:last-child {
     border-bottom: 1px solid transparent;
   }
 
+  &:hover {
+    background-color: ${theme.color.base.pealGray};
+  }
+
   ${({ $active }) =>
     $active &&
     `
-    background-color: ${theme.color.base.riverBlue};
+    background-color: ${theme.color.base.pealGray};
   `}
 `;
 
-export interface SuggestItemProps extends StyleProps, BaseProps {}
+export interface SuggestItemProps extends StyleProps, BaseProps { }
 
 export const SuggestItem = forwardRef<HTMLLIElement, SuggestItemProps>(
   (props, ref) => {
