@@ -12,7 +12,7 @@ import { IconCalendar } from "../Icon";
 
 type BaseProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-interface StyleProps extends InputStyleProps { }
+interface StyleProps extends InputStyleProps {}
 
 const Base = styled.input<StyledProps<StyleProps>>`
   // NOTE: line-height: 160%を指定すると他のInputと高さが揃わなくなるため指定なし。
@@ -52,7 +52,7 @@ const IconBox = styled.div`
   height: 24px;
 `;
 
-export interface InputDateProps extends StyleProps, Omit<BaseProps, "type"> { }
+export interface InputDateProps extends StyleProps, Omit<BaseProps, "type"> {}
 
 export const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
   (props, ref) => {
